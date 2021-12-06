@@ -4,6 +4,10 @@
  */
 package userinterface.WRU;
 
+import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author sethu
@@ -13,8 +17,14 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
     /**
      * Creates new form wru_ManagerPanel
      */
-    public Wru_ManagerPanel() {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    UserAccount account;
+    public Wru_ManagerPanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount account) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.ecosystem = ecosystem;
     }
 
     /**
