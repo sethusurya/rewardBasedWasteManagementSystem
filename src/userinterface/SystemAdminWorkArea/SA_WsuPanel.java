@@ -4,17 +4,26 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.EcoSystem;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author sethu
  */
+
 public class SA_WsuPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form SA_WsuPanel
      */
-    public SA_WsuPanel() {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    public SA_WsuPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
     }
 
     /**
@@ -62,6 +71,11 @@ public class SA_WsuPanel extends javax.swing.JPanel {
         lblName.setText("Company Name : ");
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         lblStreetAddress.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblStreetAddress.setText("Street Address : ");
@@ -96,15 +110,11 @@ public class SA_WsuPanel extends javax.swing.JPanel {
             .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDelete)
-                        .addGap(0, 12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEdit)
-                        .addContainerGap())))
+                    .addComponent(btnDelete)
+                    .addComponent(btnEdit))
+                .addGap(0, 12, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -142,6 +152,9 @@ public class SA_WsuPanel extends javax.swing.JPanel {
                             .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnEdit, btnSave});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -186,7 +199,15 @@ public class SA_WsuPanel extends javax.swing.JPanel {
                 .addComponent(btnSave)
                 .addGap(29, 29, 29))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnEdit, btnSave});
+
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        goBack();
+    }//GEN-LAST:event_btnBackActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -210,4 +231,10 @@ public class SA_WsuPanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtUsername;
     private javax.swing.JTextField txtZip;
     // End of variables declaration//GEN-END:variables
+
+    private void goBack() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }
 }
