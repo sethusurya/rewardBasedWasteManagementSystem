@@ -4,6 +4,10 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author sethu
@@ -13,8 +17,12 @@ public class SA_WruPanel extends javax.swing.JPanel {
     /**
      * Creates new form SA_WruPanel
      */
-    public SA_WruPanel() {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    public SA_WruPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
     }
 
     /**

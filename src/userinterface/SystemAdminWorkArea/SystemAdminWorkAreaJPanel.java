@@ -91,6 +91,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         lblSelectedNode.setText("<View_selected_node>");
 
         btnWru.setText("Waste Recycle Units");
+        btnWru.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnWruActionPerformed(evt);
+            }
+        });
 
         btnLu.setText("Logistics Unit");
 
@@ -172,6 +177,13 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnWsuActionPerformed
+
+    private void btnWruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWruActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.add("myCustomerList", new SA_WruPanel(userProcessContainer,ecosystem));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnWruActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
