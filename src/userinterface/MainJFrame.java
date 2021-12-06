@@ -123,7 +123,24 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void loginJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginJButtonActionPerformed
         // Get user name
+       String userName = userNameJTextField.getText();
+       char[] passwordArr = passwordField.getPassword(); // jPassword field doesn't give getText method, so we use get password method
+       String password = new String(passwordArr);
+       UserAccount userAccount = system.getUserAccountDirectory().authenticateUser(userName, password);
        
+       if (userAccount == null) {
+           JOptionPane.showMessageDialog(this, "Invalid Credentials");
+           return;
+       } else {
+            // identify the user role and create respective Jpanel
+           container.add("userPage", userAccount.getRole().createWorkArea(container, userAccount, system));
+           CardLayout layout = (CardLayout) container.getLayout();
+           layout.next(container);
+           loginJButton.setEnabled(false);
+           userNameJTextField.setEnabled(false);
+           passwordField.setEnabled(false);
+           logoutJButton.setEnabled(true);
+       }
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void logoutJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutJButtonActionPerformed
