@@ -17,7 +17,7 @@ public class WRU_Admin extends Role{
 
     @Override
     public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
-        return new Wru_AdminPanel();
+        return new Wru_AdminPanel(userProcessContainer, business, account);
     }
     
 }

@@ -29,7 +29,7 @@ public class EcoSystem extends Organization{
         this.restaurantDirectory = restaurantDirectory;
         this.customerDirectory = customerDirectory;
         this.deliveryManDirectory = deliveryManDirectory;
-    }
+    }   
     
     public static EcoSystem getInstance(){
         if(business==null){
