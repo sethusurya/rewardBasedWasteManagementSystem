@@ -6,6 +6,7 @@ import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
+import com.db4o.ta.TransparentActivationSupport;
 import com.db4o.ta.TransparentPersistenceSupport;
 import java.nio.file.Paths;
 
@@ -34,8 +35,9 @@ public class DB4OUtil {
 
     private ObjectContainer createConnection() {
         try {
-
             EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
+            ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
+            config.common().add(new TransparentActivationSupport());
             config.common().add(new TransparentPersistenceSupport());
             //Controls the number of objects in memory
             config.common().activationDepth(Integer.MAX_VALUE);
@@ -44,8 +46,6 @@ public class DB4OUtil {
 
             //Register your top most Class here
             config.common().objectClass(EcoSystem.class).cascadeOnUpdate(true); // Change to the object you want to save
-
-            ObjectContainer db = Db4oEmbedded.openFile(config, FILENAME);
             return db;
         } catch (Exception ex) {
             System.out.print(ex.getMessage());
