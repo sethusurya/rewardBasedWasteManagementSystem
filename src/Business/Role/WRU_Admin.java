@@ -4,10 +4,20 @@
  */
 package Business.Role;
 
+import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import userinterface.WRU.Wru_AdminPanel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author sethu
  */
-public class WRU_Admin {
+public class WRU_Admin extends Role{
+
+    @Override
+    public JPanel createWorkArea(JPanel userProcessContainer, UserAccount account, EcoSystem business) {
+        return new Wru_AdminPanel();
+    }
     
 }
