@@ -48,6 +48,11 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
         title.setText("MANAGER PANEL");
 
         btnOngoingBids.setText("ONGOING BIDS");
+        btnOngoingBids.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOngoingBidsActionPerformed(evt);
+            }
+        });
 
         btnEditAccount.setText("EDIT ACCOUNT");
 
@@ -98,6 +103,10 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCompletedBids, btnEditAccount, btnOngoingBids});
 
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnOngoingBidsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOngoingBidsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOngoingBidsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
