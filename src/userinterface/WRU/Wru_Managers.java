@@ -61,7 +61,7 @@ public class Wru_Managers extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(table);
 
-        btnEdit.setText("Edit");
+        btnEdit.setText("View");
 
         btnDelete.setText("Delete");
 
