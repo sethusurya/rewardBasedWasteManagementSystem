@@ -7,6 +7,7 @@ package Business;
 import Business.Employee.EmployeeDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
+import Business.WSU.WSU_CompanyDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
@@ -20,6 +21,7 @@ public abstract class Organization {
     private WorkQueue workQueue;
     private EmployeeDirectory employeeDirectory;
     private UserAccountDirectory userAccountDirectory;
+    private WSU_CompanyDirectory wsuCompanyDirectory;
     private int organizationID;
     private static int counter=0;
     
@@ -43,6 +45,7 @@ public abstract class Organization {
         workQueue = new WorkQueue();
         employeeDirectory = new EmployeeDirectory();
         userAccountDirectory = new UserAccountDirectory();
+        wsuCompanyDirectory = new WSU_CompanyDirectory(); // creating wsu_directory
         organizationID = counter;
         ++counter;
     }

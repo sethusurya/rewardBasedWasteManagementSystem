@@ -4,6 +4,10 @@
  */
 package userinterface.WRU;
 
+import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import javax.swing.JPanel;
+
 /**
  *
  * @author sethu
@@ -13,8 +17,14 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
     /**
      * Creates new form wru_ManagerPanel
      */
-    public Wru_ManagerPanel() {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    UserAccount account;
+    public Wru_ManagerPanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount account) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.account = account;
+        this.ecosystem = ecosystem;
     }
 
     /**
@@ -26,59 +36,85 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        wsu_adminJpanel = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        title = new javax.swing.JLabel();
+        btnOngoingBids = new javax.swing.JButton();
+        btnEditAccount = new javax.swing.JButton();
+        btnCompletedBids = new javax.swing.JButton();
+        lblCompany = new javax.swing.JLabel();
+        txtCompany = new javax.swing.JTextField();
 
-        wsu_adminJpanel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        wsu_adminJpanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        wsu_adminJpanel.setText("MANAGER PANEL");
+        title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("MANAGER PANEL");
 
-        jButton6.setText("ONGOING BIDS");
+        btnOngoingBids.setText("ONGOING BIDS");
+        btnOngoingBids.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOngoingBidsActionPerformed(evt);
+            }
+        });
 
-        jButton7.setText("EDIT ACCOUNT");
+        btnEditAccount.setText("EDIT ACCOUNT");
 
-        jButton8.setText("COMPLETED BIDS");
+        btnCompletedBids.setText("COMPLETED BIDS");
+
+        lblCompany.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblCompany.setText("Company Name : ");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(wsu_adminJpanel, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(214, 214, 214)
+            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCompletedBids, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEditAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOngoingBids, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(205, 205, 205))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(156, 156, 156)
+                .addComponent(lblCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton6, jButton7, jButton8});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCompletedBids, btnEditAccount, btnOngoingBids});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(wsu_adminJpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(56, 56, 56)
-                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(64, 64, 64)
+                .addComponent(btnOngoingBids, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCompletedBids, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(43, 43, 43)
-                .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 182, Short.MAX_VALUE))
+                .addComponent(btnEditAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 118, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton6, jButton7, jButton8});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCompletedBids, btnEditAccount, btnOngoingBids});
 
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnOngoingBidsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOngoingBidsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnOngoingBidsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JLabel wsu_adminJpanel;
+    private javax.swing.JButton btnCompletedBids;
+    private javax.swing.JButton btnEditAccount;
+    private javax.swing.JButton btnOngoingBids;
+    private javax.swing.JLabel lblCompany;
+    private javax.swing.JLabel title;
+    private javax.swing.JTextField txtCompany;
     // End of variables declaration//GEN-END:variables
 }
