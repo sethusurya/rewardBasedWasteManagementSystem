@@ -18,10 +18,12 @@ public class UserAccount {
     private String password;
     private Employee employee;
     private Role role;
-    private WorkQueue workQueue;
-
+    private int id;
+    private static int count = 1;
+    
     public UserAccount() {
-        workQueue = new WorkQueue();
+        id = count;
+        count++;
     }
     
     
@@ -58,12 +60,11 @@ public class UserAccount {
         return employee;
     }
 
-    public WorkQueue getWorkQueue() {
-        return workQueue;
+    public int getId() {
+        return id;
     }
+    
 
-    
-    
     @Override
     public String toString() {
         return username;
