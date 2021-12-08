@@ -5,8 +5,14 @@
 package userinterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
+import Business.Role.Role;
+import Business.Role.WRU_Admin;
 import Business.UserAccount.UserAccount;
+import Business.WRU.WRU_Company;
+import Business.WRU.WRU_CompanyDirectory;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -24,6 +30,7 @@ public class SA_WruPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
+        populateTable(ecosystem.getWRUCompanyDirectory());
     }
 
     /**
@@ -73,13 +80,13 @@ public class SA_WruPanel extends javax.swing.JPanel {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Company Name", "City", "Zip", "admin"
+                "Company Name", "Street", "City", "Zip", "admin"
             }
         ));
         jScrollPane1.setViewportView(table);
@@ -87,6 +94,11 @@ public class SA_WruPanel extends javax.swing.JPanel {
         btnDelete.setText("Delete");
 
         btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUsername.setText("Admin UserName : ");
@@ -98,6 +110,11 @@ public class SA_WruPanel extends javax.swing.JPanel {
         lblZip.setText("Zip : ");
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -211,6 +228,40 @@ public class SA_WruPanel extends javax.swing.JPanel {
         goBack();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String companyName = txtName.getText();
+        String street = txtStreet.getText();
+        String city = txtCity.getText();
+        Long zip = Long.parseLong(txtZip.getText());
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+        
+        Role role = new WRU_Admin();
+        WRU_Company newCompany = new WRU_Company();
+        newCompany.setName(companyName);
+        newCompany.setStreet(street);
+        newCompany.setCity(city);
+        newCompany.setZip(zip);
+        newCompany.setAdminUserName(username);
+        newCompany.setEmployeesList(new ArrayList<String>());
+        // Create userAccount in userDirectory
+        if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+            ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
+            
+            // Create WRU_Company in WRU_CompanyDirectory
+            ecosystem.getWRUCompanyDirectory().addCompany(newCompany); // company created
+        } else {
+            JOptionPane.showMessageDialog(this, "Username already exists");
+            return;
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        // get data from selected row and do something with that
+    }//GEN-LAST:event_btnEditActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -238,5 +289,21 @@ public class SA_WruPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);        
+    }
+
+    private void populateTable(WRU_CompanyDirectory selectedCompanyDirectory) {
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel)table.getModel();
+        model.setRowCount(0);
+        
+        for(WRU_Company p:selectedCompanyDirectory.getCompanies()) {
+           Object[] row = new Object[5];
+           row[0] = p;
+           row[1] = p.getStreet();
+           row[2] = p.getCity();
+           row[3] = p.getZip();
+           row[4] = p.getAdminUserName();
+           
+           model.addRow(row);
+        }
     }
 }

@@ -6,6 +6,7 @@ package userinterface.WRU;
 
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
+import Business.WRU.WRU_Company;
 import javax.swing.JPanel;
 
 /**
@@ -15,16 +16,20 @@ import javax.swing.JPanel;
 public class Wru_ManagerPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form wru_ManagerPanel
+     * Creates new form Wru_ManagerOnGoingBids
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;
     UserAccount account;
-    public Wru_ManagerPanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount account) {
+    WRU_Company company;
+    public Wru_ManagerPanel(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account, WRU_Company company) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
-        this.account = account;
         this.ecosystem = ecosystem;
+        this.account = account;
+        this.company = company;
+        
+        populateData();
     }
 
     /**
@@ -36,27 +41,57 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnCreateBid = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
         title = new javax.swing.JLabel();
-        btnOngoingBids = new javax.swing.JButton();
-        btnEditAccount = new javax.swing.JButton();
-        btnCompletedBids = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        table = new javax.swing.JTable();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        table1 = new javax.swing.JTable();
+        title1 = new javax.swing.JLabel();
+        btnView1 = new javax.swing.JButton();
         lblCompany = new javax.swing.JLabel();
         txtCompany = new javax.swing.JTextField();
 
+        btnCreateBid.setText("Create New Bid");
+
+        btnView.setText("View Bid Info");
+
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        title.setText("MANAGER PANEL");
+        title.setText("ONGOING BIDS");
 
-        btnOngoingBids.setText("ONGOING BIDS");
-        btnOngoingBids.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOngoingBidsActionPerformed(evt);
+        table.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Type", "Weight (LBS)", "Status", "Bid Cost ($)", "Delivery Driver"
             }
-        });
+        ));
+        jScrollPane1.setViewportView(table);
 
-        btnEditAccount.setText("EDIT ACCOUNT");
+        table1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "ID", "Type", "Weight (LBS)", "Selling Organization", "Delivered By", "Bid Cost ($)", "Delivery Cost ($)"
+            }
+        ));
+        jScrollPane2.setViewportView(table1);
 
-        btnCompletedBids.setText("COMPLETED BIDS");
+        title1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title1.setText("COMPLETED BIDS");
+
+        btnView1.setText("View Bid Info");
 
         lblCompany.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCompany.setText("Company Name : ");
@@ -66,55 +101,64 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnCompletedBids, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEditAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnOngoingBids, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(205, 205, 205))
+            .addComponent(jScrollPane1)
+            .addComponent(title1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jScrollPane2)
             .addGroup(layout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnCreateBid, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnView1, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(153, 153, 153)
                 .addComponent(lblCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCompletedBids, btnEditAccount, btnOngoingBids});
-
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(64, 64, 64)
-                .addComponent(btnOngoingBids, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(btnCompletedBids, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(btnEditAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 118, Short.MAX_VALUE))
+                .addGap(1, 1, 1)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCreateBid)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnView1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnView)
+                .addGap(6, 6, 6))
         );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnCompletedBids, btnEditAccount, btnOngoingBids});
-
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnOngoingBidsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOngoingBidsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOngoingBidsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCompletedBids;
-    private javax.swing.JButton btnEditAccount;
-    private javax.swing.JButton btnOngoingBids;
+    private javax.swing.JButton btnCreateBid;
+    private javax.swing.JButton btnView;
+    private javax.swing.JButton btnView1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCompany;
+    private javax.swing.JTable table;
+    private javax.swing.JTable table1;
     private javax.swing.JLabel title;
+    private javax.swing.JLabel title1;
     private javax.swing.JTextField txtCompany;
     // End of variables declaration//GEN-END:variables
+
+    private void populateData() {
+        txtCompany.setText(company.getName());
+    }
 }
