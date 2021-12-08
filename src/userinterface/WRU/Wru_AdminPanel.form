@@ -16,29 +16,27 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="title" pref="600" max="32767" attributes="0"/>
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Component id="title" min="-2" pref="577" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="23" max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnEditAccount" linkSize="1" alignment="1" min="-2" pref="157" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                      <Component id="btnManagers" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                      <Component id="btnViewCompany" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
+                      <Component id="lblCompanyName" min="-2" pref="98" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+                      <Component id="txtCompanyName" min="-2" pref="163" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" attributes="0">
+                          <Component id="btnExpenditureAnalysis" linkSize="1" max="32767" attributes="0"/>
+                          <Component id="btnManagers" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                          <Component id="btnBids" linkSize="1" alignment="1" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                  <Component id="btnExpenditureAnalysis" linkSize="1" max="32767" attributes="0"/>
-                  <Component id="btnOngoingBids" linkSize="1" alignment="1" max="32767" attributes="0"/>
-                  <Component id="btnCompletedBids" linkSize="1" alignment="1" min="-2" pref="135" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-          </Group>
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="159" max="-2" attributes="0"/>
-              <Component id="lblCompanyName" min="-2" pref="98" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="txtCompanyName" min="-2" pref="163" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -52,24 +50,13 @@
                   <Component id="lblCompanyName" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
                   <Component id="txtCompanyName" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="53" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Component id="btnOngoingBids" linkSize="2" min="-2" pref="34" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="btnCompletedBids" linkSize="2" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                          <Component id="btnManagers" linkSize="2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <Component id="btnViewCompany" linkSize="2" min="-2" pref="35" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="38" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnExpenditureAnalysis" linkSize="2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-                  <Component id="btnEditAccount" linkSize="2" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="-2" pref="154" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="53" max="-2" attributes="0"/>
+              <Component id="btnManagers" linkSize="2" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
+              <Component id="btnBids" linkSize="2" min="-2" pref="34" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
+              <Component id="btnExpenditureAnalysis" linkSize="2" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="151" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -88,33 +75,21 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="MANAGERS"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnManagersActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnOngoingBids">
+    <Component class="javax.swing.JButton" name="btnBids">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ONGOING BIDS"/>
+        <Property name="text" type="java.lang.String" value="BIDS"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnOngoingBidsActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBidsActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnExpenditureAnalysis">
       <Properties>
         <Property name="text" type="java.lang.String" value="EXPENDITURE ANALYSIS"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnCompletedBids">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="COMPLETED BIDS"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnViewCompany">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="VIEW / EDIT COMPANY"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnEditAccount">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="EDIT ACCOUNT"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCompanyName">
@@ -124,6 +99,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="txtCompanyName">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
