@@ -4,6 +4,8 @@
  */
 package Business.WRU;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author sethu
@@ -14,11 +16,14 @@ public class WRU_Company {
     private String city;
     private String zip;
     private int id;
+    private String adminUserName;
+    private ArrayList<String> employeesList; // list of userNames
     private static int count = 1;
 
     public WRU_Company() {
         id = count;
         count++;
+        employeesList = new ArrayList<String>();
     }
 
     public String getName() {
