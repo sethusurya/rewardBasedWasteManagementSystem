@@ -10,12 +10,12 @@ import userinterface.RU.*;
  *
  * @author saket
  */
-public class RU_EditFreightManagerProfile extends javax.swing.JPanel {
+public class LU_EditFreightManagerProfile extends javax.swing.JPanel {
 
     /**
      * Creates new form RU_EditCompanyRewardsManagerProfile
      */
-    public RU_EditFreightManagerProfile() {
+    public LU_EditFreightManagerProfile() {
         initComponents();
     }
 

@@ -10,12 +10,12 @@ import userinterface.RU.*;
  *
  * @author saket
  */
-public class RU_FreightManagerLogin extends javax.swing.JPanel {
+public class LU_FreightManagerLogin extends javax.swing.JPanel {
 
     /**
      * Creates new form RU_AdminPanel
      */
-    public RU_FreightManagerLogin() {
+    public LU_FreightManagerLogin() {
         initComponents();
     }
 
@@ -51,7 +51,7 @@ public class RU_FreightManagerLogin extends javax.swing.JPanel {
 
         lblCompanyAdminPassword.setText("Password:");
 
-        btnEditAccount.setText("Edit Rewards Manager Profile");
+        btnEditAccount.setText("Edit Freight Manager Profile");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -63,7 +63,7 @@ public class RU_FreightManagerLogin extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(wsu_adminJpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 405, Short.MAX_VALUE)
+                        .addGap(19, 413, Short.MAX_VALUE)
                         .addComponent(btnEditAccount)
                         .addGap(10, 10, 10))
                     .addGroup(layout.createSequentialGroup()

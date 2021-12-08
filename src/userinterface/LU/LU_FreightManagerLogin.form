@@ -23,7 +23,7 @@
                       <Component id="wsu_adminJpanel" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="19" pref="405" max="32767" attributes="0"/>
+                      <EmptySpace min="19" pref="413" max="32767" attributes="0"/>
                       <Component id="btnEditAccount" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   </Group>
@@ -108,7 +108,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnEditAccount">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Edit Rewards Manager Profile"/>
+        <Property name="text" type="java.lang.String" value="Edit Freight Manager Profile"/>
       </Properties>
     </Component>
   </SubComponents>
