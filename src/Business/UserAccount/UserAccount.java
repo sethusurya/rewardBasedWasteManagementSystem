@@ -22,7 +22,8 @@ public class UserAccount {
     private static int count = 1;
     
     public UserAccount() {
-        id = count;
+        
+        this.id = count;
         count++;
     }
     
@@ -62,6 +63,10 @@ public class UserAccount {
 
     public int getId() {
         return id;
+    }
+    
+    public void setId(int id) {
+        this.id = id;
     }
     
 

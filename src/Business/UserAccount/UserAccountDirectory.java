@@ -38,6 +38,7 @@ public class UserAccountDirectory {
         userAccount.setPassword(password);
         userAccount.setEmployee(employee);
         userAccount.setRole(role);
+        userAccount.setId(userAccountList.size()+1); // increment id number
         userAccountList.add(userAccount);
         return userAccount;
     }
