@@ -73,6 +73,10 @@ public abstract class Organization {
         return wruCompanyDirectory;
     }
     
+    public WSU_CompanyDirectory getWSUCompanyDirectory(){
+        return wsuCompanyDirectory;
+    }
+    
     public String getName() {
         return name;
     }

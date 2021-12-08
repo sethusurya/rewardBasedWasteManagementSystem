@@ -4,6 +4,12 @@
  */
 package userinterface.WSU;
 
+import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import Business.WSU.WSU_Company;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+
 /**
  *
  * @author varunvuppala
@@ -13,8 +19,16 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
     /**
      * Creates new form manageManagersJpanel
      */
-    public manageEmployeesJpanel() {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    WSU_Company company;
+    public manageEmployeesJpanel(JPanel userProcessContainer,EcoSystem ecosystem, WSU_Company company) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.company = company;
+        
+//        populateTable();
     }
 
     /**
@@ -41,6 +55,7 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         lblWSUOrg = new javax.swing.JLabel();
         lblWSUName = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         jTableWSUmanager.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -83,6 +98,13 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
         lblWSUName.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
         lblWSUName.setText("jLabel2");
 
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -117,7 +139,9 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
                         .addGap(0, 311, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
-                .addGap(228, 228, 228)
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addGap(163, 163, 163)
                 .addComponent(lblWSUOrg)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblWSUName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -126,10 +150,15 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblWSUName)
-                    .addComponent(lblWSUOrg, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(26, 26, 26)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblWSUName)
+                            .addComponent(lblWSUOrg, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(btnBack)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -159,8 +188,14 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        goBack();
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnSave;
     private javax.swing.JButton btnView;
@@ -177,4 +212,10 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
     private javax.swing.JTextField txtUserName;
     private javax.swing.JTextField txtWsuMname;
     // End of variables declaration//GEN-END:variables
+
+    private void goBack() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);        
+    }
 }

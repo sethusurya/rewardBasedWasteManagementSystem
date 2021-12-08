@@ -5,7 +5,13 @@
 package userinterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
+import Business.Role.Role;
+import Business.Role.WSU_Admin;
+import Business.WSU.WSU_Company;
+import Business.WSU.WSU_CompanyDirectory;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -24,6 +30,7 @@ public class SA_WsuPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
+        populateTable(ecosystem.getWSUCompanyDirectory());
     }
 
     /**
@@ -62,6 +69,11 @@ public class SA_WsuPanel extends javax.swing.JPanel {
         lblZip.setText("Zip : ");
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -210,6 +222,35 @@ public class SA_WsuPanel extends javax.swing.JPanel {
         goBack();
     }//GEN-LAST:event_btnBackActionPerformed
 
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        String companyName = txtName.getText();
+        String street = txtStreet.getText();
+        String city = txtCity.getText();
+        Long zip = Long.parseLong(txtZip.getText());
+        String username = txtUsername.getText();
+        String password = txtPassword.getText();
+        
+        Role role = new WSU_Admin();
+        WSU_Company newCompany = new WSU_Company();
+        newCompany.setName(companyName);
+        newCompany.setStreet(street);
+        newCompany.setCity(city);
+        newCompany.setZip(zip);
+        newCompany.setAdminUserName(username);
+        newCompany.setEmployeesList(new ArrayList<String>());
+        // Create userAccount in userDirectory
+        if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+            ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
+            
+            // Create WRU_Company in WRU_CompanyDirectory
+            ecosystem.getWSUCompanyDirectory().addCompany(newCompany); // company created
+        } else {
+            JOptionPane.showMessageDialog(this, "Username already exists");
+            return;
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -237,5 +278,21 @@ public class SA_WsuPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+    }
+
+    private void populateTable(WSU_CompanyDirectory selectedCompanyDirectory) {
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel)table.getModel();
+        model.setRowCount(0);
+        
+        for(WSU_Company p:selectedCompanyDirectory.getCompanies()) {
+           Object[] row = new Object[5];
+           row[0] = p;
+           row[1] = p.getStreet();
+           row[2] = p.getCity();
+           row[3] = p.getZip();
+           row[4] = p.getAdminUserName();
+           
+           model.addRow(row);
+        }
     }
 }
