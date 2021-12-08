@@ -69,6 +69,10 @@ public abstract class Organization {
         return employeeDirectory;
     }
     
+    public WRU_CompanyDirectory getWRUCompanyDirectory() {
+        return wruCompanyDirectory;
+    }
+    
     public String getName() {
         return name;
     }

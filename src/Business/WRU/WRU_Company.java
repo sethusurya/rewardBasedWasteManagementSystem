@@ -14,7 +14,7 @@ public class WRU_Company {
     private String name;
     private String street;
     private String city;
-    private String zip;
+    private Long zip;
     private int id;
     private String adminUserName;
     private ArrayList<String> employeesList; // list of userNames
@@ -50,11 +50,11 @@ public class WRU_Company {
         this.city = city;
     }
 
-    public String getZip() {
+    public Long getZip() {
         return zip;
     }
 
-    public void setZip(String zip) {
+    public void setZip(Long zip) {
         this.zip = zip;
     }
 
@@ -70,9 +70,29 @@ public class WRU_Company {
         return count;
     }
 
+    public String getAdminUserName() {
+        return adminUserName;
+    }
+
+    public void setAdminUserName(String adminUserName) {
+        this.adminUserName = adminUserName;
+    }
+
+    public ArrayList<String> getEmployeesList() {
+        return employeesList;
+    }
+
+    public void setEmployeesList(ArrayList<String> employeesList) {
+        this.employeesList = employeesList;
+    }
+
     public static void setCount(int count) {
         WRU_Company.count = count;
     }
     
+    @Override
+    public String toString(){
+       return name;
+    }
     
 }
