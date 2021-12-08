@@ -7,6 +7,7 @@ package userinterface.WRU;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import Business.WRU.WRU_Company;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 
 /**
@@ -53,6 +54,11 @@ public class Wru_AdminPanel extends javax.swing.JPanel {
         title.setText("ADMIN PANEL");
 
         btnManagers.setText("MANAGERS");
+        btnManagers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnManagersActionPerformed(evt);
+            }
+        });
 
         btnBids.setText("BIDS");
         btnBids.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +123,13 @@ public class Wru_AdminPanel extends javax.swing.JPanel {
     private void btnBidsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBidsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBidsActionPerformed
+
+    private void btnManagersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagersActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.add("myManagerList", new Wru_Managers(userProcessContainer,ecosystem,company));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnManagersActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

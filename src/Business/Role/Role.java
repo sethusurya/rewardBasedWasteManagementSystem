@@ -21,6 +21,7 @@ public abstract class Role {
 //        Customer("Customer"),
 //        DeliveryMan("Delivery"),
         WRU_Admin("WRU_Admin"),
+        WRU_Employee("WRU_Employee"),
         SysAdmin("Sysadmin");
         
         private String value;

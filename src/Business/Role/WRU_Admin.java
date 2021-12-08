@@ -30,7 +30,7 @@ public class WRU_Admin extends Role{
         if (selectedCompany != null) {
                 return new Wru_AdminPanel(userProcessContainer, business, account, selectedCompany);
         } 
-        return new Wru_AdminPanel(userProcessContainer, business, account, null);
+        return null;
     }
     
 }

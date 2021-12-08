@@ -6,6 +6,7 @@ package userinterface.WRU;
 
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
+import Business.WRU.WRU_Company;
 import javax.swing.JPanel;
 
 /**
@@ -20,11 +21,15 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
     JPanel userProcessContainer;
     EcoSystem ecosystem;
     UserAccount account;
-    public Wru_ManagerPanel(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account) {
+    WRU_Company company;
+    public Wru_ManagerPanel(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account, WRU_Company company) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
         this.account = account;
+        this.company = company;
+        
+        populateData();
     }
 
     /**
@@ -152,4 +157,8 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
     private javax.swing.JLabel title1;
     private javax.swing.JTextField txtCompany;
     // End of variables declaration//GEN-END:variables
+
+    private void populateData() {
+        txtCompany.setText(company.getName());
+    }
 }
