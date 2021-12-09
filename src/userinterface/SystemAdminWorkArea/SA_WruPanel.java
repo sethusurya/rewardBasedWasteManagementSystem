@@ -391,6 +391,7 @@ public class SA_WruPanel extends javax.swing.JPanel {
         txtZip.setText("");
         txtUsername.setText("");
         txtPassword.setText("");
+        txtUsername.setEnabled(true);
     }
 
     private void refreshData() {

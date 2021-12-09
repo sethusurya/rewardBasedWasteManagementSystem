@@ -9,5 +9,5 @@ package Business.Order;
  * @author sethu
  */
 public class Order {
-    
+    private int id; // should be unique and non modifiable
 }
