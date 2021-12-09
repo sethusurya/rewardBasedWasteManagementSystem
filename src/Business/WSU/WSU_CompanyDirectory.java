@@ -22,6 +22,11 @@ public class WSU_CompanyDirectory {
     }
     
     public ArrayList<WSU_Company> addCompany(WSU_Company newCompany){
+        int lastId = -1;
+        if(wsuCompanyList.size()>0) {
+           lastId = wsuCompanyList.get(wsuCompanyList.size() - 1).getId();
+        }
+        newCompany.setId(lastId+1);
         wsuCompanyList.add(newCompany);
         return wsuCompanyList;
     }
@@ -29,5 +34,15 @@ public class WSU_CompanyDirectory {
     public ArrayList<WSU_Company> removeCompany(WSU_Company newCompany){
         wsuCompanyList.remove(newCompany);
         return wsuCompanyList;
+    }
+    
+    public WSU_Company findCompanyByAdminUserName(String username) {
+        WSU_Company newCompany = null;
+        for (WSU_Company c: wsuCompanyList){
+            if (c.getAdminUserName().equals(username)) {
+                newCompany = c;
+            }
+        }
+        return newCompany;
     }
 }
