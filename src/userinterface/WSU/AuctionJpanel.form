@@ -27,12 +27,15 @@
                       <Group type="102" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="564" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnConductAuction" min="-2" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="btnConductAuction" max="32767" attributes="0"/>
+                              <Component id="btnDelete" max="32767" attributes="0"/>
+                          </Group>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" max="-2" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="btnMyEarnings2" min="-2" pref="129" max="-2" attributes="0"/>
+                                  <Component id="btnReport" min="-2" pref="129" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Component id="btnMyEarnings1" min="-2" pref="129" max="-2" attributes="0"/>
                               </Group>
@@ -66,7 +69,11 @@
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       <Component id="lblAuctionedWaste" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="btnConductAuction" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnConductAuction" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
@@ -76,7 +83,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnMyEarnings" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnMyEarnings1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnMyEarnings2" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnReport" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Component id="btnViewBids" min="-2" max="-2" attributes="0"/>
@@ -232,12 +239,12 @@
         <Property name="text" type="java.lang.String" value="Redeem"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnMyEarnings2">
+    <Component class="javax.swing.JButton" name="btnReport">
       <Properties>
         <Property name="text" type="java.lang.String" value="Report Waste"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMyEarnings2ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnReportActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnViewBids">
@@ -251,6 +258,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnDelete">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Delete"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
