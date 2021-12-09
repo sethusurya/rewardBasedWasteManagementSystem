@@ -45,4 +45,14 @@ public class WSU_CompanyDirectory {
         }
         return newCompany;
     }
+    
+    public WSU_Company findCompanyById(int id) {
+        WSU_Company newCompany = null;
+        for (WSU_Company c: wsuCompanyList){
+            if (c.getId() == id) {
+                newCompany = c;
+            }
+        }
+        return newCompany;
+    }
 }

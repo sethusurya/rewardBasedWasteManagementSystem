@@ -45,4 +45,15 @@ public class WRU_CompanyDirectory {
         }
         return newCompany;
     }
+    
+    public WRU_Company findCompanyById(int id) {
+        WRU_Company newCompany = null;
+        for (WRU_Company c: wruCompanyList){
+            if (c.getId() == id) {
+                newCompany = c;
+            }
+        }
+        return newCompany;
+    }
+    
 }

@@ -54,4 +54,15 @@ public class BidDirectory {
         }
         return selectedBid;
     }
+    
+    public Boolean checkIfBidisPlacedByCompany(int orderId, int companyId) {
+        Boolean placed = false;
+        for(Bid b: bidDirectory){
+            if(b.getBidCompanyId() == companyId && b.getOrderId() == orderId){
+                placed = true;
+                break;
+            }
+        }
+        return placed;
+    }
 }

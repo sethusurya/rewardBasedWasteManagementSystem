@@ -4,6 +4,21 @@
  */
 package userinterface.WRU;
 
+import Business.Bid.Bid;
+import Business.EcoSystem;
+import Business.Order.Order;
+import Business.Order.OrderDirectory;
+import Business.UserAccount.UserAccount;
+import Business.WRU.WRU_Company;
+import Business.WSU.WSU_Company;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import userinterface.WSU.employeeJpanel;
+
 /**
  *
  * @author sethu
@@ -13,8 +28,19 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
     /**
      * Creates new form Wru_NewBid
      */
-    public Wru_CreateNewBid() {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    UserAccount account;
+    WRU_Company company;
+    public Wru_CreateNewBid(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account, WRU_Company company) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.account = account;
+        this.company = company;
+        
+        populateMenu();
+        populateOrders(ecosystem.getOrderDirectory(),null, null);
     }
 
     /**
@@ -46,6 +72,11 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
         title.setText("CREATE NEW BID");
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         selCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -58,8 +89,18 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
         selWaste.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         btnApply.setText("Apply Filter");
+        btnApply.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnApplyActionPerformed(evt);
+            }
+        });
 
         btnClear.setText("Clear Filter");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -75,6 +116,11 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
         jScrollPane1.setViewportView(table);
 
         btnPlaceBid.setText("Place Bid");
+        btnPlaceBid.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPlaceBidActionPerformed(evt);
+            }
+        });
 
         lblBidCost.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBidCost.setText("BID price ($): ");
@@ -89,41 +135,46 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 623, Short.MAX_VALUE)
-            .addComponent(jSeparator1)
-            .addComponent(jScrollPane1)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(218, 218, 218)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(selCity, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblWaste, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(selWaste, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(137, 137, 137)
+                        .addComponent(btnClear)))
+                .addGap(8, 8, 8)
+                .addComponent(btnApply, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(31, 31, 31)
-                                        .addComponent(selCity, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(btnClear)
-                                            .addComponent(lblWaste, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(31, 31, 31)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(selWaste, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(btnApply, javax.swing.GroupLayout.Alignment.TRAILING))))
-                                .addGap(183, 183, 183))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnPlaceBid)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(170, 170, 170))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(200, 200, 200)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnPlaceBid)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
+                            .addComponent(title, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,35 +183,87 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
                 .addComponent(btnBack)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(11, 11, 11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(selCity, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblWaste, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(selWaste, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnApply)
-                    .addComponent(btnClear))
-                .addGap(9, 9, 9)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblBidCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnApply)
+                            .addComponent(btnClear))
+                        .addGap(18, 18, 18)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblBidCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(selWaste, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblWaste, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(290, 290, 290)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnPlaceBid)
-                .addGap(22, 22, 22))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBidCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBidCostActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtBidCostActionPerformed
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        goBack();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnApplyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnApplyActionPerformed
+        // TODO add your handling code here:
+        String city = null;
+        String wasteType = null;
+        if (!selCity.getSelectedItem().equals("")) city = selCity.getSelectedItem().toString();
+        if (!selWaste.getSelectedItem().equals("")) wasteType = selWaste.getSelectedItem().toString();
+        populateOrders(ecosystem.getOrderDirectory(), city, wasteType);
+    }//GEN-LAST:event_btnApplyActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        selCity.setSelectedIndex(0);
+        selWaste.setSelectedIndex(0);
+        populateOrders(ecosystem.getOrderDirectory(), null, null);
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnPlaceBidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPlaceBidActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = table.getSelectedRow();
+        if (selectedRowIndex >= 0) {
+            DefaultTableModel model = (DefaultTableModel)table.getModel();
+            Order selectedRow = (Order) model.getValueAt(selectedRowIndex, 0);
+            if (txtBidCost.getText().equals("") || txtBidCost == null) {
+                JOptionPane.showMessageDialog(this, "Give the value for Bid");
+                return;
+            } else {
+                double bidCost = Double.parseDouble(txtBidCost.getText());
+                Bid newBid = new Bid();
+                newBid.setBidStatus("pending");
+                newBid.setBidTimeStamp(new Date());
+                newBid.setBidValue(bidCost);
+                newBid.setOrderId(selectedRow.getId());
+                newBid.setBidCompanyId(company.getId());
+                newBid.setBidUserName(account.getUsername());
+                ecosystem.getBidDirectory().createNewBid(newBid); // adding it to bid directory
+                
+                goBack();
+            }
+        } else {
+            JOptionPane.showMessageDialog(this,"Select an order from table to place bid");
+        }
+    }//GEN-LAST:event_btnPlaceBidActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -179,4 +282,92 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
     private javax.swing.JLabel title;
     private javax.swing.JTextField txtBidCost;
     // End of variables declaration//GEN-END:variables
+
+    private void goBack() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer); 
+    }
+
+    private void populateMenu() {
+        // populating city menu
+        ArrayList<String> cityList = new ArrayList<String>();
+        cityList.add("");
+        for(WSU_Company c: ecosystem.getWSUCompanyDirectory().getCompanies()){
+            String currentCity = c.getCity();
+            Boolean cityAdded = false;
+            for(String s: cityList) {
+                if (s.equals(currentCity)) cityAdded = true;
+            }
+            if (!cityAdded) cityList.add(currentCity);
+        }
+        String[] myCityList = cityList.toArray(new String[0]);
+        selCity.setModel(new javax.swing.DefaultComboBoxModel<>(myCityList));
+        // populating waste menu
+        ArrayList<String> wasteList = new ArrayList<String>();
+        wasteList.add("");
+        for(employeeJpanel.WasteType c : employeeJpanel.WasteType.values()) {
+            wasteList.add(c.toString());
+        }
+        String[] myWasteTypes = wasteList.toArray(new String[0]);
+        selWaste.setModel(new javax.swing.DefaultComboBoxModel<>(myWasteTypes));
+    }
+
+    private void populateOrders(OrderDirectory orderDirectory, String city, String wasteType) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        for(Order o: orderDirectory.getOrderList()){ // show only orders with status ="out for auction" orders
+            if (o.getStatus().equals("out for auction") && !ecosystem.getBidDirectory().checkIfBidisPlacedByCompany(o.getId(), company.getId())) {
+                if (city == null && wasteType == null) {
+                    Object[] row = new Object[4];
+                    row[0] = o;
+                    row[1] = o.getWasteType();
+                    row[2] = o.getQuantity();
+                    row[3] = "N/A";
+                    WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                    if (c != null) row[3] = c.getName();
+
+                    model.addRow(row);   
+                } else if(city == null && wasteType != null) {
+                    if(o.getWasteType().equals(wasteType)) {
+                        Object[] row = new Object[4];
+                        row[0] = o;
+                        row[1] = o.getWasteType();
+                        row[2] = o.getQuantity();
+                        row[3] = "N/A";
+                        WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                        if (c != null) row[3] = c.getName();
+
+                        model.addRow(row);  
+                    }
+                } else if(city != null && wasteType == null) {
+                   // get reporting org city and then filter
+                   WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                   if (c != null && c.getCity().equals(city)) {
+                        Object[] row = new Object[4];
+                        row[0] = o;
+                        row[1] = o.getWasteType();
+                        row[2] = o.getQuantity();
+                        row[3] = "N/A";
+                        if (c != null) row[3] = c.getName();
+
+                        model.addRow(row); 
+                   }
+                } else {
+                    WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                    if (c != null && c.getCity().equals(city) && o.getWasteType().equals(wasteType)){
+                        Object[] row = new Object[4];
+                        row[0] = o;
+                        row[1] = o.getWasteType();
+                        row[2] = o.getQuantity();
+                        row[3] = "N/A";
+                        if (c != null) row[3] = c.getName();
+
+                        model.addRow(row); 
+                    }
+                }
+                
+            }
+        }
+    }
 }

@@ -15,7 +15,7 @@ public class Bid {
     private int orderId;
     private String bidStatus; // pending, success, fail
     private String bidUserName; // who placed this bid
-    private String bidCompanyId; // which company he belongs to
+    private int bidCompanyId; // which company he belongs to
     private double bidValue; // cost of the bid
     private Date bidTimeStamp;
 
@@ -51,11 +51,11 @@ public class Bid {
         this.bidUserName = bidUserName;
     }
 
-    public String getBidCompanyId() {
+    public int getBidCompanyId() {
         return bidCompanyId;
     }
 
-    public void setBidCompanyId(String bidCompanyId) {
+    public void setBidCompanyId(int bidCompanyId) {
         this.bidCompanyId = bidCompanyId;
     }
 
@@ -75,5 +75,9 @@ public class Bid {
         this.bidTimeStamp = bidTimeStamp;
     }
     
+    @Override
+    public String toString(){
+        return String.valueOf(id);
+    }
     
 }

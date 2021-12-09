@@ -21,7 +21,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class employeeJpanel extends javax.swing.JPanel {
 
-    enum WasteType{
+   public enum WasteType{
         organic,
         paper,
         recyclable,

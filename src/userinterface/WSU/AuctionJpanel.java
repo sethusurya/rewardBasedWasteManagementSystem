@@ -114,6 +114,11 @@ public class AuctionJpanel extends javax.swing.JPanel {
         });
 
         btnViewBids.setText("View Bids");
+        btnViewBids.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewBidsActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -240,6 +245,21 @@ public class AuctionJpanel extends javax.swing.JPanel {
             return;
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnViewBidsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewBidsActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = jTableAuctioned.getSelectedRow();
+        if (selectedRowIndex >= 0) {
+            DefaultTableModel model = (DefaultTableModel) jTableAuctioned.getModel();
+            Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
+            userProcessContainer.add("viewBids", new BidsJpanel(userProcessContainer,ecosystem, account, company, selectedOrder));
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        } else {
+            JOptionPane.showMessageDialog(this,"Please select an order to view its bids");
+            return;
+        }
+    }//GEN-LAST:event_btnViewBidsActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

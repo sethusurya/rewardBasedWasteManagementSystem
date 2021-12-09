@@ -4,6 +4,15 @@
  */
 package userinterface.WRU;
 
+import Business.Bid.Bid;
+import Business.Bid.BidDirectory;
+import Business.EcoSystem;
+import Business.Order.Order;
+import Business.UserAccount.UserAccount;
+import Business.WRU.WRU_Company;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sethu
@@ -13,8 +22,18 @@ public class Wru_AdminBids extends javax.swing.JPanel {
     /**
      * Creates new form Wru_AdminOnGoingBids
      */
-    public Wru_AdminBids() {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    UserAccount account;
+    WRU_Company company;
+    public Wru_AdminBids(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account, WRU_Company company) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.account = account;
+        this.company = company;
+        
+        populateBids(ecosystem.getBidDirectory());
     }
 
     /**
@@ -28,42 +47,19 @@ public class Wru_AdminBids extends javax.swing.JPanel {
 
         title = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        table = new javax.swing.JTable();
+        tblOngoingBids = new javax.swing.JTable();
         btnCreate = new javax.swing.JButton();
-        btnView = new javax.swing.JButton();
         btnRequest = new javax.swing.JButton();
-        btnPay = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        table1 = new javax.swing.JTable();
+        tblCompletedBids = new javax.swing.JTable();
         title1 = new javax.swing.JLabel();
-        btnView1 = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
 
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        title.setText("ONGOING BIDS");
+        title.setText("CURRENT BIDS");
 
-        table.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
-            },
-            new String [] {
-                "ID", "Type", "Weight (LBS)", "Status", "Bid Cost ($)", "Delivery Driver"
-            }
-        ));
-        jScrollPane1.setViewportView(table);
-
-        btnCreate.setText("Create New Bid");
-
-        btnView.setText("View Bid Info");
-
-        btnRequest.setText("Request Logistics");
-
-        btnPay.setText("Pay For Delivery");
-
-        table1.setModel(new javax.swing.table.DefaultTableModel(
+        tblOngoingBids.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -71,37 +67,49 @@ public class Wru_AdminBids extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Type", "Weight (LBS)", "Selling Organization", "Delivered By", "Bid Cost ($)", "Delivery Cost ($)"
+                "Bid Id", "Order Id", "Waste Type", "Quantity (LBS)", "Cost ($)", "TimeStamp", "Reported By"
             }
         ));
-        jScrollPane2.setViewportView(table1);
+        jScrollPane1.setViewportView(tblOngoingBids);
+
+        btnCreate.setText("Create New Bid");
+
+        btnRequest.setText("View Order");
+
+        tblCompletedBids.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Bid Id", "Order Id", "Waste Type", "Quanity (lbs)", "Cost ($)", "TimeStamp", "Reported By", "Status"
+            }
+        ));
+        jScrollPane2.setViewportView(tblCompletedBids);
 
         title1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title1.setText("COMPLETED BIDS");
 
-        btnView1.setText("View Bid Info");
+        btnDelete.setText("Delete");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 637, Short.MAX_VALUE)
             .addComponent(title1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane2)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(270, 270, 270)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCreate, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnPay)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnRequest)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnView))
-                    .addComponent(btnView1, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnRequest, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -111,33 +119,75 @@ public class Wru_AdminBids extends javax.swing.JPanel {
                 .addComponent(btnCreate)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnView)
-                    .addComponent(btnRequest)
-                    .addComponent(btnPay))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnDelete)
+                .addGap(30, 30, 30)
                 .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(30, 30, 30)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnView1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnRequest)
+                .addContainerGap(18, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCreate;
-    private javax.swing.JButton btnPay;
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnRequest;
-    private javax.swing.JButton btnView;
-    private javax.swing.JButton btnView1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable table;
-    private javax.swing.JTable table1;
+    private javax.swing.JTable tblCompletedBids;
+    private javax.swing.JTable tblOngoingBids;
     private javax.swing.JLabel title;
     private javax.swing.JLabel title1;
     // End of variables declaration//GEN-END:variables
+
+    private void populateBids(BidDirectory bidDirectory) {
+        DefaultTableModel model1 = (DefaultTableModel) tblOngoingBids.getModel();
+        DefaultTableModel model2 = (DefaultTableModel) tblCompletedBids.getModel();
+        model1.setRowCount(0);
+        model2.setRowCount(0);
+        
+        for(Bid b: bidDirectory.getBidList()){
+            if(b.getBidCompanyId() == company.getId()) {
+                if (b.getBidStatus().equals("pending")) {
+                    Object[] row1 = new Object[7];
+                    row1[0] = b;
+                    row1[1] = b.getOrderId();
+                    row1[2] = "N/A";
+                    row1[3] = "N/A";
+                    Order o = ecosystem.getOrderDirectory().getOrderById(b.getOrderId());
+                    if(o != null) {
+                        row1[2] = o.getWasteType();
+                        row1[3] = o.getQuantity();
+                    }
+                    row1[4] = b.getBidValue();
+                    row1[5] = b.getBidTimeStamp();
+                    row1[6] = b.getBidUserName();
+
+                    model1.addRow(row1);    
+                } else {
+                    Object[] row1 = new Object[8];
+                    row1[0] = b;
+                    row1[1] = b.getOrderId();
+                    row1[2] = "N/A";
+                    row1[3] = "N/A";
+                    Order o = ecosystem.getOrderDirectory().getOrderById(b.getOrderId());
+                    if(o != null) {
+                        row1[2] = o.getWasteType();
+                        row1[3] = o.getQuantity();
+                    }
+                    row1[4] = b.getBidValue();
+                    row1[5] = b.getBidTimeStamp();
+                    row1[6] = b.getBidUserName();
+                    row1[7] = b.getBidStatus();
+
+                    model2.addRow(row1); 
+                }
+            }
+        }
+
+    }
 }
