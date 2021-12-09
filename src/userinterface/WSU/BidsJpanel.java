@@ -12,6 +12,8 @@ import Business.UserAccount.UserAccount;
 import Business.WRU.WRU_Company;
 import Business.WSU.WSU_Company;
 import java.awt.CardLayout;
+import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -177,6 +179,39 @@ public class BidsJpanel extends javax.swing.JPanel {
 
     private void btnAcceptbidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptbidActionPerformed
         // TODO add your handling code here:
+        int selectedRowIndex = table.getSelectedRow();
+        if (selectedRowIndex >= 0) {
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            Bid selectedBid = (Bid) model.getValueAt(selectedRowIndex, 0);
+            if (selectedBid.getBidStatus().equals("pending")) {
+                for(Bid b: ecosystem.getBidDirectory().getBidList()) {
+                    if (b.getOrderId() == order.getId()){
+                        if(b.getId() == selectedBid.getId()){
+                            b.setBidStatus("success"); // set bid status to success
+                            Order o = ecosystem.getOrderDirectory().getOrderById(order.getId());
+                            if (o != null) { // updated the order details
+                                o.setAcceptedBidId(selectedBid.getId());
+                                o.setBuyingCompanyId(selectedBid.getBidCompanyId());
+                                o.setBuyingTimeStamp(new Date());
+                                o.setBuyingUsername(selectedBid.getBidUserName());
+                                o.setBuyingCost(selectedBid.getBidValue());
+                                o.setStatus("bid accepted");
+                            }
+                        } else {
+                            b.setBidStatus("fail"); // set bid status to fail
+                        }
+                    }
+                }
+                refreshData();
+            } else {
+                JOptionPane.showMessageDialog(this, "Bids are already accepted, you cannot change!!");
+                return;
+            }
+        }else {
+            JOptionPane.showMessageDialog(this,"Select a bid to accept it");
+        }
+        // get bidlist for the order, set the selected one as success and others as failed
+        // update the order with bidders details and current status of the order
     }//GEN-LAST:event_btnAcceptbidActionPerformed
 
 

@@ -14,6 +14,7 @@ public class Order {
     private int id; // should be unique and non modifiable
     private String wasteType;
     private double quantity;
+    private double buyingCost;
     private String reportingUsername;
     private Date reportingTimeStamp;
     private int reportingCompanyId; // id of the company, belongs to WSU_CompanyDirectory
@@ -149,6 +150,14 @@ public class Order {
 
     public void setAcceptedBidId(int acceptedBidId) {
         this.acceptedBidId = acceptedBidId;
+    }
+
+    public double getBuyingCost() {
+        return buyingCost;
+    }
+
+    public void setBuyingCost(double buyingCost) {
+        this.buyingCost = buyingCost;
     }
     
     @Override
