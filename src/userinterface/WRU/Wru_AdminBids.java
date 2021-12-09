@@ -51,7 +51,7 @@ public class Wru_AdminBids extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         tblOngoingBids = new javax.swing.JTable();
         btnCreate = new javax.swing.JButton();
-        btnRequest = new javax.swing.JButton();
+        btnView = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblCompletedBids = new javax.swing.JTable();
         title1 = new javax.swing.JLabel();
@@ -82,7 +82,12 @@ public class Wru_AdminBids extends javax.swing.JPanel {
             }
         });
 
-        btnRequest.setText("View Order");
+        btnView.setText("View Order");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         tblCompletedBids.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -134,7 +139,7 @@ public class Wru_AdminBids extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnRequest, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnCreate, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(43, 43, 43))))
         );
@@ -158,7 +163,7 @@ public class Wru_AdminBids extends javax.swing.JPanel {
                         .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(30, 30, 30)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnRequest))
+                    .addComponent(btnView))
                 .addContainerGap(41, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -197,12 +202,35 @@ public class Wru_AdminBids extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = tblCompletedBids.getSelectedRow();
+        if (selectedRowIndex >= 0) {
+            DefaultTableModel model = (DefaultTableModel) tblCompletedBids.getModel();
+            Bid selectedBid = (Bid) model.getValueAt(selectedRowIndex, 0);
+            if (selectedBid.getBidStatus().equals("success")) {
+                Order o = ecosystem.getOrderDirectory().getOrderById(selectedBid.getOrderId());
+                if (o != null) {
+                    userProcessContainer.add("view order", new Wru_OrderDetails(userProcessContainer,ecosystem,account,company, o));
+                    CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+                    layout.next(userProcessContainer);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Order details not present since the bid is failed");
+                return;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Select a bid to view the order details");
+            return;
+        }
+    }//GEN-LAST:event_btnViewActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnRequest;
+    private javax.swing.JButton btnView;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblCompletedBids;
