@@ -101,6 +101,7 @@ public class BidsJpanel extends javax.swing.JPanel {
 
     private void btnAcceptbid1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptbid1ActionPerformed
         // TODO add your handling code here:
+        goBack();
     }//GEN-LAST:event_btnAcceptbid1ActionPerformed
 
 
@@ -111,4 +112,8 @@ public class BidsJpanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void goBack() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

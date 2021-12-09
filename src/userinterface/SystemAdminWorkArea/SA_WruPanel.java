@@ -317,7 +317,7 @@ public class SA_WruPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         int selectedIndex = table.getSelectedRow();
         if (selectedIndex >= 0) {
-            int input = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            int input = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation Dialog", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
             if (input == 0) {
                 DefaultTableModel model = (DefaultTableModel)table.getModel();
                 WRU_Company selectedRowData = (WRU_Company) model.getValueAt(selectedIndex, 0);

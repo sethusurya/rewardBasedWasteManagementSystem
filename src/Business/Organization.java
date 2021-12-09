@@ -4,7 +4,9 @@
  */
 package Business;
 
+import Business.Bid.BidDirectory;
 import Business.Employee.EmployeeDirectory;
+import Business.Order.OrderDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WSU.WSU_CompanyDirectory;
@@ -24,6 +26,8 @@ public abstract class Organization {
     private UserAccountDirectory userAccountDirectory;
     private WSU_CompanyDirectory wsuCompanyDirectory;
     private WRU_CompanyDirectory wruCompanyDirectory;
+    private OrderDirectory orderDirectory;
+    private BidDirectory bidDirectory;
     private int organizationID;
     private static int counter=0;
     
@@ -49,6 +53,8 @@ public abstract class Organization {
         userAccountDirectory = new UserAccountDirectory();
         wsuCompanyDirectory = new WSU_CompanyDirectory(); // creating wsu_directory
         wruCompanyDirectory = new WRU_CompanyDirectory(); // creating wru_directory
+        orderDirectory = new OrderDirectory();
+        bidDirectory = new BidDirectory();
         organizationID = counter;
         ++counter;
     }
@@ -75,6 +81,14 @@ public abstract class Organization {
     
     public WSU_CompanyDirectory getWSUCompanyDirectory(){
         return wsuCompanyDirectory;
+    }
+    
+    public OrderDirectory getOrderDirectory() {
+        return orderDirectory;
+    }
+    
+    public BidDirectory getBidDirectory() {
+        return bidDirectory;
     }
     
     public String getName() {
