@@ -69,7 +69,7 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Type", "Weight (LBS)", "Status", "Bid Cost ($)", "Delivery Driver"
+                "Bid Id", "Order Id", "Waste Type", "Quanity", "Bid Cost ($)", "TimeStamp"
             }
         ));
         jScrollPane1.setViewportView(table);

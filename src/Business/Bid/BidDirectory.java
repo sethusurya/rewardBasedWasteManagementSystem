@@ -4,10 +4,54 @@
  */
 package Business.Bid;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author sethu
  */
 public class BidDirectory {
+    private ArrayList<Bid> bidDirectory;
+
+    public BidDirectory() {
+        bidDirectory = new ArrayList();
+    }
     
+    public ArrayList<Bid> getBidList(){
+        return bidDirectory;
+    }
+    
+    public ArrayList<Bid> createNewBid(Bid newBid){
+        int lastId = 0;
+        if (bidDirectory.size() > 0) {
+            lastId = bidDirectory.get(bidDirectory.size() - 1).getId();
+        }
+        int currentId = lastId + 1;
+        newBid.setId(currentId);
+        bidDirectory.add(newBid);
+        return bidDirectory;
+    }
+    
+    public ArrayList<Bid> removeBidById(int selectedId) {
+        Bid selectedBid = null;
+        for (Bid b: bidDirectory){
+            if (b.getId() == selectedId) {
+                selectedBid = b;
+                break;
+            }
+        }
+        if (selectedBid != null) bidDirectory.remove(selectedBid);
+        return bidDirectory;
+    }
+    
+    public Bid getBidById(int selectedId) {
+        Bid selectedBid = null;
+        for (Bid b: bidDirectory){
+            if (b.getId() == selectedId) {
+                selectedBid = b;
+                break;
+            }
+        }
+        return selectedBid;
+    }
 }
