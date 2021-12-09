@@ -38,7 +38,8 @@ public class UserAccountDirectory {
         userAccount.setPassword(password);
         userAccount.setEmployee(employee);
         userAccount.setRole(role);
-        userAccount.setId(userAccountList.size()+1); // increment id number
+        int lastId = userAccountList.get(userAccountList.size() - 1).getId(); // get the last known id which was pushed
+        userAccount.setId(lastId+1); // increment id number
         userAccountList.add(userAccount);
         return userAccount;
     }

@@ -22,6 +22,8 @@ public class WRU_CompanyDirectory {
     }
     
     public ArrayList<WRU_Company> addCompany(WRU_Company newCompany){
+        int lastId = wruCompanyList.get(wruCompanyList.size() - 1).getId();
+        newCompany.setId(lastId+1);
         wruCompanyList.add(newCompany);
         return wruCompanyList;
     }
@@ -29,5 +31,15 @@ public class WRU_CompanyDirectory {
     public ArrayList<WRU_Company> removeCompany(WRU_Company newCompany){
         wruCompanyList.remove(newCompany);
         return wruCompanyList;
+    }
+    
+    public WRU_Company findCompanyByAdminUserName(String username) {
+        WRU_Company newCompany = null;
+        for (WRU_Company c: wruCompanyList){
+            if (c.getAdminUserName().equals(username)) {
+                newCompany = c;
+            }
+        }
+        return newCompany;
     }
 }

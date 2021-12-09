@@ -14,6 +14,7 @@ import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -45,7 +46,6 @@ public class SA_WruPanel extends javax.swing.JPanel {
         lblName = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
         txtName = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
         lblStreetAddress = new javax.swing.JLabel();
         txtStreet = new javax.swing.JTextField();
@@ -61,6 +61,7 @@ public class SA_WruPanel extends javax.swing.JPanel {
         lblZip = new javax.swing.JLabel();
         btnSave = new javax.swing.JButton();
         title = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
 
         lblName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblName.setText("Company Name : ");
@@ -80,18 +81,23 @@ public class SA_WruPanel extends javax.swing.JPanel {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Company Name", "Street", "City", "Zip", "admin"
+                "Company Name", "Street", "City", "Zip", "admin", "Company Id"
             }
         ));
         jScrollPane1.setViewportView(table);
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnEdit.setText("Edit");
         btnEdit.addActionListener(new java.awt.event.ActionListener() {
@@ -155,17 +161,17 @@ public class SA_WruPanel extends javax.swing.JPanel {
                                 .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(38, 38, 38)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(btnSave)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPassword))))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -173,6 +179,8 @@ public class SA_WruPanel extends javax.swing.JPanel {
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnEdit, btnSave});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtPassword, txtUsername});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,7 +213,7 @@ public class SA_WruPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,6 +229,8 @@ public class SA_WruPanel extends javax.swing.JPanel {
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnEdit, btnSave});
 
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtPassword, txtUsername});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -230,12 +240,15 @@ public class SA_WruPanel extends javax.swing.JPanel {
 
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
+        Boolean EditFlag = !txtUsername.isEnabled();
+        
         String companyName = txtName.getText();
         String street = txtStreet.getText();
         String city = txtCity.getText();
         Long zip = Long.parseLong(txtZip.getText());
         String username = txtUsername.getText();
-        String password = txtPassword.getText();
+        char[] passwordArr = txtPassword.getPassword();
+        String password = new String(passwordArr);
         
         Role role = new WRU_Admin();
         WRU_Company newCompany = new WRU_Company();
@@ -245,22 +258,85 @@ public class SA_WruPanel extends javax.swing.JPanel {
         newCompany.setZip(zip);
         newCompany.setAdminUserName(username);
         newCompany.setEmployeesList(new ArrayList<String>());
-        // Create userAccount in userDirectory
-        if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
-            ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
+        if (EditFlag) {
+            // update the account password
+            UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(username);
+            if(ua != null) ua.setPassword(password); // update userAccountPassword
             
-            // Create WRU_Company in WRU_CompanyDirectory
-            ecosystem.getWRUCompanyDirectory().addCompany(newCompany); // company created
+            //update the company
+            WRU_Company c = ecosystem.getWRUCompanyDirectory().findCompanyByAdminUserName(username);
+            if (c != null) {
+                c.setName(companyName);
+                c.setCity(city);
+                c.setStreet(street);
+                c.setZip(zip);
+            }
+            
+            clearInputs();
+            refreshData();
         } else {
-            JOptionPane.showMessageDialog(this, "Username already exists");
-            return;
+          // Create userAccount in userDirectory
+          if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+              ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
+              // Create WRU_Company in WRU_CompanyDirectory
+              ecosystem.getWRUCompanyDirectory().addCompany(newCompany); // company created
+              clearInputs();
+              refreshData();
+              JOptionPane.showMessageDialog(this, "Created Successfully");
+          } else {
+              JOptionPane.showMessageDialog(this, "Username already exists");
+              return;
+          }  
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        // get data from selected row and do something with that
+        int selectedIndex = table.getSelectedRow();
+        if (selectedIndex >= 0) {
+            DefaultTableModel model = (DefaultTableModel)table.getModel();
+            WRU_Company selectedRowData = (WRU_Company) model.getValueAt(selectedIndex, 0);
+            String AdminUsername = selectedRowData.getAdminUserName();
+            UserAccount adminAccount = ecosystem.getUserAccountDirectory().getUserAccountByUserName(AdminUsername);
+            if (adminAccount != null) { // admin account exists
+                txtName.setText(selectedRowData.getName());
+                txtStreet.setText(selectedRowData.getStreet());
+                txtCity.setText(selectedRowData.getCity());
+                txtZip.setText(String.valueOf(selectedRowData.getZip()));
+                txtUsername.setText(adminAccount.getUsername());
+                txtPassword.setText(adminAccount.getPassword());
+                
+                txtUsername.setEnabled(false); // if username is not enabled then proceed with edit action else go with save
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Select a row to modify!!");
+        }
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = table.getSelectedRow();
+        if (selectedIndex >= 0) {
+            int input = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (input == 0) {
+                DefaultTableModel model = (DefaultTableModel)table.getModel();
+                WRU_Company selectedRowData = (WRU_Company) model.getValueAt(selectedIndex, 0);
+                String AdminUsername = selectedRowData.getAdminUserName();
+                UserAccount adminAccount = ecosystem.getUserAccountDirectory().getUserAccountByUserName(AdminUsername);
+                if (adminAccount != null) ecosystem.getUserAccountDirectory().getUserAccountList().remove(adminAccount); // deleting admin account
+                for (String s: selectedRowData.getEmployeesList()) {
+                    UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(s);
+                    if (ua != null) ecosystem.getUserAccountDirectory().getUserAccountList().remove(ua); // deleting employee account
+                }
+                ecosystem.getWRUCompanyDirectory().getCompanies().remove(selectedRowData); // deleting company
+                JOptionPane.showMessageDialog(this, "Delete Success");
+                clearInputs();
+                refreshData(); 
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Select a row to delete!");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -279,7 +355,7 @@ public class SA_WruPanel extends javax.swing.JPanel {
     private javax.swing.JLabel title;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtStreet;
     private javax.swing.JTextField txtUsername;
     private javax.swing.JTextField txtZip;
@@ -296,14 +372,28 @@ public class SA_WruPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         for(WRU_Company p:selectedCompanyDirectory.getCompanies()) {
-           Object[] row = new Object[5];
+           Object[] row = new Object[6];
            row[0] = p;
            row[1] = p.getStreet();
            row[2] = p.getCity();
            row[3] = p.getZip();
            row[4] = p.getAdminUserName();
+           row[5] = p.getId();
            
            model.addRow(row);
         }
+    }
+
+    private void clearInputs() {
+        txtName.setText("");
+        txtStreet.setText("");
+        txtCity.setText("");
+        txtZip.setText("");
+        txtUsername.setText("");
+        txtPassword.setText("");
+    }
+
+    private void refreshData() {
+        populateTable(ecosystem.getWRUCompanyDirectory());
     }
 }
