@@ -4,6 +4,11 @@
  */
 package userinterface.WSU;
 
+import Business.EcoSystem;
+import Business.UserAccount.UserAccount;
+import Business.WSU.WSU_Company;
+import javax.swing.JPanel;
+
 /**
  *
  * @author varunvuppala
@@ -13,8 +18,16 @@ public class employeeJpanel extends javax.swing.JPanel {
     /**
      * Creates new form employeeJpanel
      */
-    public employeeJpanel() {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    UserAccount account;
+    WSU_Company company;
+    public employeeJpanel(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account, WSU_Company company) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.account = account;
+        this.company = company;
     }
 
     /**

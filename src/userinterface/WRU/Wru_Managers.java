@@ -259,8 +259,6 @@ public class Wru_Managers extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, "Select a user to delete");
         }
-        // remove from user account directory
-        // remove username from company employee list
     }//GEN-LAST:event_btnDeleteActionPerformed
 
 

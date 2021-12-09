@@ -5,10 +5,16 @@
 package userinterface.WSU;
 
 import Business.EcoSystem;
+import Business.Role.Role;
+import Business.Role.WSU_Employee;
 import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
 import Business.WSU.WSU_Company;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,7 +34,9 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
         this.ecosystem = ecosystem;
         this.company = company;
         
-//        populateTable();
+        txtRole.setEnabled(false);
+        txtRole.setText("WSU_Employee");
+        populateTable(ecosystem.getUserAccountDirectory(), company.getEmployeesList());
     }
 
     /**
@@ -41,44 +49,39 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableWSUmanager = new javax.swing.JTable();
-        lblWSUManagerName = new javax.swing.JLabel();
-        txtWsuMname = new javax.swing.JTextField();
+        table = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         txtRole = new javax.swing.JTextField();
         lblUserName = new javax.swing.JLabel();
         txtUserName = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
         btnSave = new javax.swing.JButton();
         btnView = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
-        lblWSUOrg = new javax.swing.JLabel();
-        lblWSUName = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        title = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
 
-        jTableWSUmanager.setModel(new javax.swing.table.DefaultTableModel(
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
             },
             new String [] {
-                "Name", "Role", "Username", "Phone"
+                "Username", "Role"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableWSUmanager);
-
-        lblWSUManagerName.setText("Name:");
+        jScrollPane1.setViewportView(table);
 
         jLabel1.setText("Role:");
 
@@ -87,16 +90,25 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
         lblPassword.setText("Password:");
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         btnView.setText("View");
+        btnView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnViewActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
-
-        lblWSUOrg.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
-        lblWSUOrg.setText("WSU Org:");
-
-        lblWSUName.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
-        lblWSUName.setText("jLabel2");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -105,72 +117,58 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
             }
         });
 
+        title.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setText("MANAGE EMPLOYEES");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
+                        .addGap(31, 31, 31)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                            .addComponent(btnView, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addContainerGap()
+                        .addComponent(btnBack))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(160, 160, 160)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(146, 146, 146)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel1)
-                                    .addComponent(lblWSUManagerName)
                                     .addComponent(lblUserName)
                                     .addComponent(lblPassword))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtWsuMname)
-                                    .addComponent(txtRole)
-                                    .addComponent(txtUserName, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(256, 256, 256)
-                                .addComponent(btnSave, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 311, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addGap(163, 163, 163)
-                .addComponent(lblWSUOrg)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblWSUName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(txtRole, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+                                    .addComponent(txtUserName)
+                                    .addComponent(txtPassword)))))
+                    .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblWSUName)
-                            .addComponent(lblWSUOrg, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(btnBack)))
-                .addGap(18, 18, 18)
+                .addContainerGap()
+                .addComponent(btnBack)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnView)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDelete)))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblWSUManagerName)
-                    .addComponent(txtWsuMname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(37, 37, 37)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -182,9 +180,9 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPassword)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(35, 35, 35)
+                .addGap(34, 34, 34)
                 .addComponent(btnSave)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -192,6 +190,71 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         goBack();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        Boolean editFlag = !txtUserName.isEnabled();
+        String username = txtUserName.getText();
+        char[] passwordArr = txtPassword.getPassword();
+        String password = new String(passwordArr);
+        Role role = new WSU_Employee();
+        if (editFlag) {
+            UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(username);
+            if (ua != null) ua.setPassword(password);
+            clearInputs();
+            refreshData();
+        } else {
+            // check for unique userName and add user
+            if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+                ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
+
+                // add userName to employeeList in company
+                ArrayList<String> newEmployeeList = company.getEmployeesList();
+                newEmployeeList.add(username);
+                company.setEmployeesList(newEmployeeList); // adding username to list
+                refreshData();
+                clearInputs();
+            } else {
+                JOptionPane.showMessageDialog(this, "Username already exists");
+                return;
+            }
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = table.getSelectedRow();
+        if (selectedRowIndex >= 0){
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            UserAccount selectedRowData = (UserAccount) model.getValueAt(selectedRowIndex, 0);
+            txtUserName.setText(selectedRowData.getUsername());
+            txtPassword.setText(selectedRowData.getPassword());
+            
+            txtUserName.setEnabled(false);
+        } else {
+            JOptionPane.showMessageDialog(this, "Select a row to modify");
+        }
+    }//GEN-LAST:event_btnViewActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = table.getSelectedRow();
+        if (selectedRowIndex >= 0){
+            int input = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation Dialog", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (input == 0) {
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                UserAccount selectedRowData = (UserAccount) model.getValueAt(selectedRowIndex, 0);
+                String username = selectedRowData.getUsername();
+                company.getEmployeesList().remove(username); // remove employee from the company
+                ecosystem.getUserAccountDirectory().getUserAccountList().remove(selectedRowData); // remove userAccount from the userAccount directory
+                clearInputs();
+                refreshData();
+                JOptionPane.showMessageDialog(this, "Delete Success");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Select a user to delete");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -201,16 +264,13 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
     private javax.swing.JButton btnView;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableWSUmanager;
     private javax.swing.JLabel lblPassword;
     private javax.swing.JLabel lblUserName;
-    private javax.swing.JLabel lblWSUManagerName;
-    private javax.swing.JLabel lblWSUName;
-    private javax.swing.JLabel lblWSUOrg;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JTable table;
+    private javax.swing.JLabel title;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtRole;
     private javax.swing.JTextField txtUserName;
-    private javax.swing.JTextField txtWsuMname;
     // End of variables declaration//GEN-END:variables
 
     private void goBack() {
@@ -218,4 +278,37 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);        
     }
+
+    private void clearInputs() {
+        txtUserName.setText("");
+        txtPassword.setText("");
+        txtUserName.setEnabled(true);
+    }
+
+    private void refreshData() {
+        populateTable(ecosystem.getUserAccountDirectory(), company.getEmployeesList());
+    }
+
+    private void populateTable(UserAccountDirectory userAccountDirectory, ArrayList<String> employeesList) {
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel)table.getModel();
+        model.setRowCount(0);
+        
+        // loopthrough userName
+        ArrayList<UserAccount> companyEmployeeList = new ArrayList<UserAccount>();
+        for (String s: employeesList){
+            UserAccount newUserAccount = userAccountDirectory.getUserAccountByUserName(s);
+            if (newUserAccount != null) {
+                companyEmployeeList.add(newUserAccount);
+            }
+        }
+        
+        for (UserAccount ua: companyEmployeeList){
+           Object[] row = new Object[2];
+           row[0] = ua;
+           row[1] = ua.getRole();
+           
+           model.addRow(row);
+        }
+    }
+
 }
