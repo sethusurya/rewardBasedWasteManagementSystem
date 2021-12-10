@@ -233,7 +233,7 @@ public class Lu_Trips extends javax.swing.JPanel {
                    row[5] = o.getDeliveryCost();
                    model1.addRow(row);
                }
-               if(o.getStatus().equals("completed")) {
+               if(o.getStatus().equals("delivered")) {
                    Object[] row = new Object[6];
                    row[0] = o;
                    row[1] = o.getWasteType();
