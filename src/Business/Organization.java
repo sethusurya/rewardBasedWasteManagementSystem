@@ -4,11 +4,14 @@
  */
 package Business;
 
+import Business.Bid.BidDirectory;
 import Business.Employee.EmployeeDirectory;
+import Business.Order.OrderDirectory;
 import Business.Role.Role;
 import Business.UserAccount.UserAccountDirectory;
 import Business.WSU.WSU_CompanyDirectory;
 import Business.WRU.WRU_CompanyDirectory;
+import Business.LU.LU_CompanyDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
@@ -24,6 +27,9 @@ public abstract class Organization {
     private UserAccountDirectory userAccountDirectory;
     private WSU_CompanyDirectory wsuCompanyDirectory;
     private WRU_CompanyDirectory wruCompanyDirectory;
+    private LU_CompanyDirectory luCompanyDirectory;
+    private OrderDirectory orderDirectory;
+    private BidDirectory bidDirectory;
     private int organizationID;
     private static int counter=0;
     
@@ -49,6 +55,9 @@ public abstract class Organization {
         userAccountDirectory = new UserAccountDirectory();
         wsuCompanyDirectory = new WSU_CompanyDirectory(); // creating wsu_directory
         wruCompanyDirectory = new WRU_CompanyDirectory(); // creating wru_directory
+        luCompanyDirectory = new LU_CompanyDirectory();
+        orderDirectory = new OrderDirectory();
+        bidDirectory = new BidDirectory();
         organizationID = counter;
         ++counter;
     }
@@ -71,6 +80,22 @@ public abstract class Organization {
     
     public WRU_CompanyDirectory getWRUCompanyDirectory() {
         return wruCompanyDirectory;
+    }
+    
+    public WSU_CompanyDirectory getWSUCompanyDirectory(){
+        return wsuCompanyDirectory;
+    }
+    
+    public LU_CompanyDirectory getLUCompanyDirectory(){
+        return luCompanyDirectory;
+    }
+    
+    public OrderDirectory getOrderDirectory() {
+        return orderDirectory;
+    }
+    
+    public BidDirectory getBidDirectory() {
+        return bidDirectory;
     }
     
     public String getName() {

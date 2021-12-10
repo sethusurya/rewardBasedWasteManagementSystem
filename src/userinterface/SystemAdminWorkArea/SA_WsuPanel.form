@@ -51,13 +51,13 @@
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="lblPassword" max="32767" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtPassword" min="-2" pref="163" max="-2" attributes="0"/>
+                              <Component id="txtPassword" linkSize="4" min="-2" pref="163" max="-2" attributes="0"/>
                           </Group>
                           <Component id="btnSave" linkSize="1" alignment="1" min="-2" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="lblUsername" min="-2" pref="108" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtUsername" min="-2" pref="163" max="-2" attributes="0"/>
+                              <Component id="txtUsername" linkSize="4" min="-2" pref="163" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
@@ -110,12 +110,12 @@
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblUsername" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="txtUsername" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="txtUsername" linkSize="5" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="lblPassword" alignment="3" min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="txtPassword" alignment="3" min="-2" pref="38" max="-2" attributes="0"/>
+                          <Component id="txtPassword" linkSize="5" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -157,6 +157,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Save"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSaveActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="title">
       <Properties>
@@ -243,11 +246,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnEdit">
       <Properties>
         <Property name="text" type="java.lang.String" value="Edit"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblUsername">
       <Properties>
@@ -263,7 +272,7 @@
         <Property name="text" type="java.lang.String" value="Admin Password : "/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtPassword">
+    <Component class="javax.swing.JPasswordField" name="txtPassword">
     </Component>
   </SubComponents>
 </Form>

@@ -5,8 +5,16 @@
 package userinterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
+import Business.Role.Role;
+import Business.Role.WSU_Admin;
+import Business.UserAccount.UserAccount;
+import Business.WSU.WSU_Company;
+import Business.WSU.WSU_CompanyDirectory;
 import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,6 +32,7 @@ public class SA_WsuPanel extends javax.swing.JPanel {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
+        populateTable(ecosystem.getWSUCompanyDirectory());
     }
 
     /**
@@ -53,7 +62,7 @@ public class SA_WsuPanel extends javax.swing.JPanel {
         lblUsername = new javax.swing.JLabel();
         txtUsername = new javax.swing.JTextField();
         lblPassword = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
 
         lblCity.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCity.setText("City : ");
@@ -62,6 +71,11 @@ public class SA_WsuPanel extends javax.swing.JPanel {
         lblZip.setText("Zip : ");
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -94,8 +108,18 @@ public class SA_WsuPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(table);
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblUsername.setText("Admin UserName : ");
@@ -156,6 +180,8 @@ public class SA_WsuPanel extends javax.swing.JPanel {
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnEdit, btnSave});
 
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtPassword, txtUsername});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -187,7 +213,7 @@ public class SA_WsuPanel extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,12 +229,114 @@ public class SA_WsuPanel extends javax.swing.JPanel {
 
         layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnEdit, btnSave});
 
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtPassword, txtUsername});
+
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         goBack();
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        Boolean EditFlag = !txtUsername.isEnabled();
+        
+        String companyName = txtName.getText();
+        String street = txtStreet.getText();
+        String city = txtCity.getText();
+        Long zip = Long.parseLong(txtZip.getText());
+        String username = txtUsername.getText();
+        char[] passwordArr = txtPassword.getPassword();
+        String password = new String(passwordArr);
+        
+        Role role = new WSU_Admin();
+        WSU_Company newCompany = new WSU_Company();
+        newCompany.setName(companyName);
+        newCompany.setStreet(street);
+        newCompany.setCity(city);
+        newCompany.setZip(zip);
+        newCompany.setAdminUserName(username);
+        newCompany.setEmployeesList(new ArrayList<String>());
+        if (EditFlag) {
+            // update the account password
+            UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(username);
+            if(ua != null) ua.setPassword(password); // update userAccountPassword
+            
+            //update the company
+            WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyByAdminUserName(username);
+            if (c != null) {
+                c.setName(companyName);
+                c.setCity(city);
+                c.setStreet(street);
+                c.setZip(zip);
+            }
+            
+            clearInputs();
+            refreshData();
+        } else {
+           // Create userAccount in userDirectory
+           if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+               ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
+
+               // Create WRU_Company in WRU_CompanyDirectory
+               ecosystem.getWSUCompanyDirectory().addCompany(newCompany); // company created
+               clearInputs();
+               refreshData(); 
+           } else {
+               JOptionPane.showMessageDialog(this, "Username already exists");
+               return;
+           }   
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = table.getSelectedRow();
+        if (selectedIndex >= 0) {
+            DefaultTableModel model = (DefaultTableModel)table.getModel();
+            WSU_Company selectedRowData = (WSU_Company) model.getValueAt(selectedIndex, 0);
+            String AdminUsername = selectedRowData.getAdminUserName();
+            UserAccount adminAccount = ecosystem.getUserAccountDirectory().getUserAccountByUserName(AdminUsername);
+            if (adminAccount != null) { // admin account exists
+                txtName.setText(selectedRowData.getName());
+                txtStreet.setText(selectedRowData.getStreet());
+                txtCity.setText(selectedRowData.getCity());
+                txtZip.setText(String.valueOf(selectedRowData.getZip()));
+                txtUsername.setText(adminAccount.getUsername());
+                txtPassword.setText(adminAccount.getPassword());
+                
+                txtUsername.setEnabled(false); // if username is not enabled then proceed with edit action else go with save
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Select a row to modify!!");
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = table.getSelectedRow();
+        if (selectedIndex >= 0) {
+            int input = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation Dialog", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (input == 0) {
+                DefaultTableModel model = (DefaultTableModel)table.getModel();
+                WSU_Company selectedRowData = (WSU_Company) model.getValueAt(selectedIndex, 0);
+                String AdminUsername = selectedRowData.getAdminUserName();
+                UserAccount adminAccount = ecosystem.getUserAccountDirectory().getUserAccountByUserName(AdminUsername);
+                if (adminAccount != null) ecosystem.getUserAccountDirectory().getUserAccountList().remove(adminAccount); // deleting admin account
+                for (String s: selectedRowData.getEmployeesList()) {
+                    UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(s);
+                    if (ua != null) ecosystem.getUserAccountDirectory().getUserAccountList().remove(ua); // deleting employee account
+                }
+                ecosystem.getWSUCompanyDirectory().getCompanies().remove(selectedRowData); // deleting company
+                JOptionPane.showMessageDialog(this, "Delete Success");
+                clearInputs();
+                refreshData(); 
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Select a row to delete!");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -227,7 +355,7 @@ public class SA_WsuPanel extends javax.swing.JPanel {
     private javax.swing.JLabel title;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtStreet;
     private javax.swing.JTextField txtUsername;
     private javax.swing.JTextField txtZip;
@@ -237,5 +365,35 @@ public class SA_WsuPanel extends javax.swing.JPanel {
         userProcessContainer.remove(this);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer);
+    }
+
+    private void populateTable(WSU_CompanyDirectory selectedCompanyDirectory) {
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel)table.getModel();
+        model.setRowCount(0);
+        
+        for(WSU_Company p:selectedCompanyDirectory.getCompanies()) {
+           Object[] row = new Object[5];
+           row[0] = p;
+           row[1] = p.getStreet();
+           row[2] = p.getCity();
+           row[3] = p.getZip();
+           row[4] = p.getAdminUserName();
+           
+           model.addRow(row);
+        }
+    }
+    
+    private void clearInputs() {
+        txtName.setText("");
+        txtStreet.setText("");
+        txtCity.setText("");
+        txtZip.setText("");
+        txtUsername.setText("");
+        txtPassword.setText("");
+        txtUsername.setEnabled(true);
+    }
+
+    private void refreshData() {
+        populateTable(ecosystem.getWSUCompanyDirectory());
     }
 }
