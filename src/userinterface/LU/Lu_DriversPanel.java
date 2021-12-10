@@ -270,7 +270,8 @@ public class Lu_DriversPanel extends javax.swing.JPanel {
         model2.setRowCount(0);
         
         for (Order o: orderDirectory.getOrderList()) {
-            if (o.getDriverUsername().equals(account.getUsername())) {
+            if (o.getDriverUsername() != null) {
+             if (o.getDriverUsername().equals(account.getUsername())) {
                 if (o.getStatus().equals("delivered")) {
                     Object[] row = new Object[5];
                     row[0] = o;
@@ -293,6 +294,7 @@ public class Lu_DriversPanel extends javax.swing.JPanel {
                     row[5] = o.getStatus();
                     model1.addRow(row);
                 }
+            }   
             }
         }
     }
@@ -302,11 +304,13 @@ public class Lu_DriversPanel extends javax.swing.JPanel {
         int totalTrips = 0;
         txtCompanyName.setText(company.getName());
         for(Order o: ecosystem.getOrderDirectory().getOrderList()) {
-            if(o.getDriverUsername().equals(account.getUsername())) {
+            if (o.getDriverUsername() != null) {
+                if(o.getDriverUsername().equals(account.getUsername())) {
                 if(o.getStatus().equals("delivered")) {
                     totalCost = totalCost+o.getDeliveryCost();
                     totalTrips = totalTrips + 1;
                 }
+            }
             }
         }
         lblCost.setText(String.valueOf(totalCost));
