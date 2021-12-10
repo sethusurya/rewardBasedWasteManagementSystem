@@ -22,6 +22,8 @@ public abstract class Role {
 //        DeliveryMan("Delivery"),
         WRU_Admin("WRU_Admin"),
         WRU_Employee("WRU_Employee"),
+        LU_Admin("LU_Admin"),
+        LU_Employee("LU_Employee"),
         WSU_Admin("WSU_Admin"),
         WSU_Employee("WSU_Employee"),
         SysAdmin("Sysadmin");

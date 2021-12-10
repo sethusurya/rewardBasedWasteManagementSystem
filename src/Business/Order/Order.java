@@ -26,6 +26,7 @@ public class Order {
     private int acceptedBidId; // accepted bid's id for this order
     private Date deliveredTimeStamp; // driver will set this after delivering
     private String driverUsername; // after driver is assigned
+    private int deliveringCompanyId; // id of the company, belongs to LU_CompanyDirectory
     private double deliveryCost; //usd to deliver, generally given when a driver is assigned
     
     public Order() {
@@ -158,6 +159,14 @@ public class Order {
 
     public void setBuyingCost(double buyingCost) {
         this.buyingCost = buyingCost;
+    }
+
+    public int getDeliveringCompanyId() {
+        return deliveringCompanyId;
+    }
+
+    public void setDeliveringCompanyId(int deliveringCompanyId) {
+        this.deliveringCompanyId = deliveringCompanyId;
     }
     
     @Override

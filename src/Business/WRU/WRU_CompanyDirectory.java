@@ -22,7 +22,7 @@ public class WRU_CompanyDirectory {
     }
     
     public ArrayList<WRU_Company> addCompany(WRU_Company newCompany){
-        int lastId = -1;
+        int lastId = 0;
         if (wruCompanyList.size() > 0) {
             lastId = wruCompanyList.get(wruCompanyList.size() - 1).getId();
         }

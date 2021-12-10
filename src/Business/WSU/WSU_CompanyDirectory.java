@@ -22,7 +22,7 @@ public class WSU_CompanyDirectory {
     }
     
     public ArrayList<WSU_Company> addCompany(WSU_Company newCompany){
-        int lastId = -1;
+        int lastId = 0;
         if(wsuCompanyList.size()>0) {
            lastId = wsuCompanyList.get(wsuCompanyList.size() - 1).getId();
         }

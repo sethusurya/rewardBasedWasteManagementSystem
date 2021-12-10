@@ -98,6 +98,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         btnLu.setText("Logistics Unit");
+        btnLu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLuActionPerformed(evt);
+            }
+        });
 
         btnVu.setText("Volunteer Unit");
 
@@ -184,6 +189,13 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnWruActionPerformed
+
+    private void btnLuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLuActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.add("myLogistics", new SA_LogisticsPanel(userProcessContainer,ecosystem));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnLuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
