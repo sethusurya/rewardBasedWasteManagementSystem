@@ -2,14 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface.WRU;
+package userinterface.LU;
 
 import Business.EcoSystem;
+import Business.LU.LU_Company;
+import Business.Role.LU_Employee;
 import Business.Role.Role;
-import Business.Role.WRU_Employee;
 import Business.UserAccount.UserAccount;
 import Business.UserAccount.UserAccountDirectory;
-import Business.WRU.WRU_Company;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -20,21 +20,21 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author sethu
  */
-public class Wru_Managers extends javax.swing.JPanel {
+public class Lu_Drivers extends javax.swing.JPanel {
 
     /**
-     * Creates new form Wru_Managers
+     * Creates new form Lu_Drivers
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;
-    WRU_Company company;
-    public Wru_Managers(JPanel userProcessContainer,EcoSystem ecosystem, WRU_Company company) {
+    LU_Company company;
+    public Lu_Drivers(JPanel userProcessContainer,EcoSystem ecosystem, LU_Company company) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
         this.company = company;
         
-        txtRole.setText("WRU_Employee");
+        txtRole.setText("LU_Employee");
         txtRole.setEnabled(false);
         populateTable(ecosystem.getUserAccountDirectory(),company.getEmployeesList());
     }
@@ -48,23 +48,28 @@ public class Wru_Managers extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtRole = new javax.swing.JTextField();
+        lblUsername = new javax.swing.JLabel();
         title = new javax.swing.JLabel();
+        txtUsername = new javax.swing.JTextField();
         btnBack = new javax.swing.JButton();
+        lblPassword = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        txtPassword = new javax.swing.JPasswordField();
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         btnSave = new javax.swing.JButton();
         lblRole = new javax.swing.JLabel();
-        txtRole = new javax.swing.JTextField();
-        lblUsername = new javax.swing.JLabel();
-        txtUsername = new javax.swing.JTextField();
-        lblPassword = new javax.swing.JLabel();
-        txtPassword = new javax.swing.JPasswordField();
+
+        txtRole.setEditable(false);
+
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblUsername.setText("UserName : ");
 
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        title.setText("LIST OF MANAGERS");
+        title.setText("LIST OF DRIVERS");
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -72,6 +77,9 @@ public class Wru_Managers extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+
+        lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblPassword.setText("Password : ");
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -110,14 +118,6 @@ public class Wru_Managers extends javax.swing.JPanel {
         lblRole.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblRole.setText("Role : ");
 
-        txtRole.setEditable(false);
-
-        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblUsername.setText("UserName : ");
-
-        lblPassword.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblPassword.setText("Password : ");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -151,10 +151,10 @@ public class Wru_Managers extends javax.swing.JPanel {
                                 .addComponent(lblRole, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtPassword, txtUsername});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtPassword, txtRole, txtUsername});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,10 +184,10 @@ public class Wru_Managers extends javax.swing.JPanel {
                     .addComponent(txtRole, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(btnSave)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtPassword, txtUsername});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtPassword, txtRole, txtUsername});
 
     }// </editor-fold>//GEN-END:initComponents
 
@@ -195,36 +195,6 @@ public class Wru_Managers extends javax.swing.JPanel {
         // TODO add your handling code here:
         goBack();
     }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
-        // TODO add your handling code here:
-        Boolean editFlag = !txtUsername.isEnabled();
-        String username = txtUsername.getText();
-        char[] passwordArr = txtPassword.getPassword();
-        String password = new String(passwordArr);
-        Role role = new WRU_Employee();
-        if (editFlag) {
-            UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(username);
-            if (ua != null) ua.setPassword(password);
-            clearInputs();
-            refreshData();
-        } else {
-            // check for unique userName and add user
-            if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
-                ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
-
-                // add userName to employeeList in company
-                ArrayList<String> newEmployeeList = company.getEmployeesList();
-                newEmployeeList.add(username);
-                company.setEmployeesList(newEmployeeList); // adding username to list
-                refreshData();
-                clearInputs();
-            } else {
-                JOptionPane.showMessageDialog(this, "Username already exists");
-                return;
-            }
-        }
-    }//GEN-LAST:event_btnSaveActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
@@ -234,7 +204,7 @@ public class Wru_Managers extends javax.swing.JPanel {
             UserAccount selectedRowData = (UserAccount) model.getValueAt(selectedRowIndex, 0);
             txtUsername.setText(selectedRowData.getUsername());
             txtPassword.setText(selectedRowData.getPassword());
-            
+
             txtUsername.setEnabled(false);
         } else {
             JOptionPane.showMessageDialog(this, "Select a row to modify");
@@ -260,6 +230,36 @@ public class Wru_Managers extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Select a user to delete");
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        Boolean editFlag = !txtUsername.isEnabled();
+        String username = txtUsername.getText();
+        char[] passwordArr = txtPassword.getPassword();
+        String password = new String(passwordArr);
+        Role role = new LU_Employee();
+        if (editFlag) {
+            UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(username);
+            if (ua != null) ua.setPassword(password);
+            clearInputs();
+            refreshData();
+        } else {
+            // check for unique userName and add user
+            if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+                ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
+
+                // add userName to employeeList in company
+                ArrayList<String> newEmployeeList = company.getEmployeesList();
+                newEmployeeList.add(username);
+                company.setEmployeesList(newEmployeeList); // adding username to list
+                refreshData();
+                clearInputs();
+            } else {
+                JOptionPane.showMessageDialog(this, "Username already exists");
+                return;
+            }
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

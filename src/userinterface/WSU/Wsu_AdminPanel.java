@@ -2,29 +2,28 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface.LU;
+package userinterface.WSU;
 
 import Business.EcoSystem;
-import Business.LU.LU_Company;
 import Business.UserAccount.UserAccount;
+import Business.WSU.WSU_Company;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
-import userinterface.RU.*;
 
 /**
  *
- * @author saket
+ * @author sethu
  */
-public class Lu_AdminPanel extends javax.swing.JPanel {
+public class Wsu_AdminPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form RU_AdminPanel
+     * Creates new form Wsu_AdminPanel
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;
     UserAccount account;
-    LU_Company company;
-    public Lu_AdminPanel(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account, LU_Company company) {
+    WSU_Company company;
+    public Wsu_AdminPanel(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account, WSU_Company company) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
@@ -43,74 +42,66 @@ public class Lu_AdminPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        title = new javax.swing.JLabel();
         btnManagers = new javax.swing.JButton();
         btnBids = new javax.swing.JButton();
         btnExpenditureAnalysis = new javax.swing.JButton();
-        lblCompanyName = new javax.swing.JLabel();
-        txtCompanyName = new javax.swing.JTextField();
+        lblWSUOrg = new javax.swing.JLabel();
+        lblWSUName = new javax.swing.JLabel();
 
-        title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        title.setText("LOGISTICS ADMIN PANEL");
-
-        btnManagers.setText("DRIVERS");
+        btnManagers.setText("MANAGERS");
         btnManagers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManagersActionPerformed(evt);
             }
         });
 
-        btnBids.setText("TRIPS");
+        btnBids.setText("BIDS");
         btnBids.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBidsActionPerformed(evt);
             }
         });
 
-        btnExpenditureAnalysis.setText("FINANCE");
+        btnExpenditureAnalysis.setText("EXPENDITURE ANALYSIS");
 
-        lblCompanyName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblCompanyName.setText("Company Name : ");
+        lblWSUOrg.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
+        lblWSUOrg.setText("WSU Org:");
 
-        txtCompanyName.setEditable(false);
+        lblWSUName.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
+        lblWSUName.setText("jLabel2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(160, 160, 160)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(lblCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(txtCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(166, 166, 166)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnExpenditureAnalysis, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnBids, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(btnExpenditureAnalysis, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnBids, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnManagers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(lblWSUOrg)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblWSUName, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(90, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(67, 67, 67)
+                    .addComponent(lblWSUName)
+                    .addComponent(lblWSUOrg, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(61, 61, 61)
                 .addComponent(btnManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(30, 30, 30)
                 .addComponent(btnBids, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(28, 28, 28)
                 .addComponent(btnExpenditureAnalysis, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -118,14 +109,14 @@ public class Lu_AdminPanel extends javax.swing.JPanel {
 
     private void btnManagersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagersActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.add("myDriverList", new Lu_Drivers(userProcessContainer,ecosystem,company));
+        userProcessContainer.add("myManagerList", new manageEmployeesJpanel(userProcessContainer,ecosystem,company));
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManagersActionPerformed
 
     private void btnBidsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBidsActionPerformed
         // TODO add your handling code here:
-        userProcessContainer.add("myTripsList", new Lu_Trips(userProcessContainer,ecosystem,account,company));
+        userProcessContainer.add("myAuctionJPanel", new AuctionJpanel(userProcessContainer,ecosystem, account, company));
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBidsActionPerformed
@@ -135,12 +126,11 @@ public class Lu_AdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBids;
     private javax.swing.JButton btnExpenditureAnalysis;
     private javax.swing.JButton btnManagers;
-    private javax.swing.JLabel lblCompanyName;
-    private javax.swing.JLabel title;
-    private javax.swing.JTextField txtCompanyName;
+    private javax.swing.JLabel lblWSUName;
+    private javax.swing.JLabel lblWSUOrg;
     // End of variables declaration//GEN-END:variables
 
     private void populateData() {
-        txtCompanyName.setText(company.getName());
+        lblWSUName.setText(company.getName());
     }
 }

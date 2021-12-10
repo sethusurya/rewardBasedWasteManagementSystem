@@ -122,6 +122,9 @@ public class Wru_AdminPanel extends javax.swing.JPanel {
 
     private void btnBidsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBidsActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.add("myBidList", new Wru_AdminBids(userProcessContainer,ecosystem,account,company));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnBidsActionPerformed
 
     private void btnManagersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagersActionPerformed

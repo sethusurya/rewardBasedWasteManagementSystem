@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Business.WSU;
+package Business.LU;
 
 import java.util.ArrayList;
 
@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author sethu
  */
-public class WSU_Company {
+public class LU_Company {
     private String name;
     private String street;
     private String city;
@@ -19,12 +19,6 @@ public class WSU_Company {
     private String adminUserName;
     private ArrayList<String> employeesList; // list of userNames
     private static int count = 1;
-
-    public WSU_Company() {
-        id = count;
-        count++;
-        employeesList = new ArrayList<String>();
-    }
 
     public String getName() {
         return name;
@@ -66,10 +60,6 @@ public class WSU_Company {
         this.id = id;
     }
 
-    public static int getCount() {
-        return count;
-    }
-
     public String getAdminUserName() {
         return adminUserName;
     }
@@ -86,11 +76,15 @@ public class WSU_Company {
         this.employeesList = employeesList;
     }
 
+    public static int getCount() {
+        return count;
+    }
+
     public static void setCount(int count) {
-        WSU_Company.count = count;
+        LU_Company.count = count;
     }
     
-    @Override
+        @Override
     public String toString(){
        return name;
     }

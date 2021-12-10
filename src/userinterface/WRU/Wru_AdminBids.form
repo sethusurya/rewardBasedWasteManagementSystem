@@ -16,48 +16,58 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="title" max="32767" attributes="0"/>
-          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
-          <Component id="title1" alignment="0" max="32767" attributes="0"/>
-          <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="270" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="btnCreate" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Group type="102" alignment="1" attributes="0">
-                      <Component id="btnPay" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="btnRequest" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="btnView" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
-                  <Component id="btnView1" alignment="1" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="title1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane2" alignment="0" pref="566" max="32767" attributes="0"/>
+                          <Component id="title" alignment="0" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnDelete" alignment="1" min="-2" pref="109" max="-2" attributes="0"/>
+                          <Component id="btnView" alignment="1" min="-2" pref="109" max="-2" attributes="0"/>
+                          <Component id="btnCreate" alignment="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="btnBack" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="title" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace min="-2" max="-2" attributes="0"/>
-              <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="146" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="btnView" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnRequest" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="btnPay" alignment="3" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                  <Component id="jScrollPane1" min="-2" pref="146" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <Component id="btnCreate" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Component id="btnDelete" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="title1" min="-2" pref="40" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" min="-2" pref="214" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnView1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Component id="title1" min="-2" pref="40" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="214" max="-2" attributes="0"/>
+                  </Group>
+                  <Component id="btnView" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace pref="41" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -69,7 +79,7 @@
           <Font name="Tahoma" size="18" style="1"/>
         </Property>
         <Property name="horizontalAlignment" type="int" value="0"/>
-        <Property name="text" type="java.lang.String" value="ONGOING BIDS"/>
+        <Property name="text" type="java.lang.String" value="CURRENT BIDS"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
@@ -79,20 +89,26 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="table">
+        <Component class="javax.swing.JTable" name="tblOngoingBids">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="6" rowCount="4">
-                <Column editable="true" title="ID" type="java.lang.Object"/>
-                <Column editable="true" title="Type" type="java.lang.Object"/>
-                <Column editable="true" title="Weight (LBS)" type="java.lang.Object"/>
-                <Column editable="true" title="Status" type="java.lang.Object"/>
-                <Column editable="true" title="Bid Cost ($)" type="java.lang.Object"/>
-                <Column editable="true" title="Delivery Driver" type="java.lang.Object"/>
+              <Table columnCount="7" rowCount="4">
+                <Column editable="true" title="Bid Id" type="java.lang.Object"/>
+                <Column editable="true" title="Order Id" type="java.lang.Object"/>
+                <Column editable="true" title="Waste Type" type="java.lang.Object"/>
+                <Column editable="true" title="Quantity (LBS)" type="java.lang.Object"/>
+                <Column editable="true" title="Cost ($)" type="java.lang.Object"/>
+                <Column editable="true" title="TimeStamp" type="java.lang.Object"/>
+                <Column editable="true" title="Reported By" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -136,21 +152,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Create New Bid"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnView">
       <Properties>
-        <Property name="text" type="java.lang.String" value="View Bid Info"/>
+        <Property name="text" type="java.lang.String" value="View Order"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnRequest">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Request Logistics"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JButton" name="btnPay">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Pay For Delivery"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnViewActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
@@ -159,18 +171,63 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="table1">
+        <Component class="javax.swing.JTable" name="tblCompletedBids">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="7" rowCount="4">
-                <Column editable="true" title="ID" type="java.lang.Object"/>
-                <Column editable="true" title="Type" type="java.lang.Object"/>
-                <Column editable="true" title="Weight (LBS)" type="java.lang.Object"/>
-                <Column editable="true" title="Selling Organization" type="java.lang.Object"/>
-                <Column editable="true" title="Delivered By" type="java.lang.Object"/>
-                <Column editable="true" title="Bid Cost ($)" type="java.lang.Object"/>
-                <Column editable="true" title="Delivery Cost ($)" type="java.lang.Object"/>
+              <Table columnCount="8" rowCount="4">
+                <Column editable="true" title="Bid Id" type="java.lang.Object"/>
+                <Column editable="true" title="Order Id" type="java.lang.Object"/>
+                <Column editable="true" title="Waste Type" type="java.lang.Object"/>
+                <Column editable="true" title="Quanity (lbs)" type="java.lang.Object"/>
+                <Column editable="true" title="Cost ($)" type="java.lang.Object"/>
+                <Column editable="true" title="Decision TimeStamp" type="java.lang.Object"/>
+                <Column editable="true" title="Reported By" type="java.lang.Object"/>
+                <Column editable="true" title="Status" type="java.lang.Object"/>
               </Table>
+            </Property>
+            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+              <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
+              </TableColumnModel>
             </Property>
             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -188,10 +245,21 @@
         <Property name="text" type="java.lang.String" value="COMPLETED BIDS"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="btnView1">
+    <Component class="javax.swing.JButton" name="btnDelete">
       <Properties>
-        <Property name="text" type="java.lang.String" value="View Bid Info"/>
+        <Property name="text" type="java.lang.String" value="Delete"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDeleteActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="btnBack">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Back"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBackActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
