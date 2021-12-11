@@ -12,6 +12,7 @@ import Business.UserAccount.UserAccountDirectory;
 import Business.WSU.WSU_CompanyDirectory;
 import Business.WRU.WRU_CompanyDirectory;
 import Business.LU.LU_CompanyDirectory;
+import Business.VU.VU_CompanyDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
@@ -28,6 +29,7 @@ public abstract class Organization {
     private WSU_CompanyDirectory wsuCompanyDirectory;
     private WRU_CompanyDirectory wruCompanyDirectory;
     private LU_CompanyDirectory luCompanyDirectory;
+    private VU_CompanyDirectory vuCompanyDirectory;
     private OrderDirectory orderDirectory;
     private BidDirectory bidDirectory;
     private int organizationID;
@@ -55,7 +57,8 @@ public abstract class Organization {
         userAccountDirectory = new UserAccountDirectory();
         wsuCompanyDirectory = new WSU_CompanyDirectory(); // creating wsu_directory
         wruCompanyDirectory = new WRU_CompanyDirectory(); // creating wru_directory
-        luCompanyDirectory = new LU_CompanyDirectory();
+        luCompanyDirectory = new LU_CompanyDirectory(); // creating lu_directory
+        vuCompanyDirectory = new VU_CompanyDirectory();
         orderDirectory = new OrderDirectory();
         bidDirectory = new BidDirectory();
         organizationID = counter;
@@ -88,6 +91,10 @@ public abstract class Organization {
     
     public LU_CompanyDirectory getLUCompanyDirectory(){
         return luCompanyDirectory;
+    }
+    
+    public VU_CompanyDirectory getVUCompanyDirectory(){
+        return vuCompanyDirectory;
     }
     
     public OrderDirectory getOrderDirectory() {

@@ -6,8 +6,12 @@
 package userinterface.SystemAdminWorkArea;
 
 import Business.EcoSystem;
+import Business.LU.LU_Company;
 
 import Business.Organization;
+import Business.VU.VU_Company;
+import Business.WRU.WRU_Company;
+import Business.WSU.WSU_Company;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JPanel;
@@ -34,6 +38,36 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     
     public void populateTree(){
         DefaultTreeModel model=(DefaultTreeModel)jTree.getModel();
+        model.setRoot(new DefaultMutableTreeNode("Ecosystem"));
+        DefaultMutableTreeNode root = (DefaultMutableTreeNode) model.getRoot();
+        root.removeAllChildren(); // remove existing children
+        DefaultMutableTreeNode networkState = new DefaultMutableTreeNode("Massachusetts");
+        root.add(networkState);
+        DefaultMutableTreeNode wasteSortingUnit = new DefaultMutableTreeNode("Waste Sorting Unit");
+        DefaultMutableTreeNode wasteRecyclingUnit = new DefaultMutableTreeNode("Waste Recycling Unit");
+        DefaultMutableTreeNode logisticsUnit = new DefaultMutableTreeNode("Logistics Unit");
+        DefaultMutableTreeNode volunteerUnit = new DefaultMutableTreeNode("Volunteer Unit");
+        DefaultMutableTreeNode rewardsUnit = new DefaultMutableTreeNode("Rewards Unit");
+        networkState.add(wasteSortingUnit);
+        networkState.add(wasteRecyclingUnit);
+        networkState.add(logisticsUnit);
+        networkState.add(volunteerUnit);
+        networkState.add(rewardsUnit);
+        for (WSU_Company c: ecosystem.getWSUCompanyDirectory().getCompanies()){
+            wasteSortingUnit.add(new DefaultMutableTreeNode(c.getName()));
+        }
+        for (WRU_Company c: ecosystem.getWRUCompanyDirectory().getCompanies()){
+            wasteRecyclingUnit.add(new DefaultMutableTreeNode(c.getName()));
+        }
+        for (LU_Company c: ecosystem.getLUCompanyDirectory().getCompanies()){
+            logisticsUnit.add(new DefaultMutableTreeNode(c.getName()));
+        }
+        for (VU_Company c: ecosystem.getVUCompanyDirectory().getCompanies()){
+            volunteerUnit.add(new DefaultMutableTreeNode(c.getName()));
+        }
+//        for (RU_Company c: ecosystem.getRUCompanyDirectory().getCompanies()){
+//            rewardsUnit.add(new DefaultMutableTreeNode(c.getName()));
+//        }
        // Add the code for draw your system structure shown by JTree
        
         model.reload();
@@ -52,16 +86,21 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTree = new javax.swing.JTree();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        lblSelectedNode = new javax.swing.JLabel();
         btnWru = new javax.swing.JButton();
         btnLu = new javax.swing.JButton();
         btnVu = new javax.swing.JButton();
         btnWsu = new javax.swing.JButton();
         btnRu = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setLayout(new java.awt.BorderLayout());
 
+        jTree.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jTreeComponentShown(evt);
+            }
+        });
         jTree.addTreeSelectionListener(new javax.swing.event.TreeSelectionListener() {
             public void valueChanged(javax.swing.event.TreeSelectionEvent evt) {
                 jTreeValueChanged(evt);
@@ -81,14 +120,16 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 123, Short.MAX_VALUE))
+                .addGap(0, 129, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(jPanel1);
 
-        jLabel1.setText("Selected Node:");
-
-        lblSelectedNode.setText("<View_selected_node>");
+        jPanel2.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jPanel2FocusGained(evt);
+            }
+        });
 
         btnWru.setText("Waste Recycle Units");
         btnWru.addActionListener(new java.awt.event.ActionListener() {
@@ -105,6 +146,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         btnVu.setText("Volunteer Unit");
+        btnVu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVuActionPerformed(evt);
+            }
+        });
 
         btnWsu.setText("Waste Seggregating Units");
         btnWsu.addActionListener(new java.awt.event.ActionListener() {
@@ -115,27 +161,32 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
         btnRu.setText("Rewards Unit");
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel2.setText("REWARDS BASED WASTE MANAGEMENT SYSTEM");
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel1.setText("SYSTEM ADMIN PANEL");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
-                        .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblSelectedNode))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(159, 159, 159)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnLu, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(31, 31, 31)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 414, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addGap(123, 123, 123)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(btnWru, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnWsu, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnLu, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(btnVu, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnRu, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnWsu, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(173, Short.MAX_VALUE))
+                                .addComponent(btnRu, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnLu, btnRu, btnVu, btnWru, btnWsu});
@@ -143,21 +194,21 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(lblSelectedNode))
-                .addGap(29, 29, 29)
+                .addGap(32, 32, 32)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnWsu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnWru, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(16, 16, 16)
                 .addComponent(btnLu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(11, 11, 11)
                 .addComponent(btnVu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRu, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(61, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnLu, btnRu, btnVu, btnWru, btnWsu});
@@ -169,10 +220,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void jTreeValueChanged(javax.swing.event.TreeSelectionEvent evt) {//GEN-FIRST:event_jTreeValueChanged
         
-        DefaultMutableTreeNode selectedNode= (DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
-        if(selectedNode!=null){
-            lblSelectedNode.setText(selectedNode.toString());
-        }
+//        DefaultMutableTreeNode selectedNode= (DefaultMutableTreeNode)jTree.getLastSelectedPathComponent();
+//        if(selectedNode!=null){
+//            lblSelectedNode.setText(selectedNode.toString());
+//        }
     }//GEN-LAST:event_jTreeValueChanged
 
     private void btnWsuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnWsuActionPerformed
@@ -197,6 +248,25 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnLuActionPerformed
 
+    private void btnVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVuActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.add("myVolunteers", new SA_VolunteerPanel(userProcessContainer,ecosystem));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnVuActionPerformed
+
+    private void jTreeComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jTreeComponentShown
+        // TODO add your handling code here:
+        System.out.println("component is shown");
+        populateTree();
+    }//GEN-LAST:event_jTreeComponentShown
+
+    private void jPanel2FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel2FocusGained
+        // TODO add your handling code here:
+        System.out.println("focus is shown");
+        populateTree();
+    }//GEN-LAST:event_jPanel2FocusGained
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLu;
@@ -205,11 +275,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnWru;
     private javax.swing.JButton btnWsu;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSplitPane jSplitPane;
     private javax.swing.JTree jTree;
-    private javax.swing.JLabel lblSelectedNode;
     // End of variables declaration//GEN-END:variables
 }
