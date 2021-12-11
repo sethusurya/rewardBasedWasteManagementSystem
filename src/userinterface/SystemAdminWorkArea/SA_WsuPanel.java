@@ -10,6 +10,7 @@ import Business.Role.WSU_Admin;
 import Business.UserAccount.UserAccount;
 import Business.WSU.WSU_Company;
 import Business.WSU.WSU_CompanyDirectory;
+import Validations.Functions;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -245,6 +246,11 @@ public class SA_WsuPanel extends javax.swing.JPanel {
         String companyName = txtName.getText();
         String street = txtStreet.getText();
         String city = txtCity.getText();
+        Boolean isZipValid = Functions.isValidNumber(txtZip.getText());
+        if (!isZipValid || txtZip.getText().length() <= 0) {
+            JOptionPane.showMessageDialog(this, "zip code is INVALID, please check!!");
+            return;
+        }
         Long zip = Long.parseLong(txtZip.getText());
         String username = txtUsername.getText();
         char[] passwordArr = txtPassword.getPassword();

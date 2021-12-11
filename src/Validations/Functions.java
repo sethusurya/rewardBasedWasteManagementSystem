@@ -10,4 +10,13 @@ package Validations;
  */
 public class Functions {
     
+    public static Boolean isValidNumber (String string) {
+        for (int i = 0; i < string.length(); i++) {
+            char c = string.charAt(i);
+            if (!(c>='0' && c<='9')) {
+                return false;
+            }
+        }
+        return true;
+    }
 }
