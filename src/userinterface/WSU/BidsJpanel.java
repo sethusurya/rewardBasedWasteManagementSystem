@@ -180,6 +180,7 @@ public class BidsJpanel extends javax.swing.JPanel {
     private void btnAcceptbidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceptbidActionPerformed
         // TODO add your handling code here:
         int selectedRowIndex = table.getSelectedRow();
+        double currentReward = company.getMyrewards();
         if (selectedRowIndex >= 0) {
             DefaultTableModel model = (DefaultTableModel) table.getModel();
             Bid selectedBid = (Bid) model.getValueAt(selectedRowIndex, 0);
@@ -196,6 +197,7 @@ public class BidsJpanel extends javax.swing.JPanel {
                                 o.setBuyingUsername(selectedBid.getBidUserName());
                                 o.setBuyingCost(selectedBid.getBidValue());
                                 o.setStatus("bid accepted");
+                                company.setMyrewards(currentReward + selectedBid.getBidValue());
                             }
                         } else {
                             b.setBidStatus("fail"); // set bid status to fail

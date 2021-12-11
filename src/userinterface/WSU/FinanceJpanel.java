@@ -4,6 +4,14 @@
  */
 package userinterface.WSU;
 
+import Business.EcoSystem;
+import Business.Order.Order;
+import Business.UserAccount.UserAccount;
+import Business.WSU.WSU_Company;
+import java.awt.CardLayout;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import Business.Order.OrderDirectory;
 /**
  *
  * @author varunvuppala
@@ -13,8 +21,19 @@ public class FinanceJpanel extends javax.swing.JPanel {
     /**
      * Creates new form FinanceJpanel
      */
-    public FinanceJpanel() {
+    WSU_Company company;
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    UserAccount account;
+
+    public FinanceJpanel(JPanel userProcessContainer, EcoSystem ecosystem, UserAccount account, WSU_Company company) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.account = account;
+        this.company = company;
+        
+        refreshData();
     }
 
     /**
@@ -39,6 +58,7 @@ public class FinanceJpanel extends javax.swing.JPanel {
         lblValue = new javax.swing.JLabel();
         lblSelectVoucher1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        txtCashValue = new javax.swing.JTextField();
 
         jTableAccptedbids.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -48,7 +68,7 @@ public class FinanceJpanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Orderid", "Type of Waste", "Quantity(lbs)", "Bid Price", "Company"
+                "Orderid", "Type of Waste", "Quantity(lbs)", "Bid Price", "Bidding Company"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -98,9 +118,20 @@ public class FinanceJpanel extends javax.swing.JPanel {
         lblValue.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
         lblValue.setText("jLabel3");
 
-        lblSelectVoucher1.setText("Accepted Bids");
+        lblSelectVoucher1.setText("Successful Bids");
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        txtCashValue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCashValueActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -115,19 +146,23 @@ public class FinanceJpanel extends javax.swing.JPanel {
                         .addGap(15, 15, 15)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                                 .addComponent(lblReedemableValue)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblValue, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70)))
+                                .addGap(70, 70, 70))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jboxRedeemVoucher)
+                                    .addGap(63, 63, 63)
+                                    .addComponent(jboxRedeemCash, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(txtCashValue, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jboxRedeemVoucher)
-                            .addComponent(jboxRedeemCash, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSelectEarnings, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)))
+                        .addComponent(btnSelectEarnings, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,13 +190,15 @@ public class FinanceJpanel extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(jboxRedeemVoucher)
-                        .addGap(18, 18, 18)
-                        .addComponent(jboxRedeemCash)
-                        .addGap(51, 51, 51)
+                        .addGap(223, 223, 223)
                         .addComponent(btnSelectEarnings)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jboxRedeemVoucher)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jboxRedeemCash)
+                        .addComponent(txtCashValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(lblSelectVoucher)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -170,6 +207,15 @@ public class FinanceJpanel extends javax.swing.JPanel {
                 .addGap(79, 79, 79))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        goBack();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void txtCashValueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCashValueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCashValueActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -186,5 +232,43 @@ public class FinanceJpanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblSelectVoucher;
     private javax.swing.JLabel lblSelectVoucher1;
     private javax.swing.JLabel lblValue;
+    private javax.swing.JTextField txtCashValue;
     // End of variables declaration//GEN-END:variables
+
+    private void goBack() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer); 
+    }
+
+    private void populateData() {
+        lblValue.setText("$ " + String.valueOf(company.getMyrewards()));
+    }
+    
+    private void populateTables(OrderDirectory orderDirectory){
+        DefaultTableModel model1 = (DefaultTableModel) jTableAccptedbids.getModel();
+        DefaultTableModel model2 = (DefaultTableModel) jTableSelectVoucher.getModel();
+        model1.setRowCount(0);
+        model2.setRowCount(0);
+        
+        for (Order o: orderDirectory.getOrderList()){
+            if (o.getReportingCompanyId() == company.getId()) {
+                if(!((o.getStatus().equals("reported")) | (o.getStatus().equals("out for auction")))) {
+                    Object[] row1 = new Object[5];
+                    row1[0] = o.getId();
+                    row1[1] = o.getWasteType();
+                    row1[2] = o.getQuantity();
+                    row1[3] = o.getBuyingCost();
+                    row1[4] = ecosystem.getWRUCompanyDirectory().findCompanyById(o.getBuyingCompanyId());
+
+                    model1.addRow(row1);
+                }
+            }
+        }
+    }
+    
+    private void refreshData() {
+        populateData();
+        populateTables(ecosystem.getOrderDirectory());
+    }
 }
