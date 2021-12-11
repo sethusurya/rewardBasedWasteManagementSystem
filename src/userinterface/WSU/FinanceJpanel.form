@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.ButtonGroup" name="redeemBtnGroup">
+    </Component>
+  </NonVisualComponents>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -28,7 +32,7 @@
                           <Component id="jScrollPane2" min="-2" pref="576" max="-2" attributes="0"/>
                           <Group type="102" alignment="1" attributes="0">
                               <Component id="btnBack" min="-2" pref="111" max="-2" attributes="0"/>
-                              <EmptySpace pref="105" max="32767" attributes="0"/>
+                              <EmptySpace pref="102" max="32767" attributes="0"/>
                               <Component id="lblReedemableValue" min="-2" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Component id="lblValue" min="-2" pref="95" max="-2" attributes="0"/>
@@ -36,17 +40,17 @@
                           </Group>
                           <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Component id="jboxRedeemVoucher" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
-                                  <Component id="jboxRedeemCash" min="-2" pref="136" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="radioRedeemVoucher" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+                                  <Component id="radioRedeemCash" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="txtCashValue" min="-2" pref="129" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane1" min="-2" pref="576" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnSelectEarnings" pref="160" max="32767" attributes="0"/>
+                      <Component id="btnSelectEarnings" pref="163" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
@@ -91,11 +95,11 @@
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jboxRedeemVoucher" min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jboxRedeemCash" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="txtCashValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="radioRedeemCash" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
+                  <Component id="radioRedeemVoucher" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="11" max="32767" attributes="0"/>
               <Component id="lblSelectVoucher" min="-2" max="-2" attributes="0"/>
@@ -167,16 +171,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Redeem"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jboxRedeemVoucher">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Redeem Voucher"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JCheckBox" name="jboxRedeemCash">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Redeem Cash"/>
-      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRedeemActionPerformed"/>
+      </Events>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
       <AuxValues>
@@ -262,6 +259,25 @@
     <Component class="javax.swing.JTextField" name="txtCashValue">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtCashValueActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="radioRedeemCash">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="redeemBtnGroup"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Redeem Cash"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JRadioButton" name="radioRedeemVoucher">
+      <Properties>
+        <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+          <ComponentRef name="redeemBtnGroup"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Redeem Voucher"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioRedeemVoucherActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

@@ -12,6 +12,7 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.Order.OrderDirectory;
+import java.awt.event.ItemEvent;
 /**
  *
  * @author varunvuppala
@@ -45,11 +46,10 @@ public class FinanceJpanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        redeemBtnGroup = new javax.swing.ButtonGroup();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableAccptedbids = new javax.swing.JTable();
         btnRedeem = new javax.swing.JButton();
-        jboxRedeemVoucher = new javax.swing.JCheckBox();
-        jboxRedeemCash = new javax.swing.JCheckBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableSelectVoucher = new javax.swing.JTable();
         btnSelectEarnings = new javax.swing.JButton();
@@ -59,6 +59,8 @@ public class FinanceJpanel extends javax.swing.JPanel {
         lblSelectVoucher1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
         txtCashValue = new javax.swing.JTextField();
+        radioRedeemCash = new javax.swing.JRadioButton();
+        radioRedeemVoucher = new javax.swing.JRadioButton();
 
         jTableAccptedbids.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,10 +84,11 @@ public class FinanceJpanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTableAccptedbids);
 
         btnRedeem.setText("Redeem");
-
-        jboxRedeemVoucher.setText("Redeem Voucher");
-
-        jboxRedeemCash.setText("Redeem Cash");
+        btnRedeem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRedeemActionPerformed(evt);
+            }
+        });
 
         jTableSelectVoucher.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -133,6 +136,17 @@ public class FinanceJpanel extends javax.swing.JPanel {
             }
         });
 
+        redeemBtnGroup.add(radioRedeemCash);
+        radioRedeemCash.setText("Redeem Cash");
+
+        redeemBtnGroup.add(radioRedeemVoucher);
+        radioRedeemVoucher.setText("Redeem Voucher");
+        radioRedeemVoucher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioRedeemVoucherActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -148,21 +162,21 @@ public class FinanceJpanel extends javax.swing.JPanel {
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                                 .addComponent(lblReedemableValue)
                                 .addGap(18, 18, 18)
                                 .addComponent(lblValue, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(70, 70, 70))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jboxRedeemVoucher)
-                                    .addGap(63, 63, 63)
-                                    .addComponent(jboxRedeemCash, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(radioRedeemVoucher)
+                                    .addGap(142, 142, 142)
+                                    .addComponent(radioRedeemCash)
+                                    .addGap(18, 18, 18)
                                     .addComponent(txtCashValue, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSelectEarnings, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
+                        .addComponent(btnSelectEarnings, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -194,10 +208,10 @@ public class FinanceJpanel extends javax.swing.JPanel {
                         .addComponent(btnSelectEarnings)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jboxRedeemVoucher)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jboxRedeemCash)
-                        .addComponent(txtCashValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtCashValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(radioRedeemCash))
+                    .addComponent(radioRedeemVoucher))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(lblSelectVoucher)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -217,6 +231,24 @@ public class FinanceJpanel extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCashValueActionPerformed
 
+    private void btnRedeemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedeemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRedeemActionPerformed
+
+    private void radioRedeemVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRedeemVoucherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioRedeemVoucherActionPerformed
+
+//    public void itemStateChanged(ItemEvent e)
+//    {
+//        if(e.getStateChange() == ItemEvent.SELECTED) {
+//            if(e.getItem() == jboxRedeemCash) {
+//                jboxRedeemVoucher.setSelected(false);
+//            } else {
+//                jboxRedeemCash.setSelected(false);
+//            }
+//        }
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -226,12 +258,13 @@ public class FinanceJpanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableAccptedbids;
     private javax.swing.JTable jTableSelectVoucher;
-    private javax.swing.JCheckBox jboxRedeemCash;
-    private javax.swing.JCheckBox jboxRedeemVoucher;
     private javax.swing.JLabel lblReedemableValue;
     private javax.swing.JLabel lblSelectVoucher;
     private javax.swing.JLabel lblSelectVoucher1;
     private javax.swing.JLabel lblValue;
+    private javax.swing.JRadioButton radioRedeemCash;
+    private javax.swing.JRadioButton radioRedeemVoucher;
+    private javax.swing.ButtonGroup redeemBtnGroup;
     private javax.swing.JTextField txtCashValue;
     // End of variables declaration//GEN-END:variables
 
