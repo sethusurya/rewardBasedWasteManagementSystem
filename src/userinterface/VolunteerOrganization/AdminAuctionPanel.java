@@ -2,13 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package userinterface.WSU;
+package userinterface.VolunteerOrganization;
 
 import Business.EcoSystem;
 import Business.Order.Order;
 import Business.Order.OrderDirectory;
 import Business.UserAccount.UserAccount;
-import Business.WSU.WSU_Company;
+import Business.VU.VU_Company;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -16,18 +16,18 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author varunvuppala
+ * @author sethu
  */
-public class AuctionJpanel extends javax.swing.JPanel {
+public class AdminAuctionPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form AuctionJpanel
+     * Creates new form AdminAuctionPanel
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;
     UserAccount account;
-    WSU_Company company;
-    public AuctionJpanel(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account, WSU_Company company) {
+    VU_Company company;
+    public AdminAuctionPanel(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account, VU_Company company) {
         initComponents();
         this.userProcessContainer = userProcessContainer;
         this.ecosystem = ecosystem;
@@ -46,24 +46,38 @@ public class AuctionJpanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblSegregardWaste = new javax.swing.JLabel();
+        lblAuctionedWaste = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
+        btnDelete = new javax.swing.JButton();
         lblAuctionArea = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableSegregated = new javax.swing.JTable();
         btnConductAuction = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableAuctioned = new javax.swing.JTable();
-        lblSegregardWaste = new javax.swing.JLabel();
-        lblAuctionedWaste = new javax.swing.JLabel();
-        btnMyEarnings = new javax.swing.JButton();
-        btnMyEarnings1 = new javax.swing.JButton();
-        btnReport = new javax.swing.JButton();
-        btnViewBids = new javax.swing.JButton();
-        btnBack = new javax.swing.JButton();
-        btnDelete = new javax.swing.JButton();
 
-        lblAuctionArea.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
+        lblSegregardWaste.setText("Segregated Waste");
+
+        lblAuctionedWaste.setText("Donated Waste List");
+
+        btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
+
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+
+        lblAuctionArea.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         lblAuctionArea.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblAuctionArea.setText("AUCTION WORK AREA");
+        lblAuctionArea.setText("ADMIN TASK QUEUE");
 
         jTableSegregated.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -78,7 +92,7 @@ public class AuctionJpanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTableSegregated);
 
-        btnConductAuction.setText("ConductAuction");
+        btnConductAuction.setText("Donate Waste");
         btnConductAuction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConductAuctionActionPerformed(evt);
@@ -98,52 +112,16 @@ public class AuctionJpanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTableAuctioned);
 
-        lblSegregardWaste.setText("Segregated Waste");
-
-        lblAuctionedWaste.setText("Auctioned Waste");
-
-        btnMyEarnings.setText("View Earnings");
-
-        btnMyEarnings1.setText("Redeem");
-
-        btnReport.setText("Report Waste");
-        btnReport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnReportActionPerformed(evt);
-            }
-        });
-
-        btnViewBids.setText("View Bids");
-        btnViewBids.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnViewBidsActionPerformed(evt);
-            }
-        });
-
-        btnBack.setText("Back");
-        btnBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackActionPerformed(evt);
-            }
-        });
-
-        btnDelete.setText("Delete");
-        btnDelete.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDeleteActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnBack)
                     .addComponent(lblAuctionArea, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblAuctionedWaste)
                         .addComponent(lblSegregardWaste)
                         .addGroup(layout.createSequentialGroup()
@@ -151,28 +129,18 @@ public class AuctionJpanel extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(btnConductAuction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnMyEarnings1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(btnViewBids, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnMyEarnings, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(38, Short.MAX_VALUE))
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(25, 25, 25)
                 .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(lblAuctionArea)
-                .addGap(38, 38, 38)
+                .addGap(26, 26, 26)
                 .addComponent(lblSegregardWaste)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -185,18 +153,37 @@ public class AuctionJpanel extends javax.swing.JPanel {
                         .addGap(24, 24, 24)
                         .addComponent(btnDelete)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnMyEarnings)
-                            .addComponent(btnMyEarnings1)
-                            .addComponent(btnReport)))
-                    .addComponent(btnViewBids))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        goBack();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = jTableSegregated.getSelectedRow();
+        if (selectedRowIndex >= 0) {
+            DefaultTableModel model = (DefaultTableModel) jTableSegregated.getModel();
+            Order selectedRow = (Order) model.getValueAt(selectedRowIndex, 0);
+            if (!selectedRow.getStatus().equals("reported")) {
+                JOptionPane.showMessageDialog(this, "Order has been already placed for donation!!");
+                return;
+            } else {
+                int input = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation Dialog", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (input == 0) {
+                    ecosystem.getOrderDirectory().removeOrderById(selectedRow.getId()); // remove the order from echosystem
+                    refreshData();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Select an order row to delete it");
+            return;
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnConductAuctionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConductAuctionActionPerformed
         // TODO add your handling code here:
@@ -212,64 +199,11 @@ public class AuctionJpanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnConductAuctionActionPerformed
 
-    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
-        // TODO add your handling code here:
-        userProcessContainer.add("myNewReport", new AdminWasteJpanel(userProcessContainer,ecosystem, account, company));
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.next(userProcessContainer);
-    }//GEN-LAST:event_btnReportActionPerformed
-
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        goBack();
-    }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-        // TODO add your handling code here:
-        int selectedRowIndex = jTableSegregated.getSelectedRow();
-        if (selectedRowIndex >= 0) {
-            DefaultTableModel model = (DefaultTableModel) jTableSegregated.getModel();
-            Order selectedRow = (Order) model.getValueAt(selectedRowIndex, 0);
-            if (!selectedRow.getStatus().equals("reported")) {
-                JOptionPane.showMessageDialog(this, "Order has been already placed for auction!!");
-                return;
-            } else {
-                int input = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation Dialog", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                if (input == 0) {
-                    ecosystem.getOrderDirectory().removeOrderById(selectedRow.getId()); // remove the order from echosystem
-                    refreshData();
-                }
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Select an order row to delete it");
-            return;
-        }
-    }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnViewBidsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnViewBidsActionPerformed
-        // TODO add your handling code here:
-        int selectedRowIndex = jTableAuctioned.getSelectedRow();
-        if (selectedRowIndex >= 0) {
-            DefaultTableModel model = (DefaultTableModel) jTableAuctioned.getModel();
-            Order selectedOrder = (Order) model.getValueAt(selectedRowIndex, 0);
-            userProcessContainer.add("viewBids", new BidsJpanel(userProcessContainer,ecosystem, account, company, selectedOrder));
-            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-            layout.next(userProcessContainer);
-        } else {
-            JOptionPane.showMessageDialog(this,"Please select an order to view its bids");
-            return;
-        }
-    }//GEN-LAST:event_btnViewBidsActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConductAuction;
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnMyEarnings;
-    private javax.swing.JButton btnMyEarnings1;
-    private javax.swing.JButton btnReport;
-    private javax.swing.JButton btnViewBids;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableAuctioned;
@@ -279,14 +213,14 @@ public class AuctionJpanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblSegregardWaste;
     // End of variables declaration//GEN-END:variables
 
-    private void populateTables(OrderDirectory orderDirectory) {
+private void populateTables(OrderDirectory orderDirectory) {
         DefaultTableModel model1 = (DefaultTableModel) jTableSegregated.getModel();
         DefaultTableModel model2 = (DefaultTableModel) jTableAuctioned.getModel();
         model1.setRowCount(0);
         model2.setRowCount(0);
         
         for (Order o: orderDirectory.getOrderList()){
-            if (o.getReportingCompanyId() == company.getId() && !o.getIsReportedByVolunteer()) {
+            if (o.getReportingCompanyId() == company.getId() && o.getIsReportedByVolunteer()) {
                 if(o.getStatus().equals("reported")) { // only reported status will be shown here
                     Object[] row1 = new Object[5];
                     row1[0] = o;
@@ -319,5 +253,4 @@ public class AuctionJpanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer); 
     }
-
 }

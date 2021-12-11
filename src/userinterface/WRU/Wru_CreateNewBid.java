@@ -9,6 +9,7 @@ import Business.EcoSystem;
 import Business.Order.Order;
 import Business.Order.OrderDirectory;
 import Business.UserAccount.UserAccount;
+import Business.VU.VU_Company;
 import Business.WRU.WRU_Company;
 import Business.WSU.WSU_Company;
 import java.awt.CardLayout;
@@ -104,13 +105,13 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "ID", "Type", "Quantity (LBS)", "Selling Organization"
+                "ID", "Type", "Quantity (LBS)", "Selling Organization", "Donation"
             }
         ));
         jScrollPane1.setViewportView(table);
@@ -158,23 +159,23 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(200, 200, 200)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnPlaceBid)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
                             .addComponent(title, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnBack)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(200, 200, 200)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnPlaceBid)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(lblBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -244,21 +245,52 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
         if (selectedRowIndex >= 0) {
             DefaultTableModel model = (DefaultTableModel)table.getModel();
             Order selectedRow = (Order) model.getValueAt(selectedRowIndex, 0);
-            if (txtBidCost.getText().equals("") || txtBidCost == null) {
-                JOptionPane.showMessageDialog(this, "Give the value for Bid");
-                return;
+            if (selectedRow.getIsReportedByVolunteer()) { // this is donation and thus can be claimed
+                // handle this different
+                int input = JOptionPane.showConfirmDialog(null, "VolunteerORG is dontating this waste, you will not be charged. Do you wish to proceed?", "FREE!!(0$)", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (input == 0) {
+                    double bidCost = Double.parseDouble("0");
+                      Bid newBid = new Bid();
+                      newBid.setBidStatus("success"); // setting bid status to success
+                      newBid.setBidTimeStamp(new Date());
+                      newBid.setBidValue(bidCost);
+                      newBid.setOrderId(selectedRow.getId());
+                      newBid.setBidCompanyId(company.getId());
+                      newBid.setBidUserName(account.getUsername());
+                      ecosystem.getBidDirectory().createNewBid(newBid); // adding it to bid directory
+                      Bid selectedBid  = null;
+                      for(Bid b: ecosystem.getBidDirectory().getBidList()) {
+                          if(b.getOrderId() == selectedRow.getId());
+                          selectedBid = b;
+                      }
+                      if (selectedBid != null) {
+                         // we need to update the order too
+                        selectedRow.setAcceptedBidId(selectedBid.getId());
+                        selectedRow.setBuyingCompanyId(selectedBid.getBidCompanyId());
+                        selectedRow.setBuyingTimeStamp(new Date());
+                        selectedRow.setBuyingUsername(selectedBid.getBidUserName());
+                        selectedRow.setBuyingCost(selectedBid.getBidValue());
+                        selectedRow.setStatus("bid accepted");                            
+                      }
+                      goBack();   
+                }
             } else {
-                double bidCost = Double.parseDouble(txtBidCost.getText());
-                Bid newBid = new Bid();
-                newBid.setBidStatus("pending");
-                newBid.setBidTimeStamp(new Date());
-                newBid.setBidValue(bidCost);
-                newBid.setOrderId(selectedRow.getId());
-                newBid.setBidCompanyId(company.getId());
-                newBid.setBidUserName(account.getUsername());
-                ecosystem.getBidDirectory().createNewBid(newBid); // adding it to bid directory
-                
-                goBack();
+              if (txtBidCost.getText().equals("") || txtBidCost == null) {
+                  JOptionPane.showMessageDialog(this, "Give the value for Bid");
+                  return;
+              } else {
+                  double bidCost = Double.parseDouble(txtBidCost.getText());
+                  Bid newBid = new Bid();
+                  newBid.setBidStatus("pending");
+                  newBid.setBidTimeStamp(new Date());
+                  newBid.setBidValue(bidCost);
+                  newBid.setOrderId(selectedRow.getId());
+                  newBid.setBidCompanyId(company.getId());
+                  newBid.setBidUserName(account.getUsername());
+                  ecosystem.getBidDirectory().createNewBid(newBid); // adding it to bid directory
+
+                  goBack();
+              }  
             }
         } else {
             JOptionPane.showMessageDialog(this,"Select an order from table to place bid");
@@ -319,51 +351,93 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
         for(Order o: orderDirectory.getOrderList()){ // show only orders with status ="out for auction" orders
             if (o.getStatus().equals("out for auction") && !ecosystem.getBidDirectory().checkIfBidisPlacedByCompany(o.getId(), company.getId())) {
                 if (city == null && wasteType == null) {
-                    Object[] row = new Object[4];
+                    Object[] row = new Object[5];
                     row[0] = o;
                     row[1] = o.getWasteType();
                     row[2] = o.getQuantity();
                     row[3] = "N/A";
-                    WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
-                    if (c != null) row[3] = c.getName();
-
+                    row[4] = o.getIsReportedByVolunteer() ? "Yes" : "No";
+                    if (o.getIsReportedByVolunteer()) {
+                        VU_Company c = ecosystem.getVUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                        if (c!=null) row[3] = c.getName();
+                    } else {
+                        WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                        if (c != null) row[3] = c.getName();  
+                    }
                     model.addRow(row);   
                 } else if(city == null && wasteType != null) {
                     if(o.getWasteType().equals(wasteType)) {
-                        Object[] row = new Object[4];
+                        Object[] row = new Object[5];
                         row[0] = o;
                         row[1] = o.getWasteType();
                         row[2] = o.getQuantity();
                         row[3] = "N/A";
+                        row[4] = o.getIsReportedByVolunteer() ? "Yes" : "No";
+                    if (o.getIsReportedByVolunteer()) {
+                        VU_Company c = ecosystem.getVUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                        if (c!=null) row[3] = c.getName();
+                    } else {
                         WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
                         if (c != null) row[3] = c.getName();
-
+                    }
                         model.addRow(row);  
                     }
                 } else if(city != null && wasteType == null) {
                    // get reporting org city and then filter
-                   WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
-                   if (c != null && c.getCity().equals(city)) {
-                        Object[] row = new Object[4];
-                        row[0] = o;
-                        row[1] = o.getWasteType();
-                        row[2] = o.getQuantity();
-                        row[3] = "N/A";
-                        if (c != null) row[3] = c.getName();
+                   if (o.getIsReportedByVolunteer()) {
+                        VU_Company c = ecosystem.getVUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                        if (c != null && c.getCity().equals(city)) {
+                             Object[] row = new Object[5];
+                             row[0] = o;
+                             row[1] = o.getWasteType();
+                             row[2] = o.getQuantity();
+                             row[3] = "N/A";
+                             row[4] = o.getIsReportedByVolunteer() ? "Yes" : "No";
+                             if (c != null) row[3] = c.getName();
 
-                        model.addRow(row); 
+                             model.addRow(row); 
+                        } 
+                   } else {
+                        WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                        if (c != null && c.getCity().equals(city)) {
+                             Object[] row = new Object[5];
+                             row[0] = o;
+                             row[1] = o.getWasteType();
+                             row[2] = o.getQuantity();
+                             row[3] = "N/A";
+                             row[4] = o.getIsReportedByVolunteer() ? "Yes" : "No";
+                             if (c != null) row[3] = c.getName();
+
+                             model.addRow(row); 
+                        }   
                    }
                 } else {
-                    WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
-                    if (c != null && c.getCity().equals(city) && o.getWasteType().equals(wasteType)){
-                        Object[] row = new Object[4];
-                        row[0] = o;
-                        row[1] = o.getWasteType();
-                        row[2] = o.getQuantity();
-                        row[3] = "N/A";
-                        if (c != null) row[3] = c.getName();
+                    if(o.getIsReportedByVolunteer()) {
+                       VU_Company c = ecosystem.getVUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                        if (c != null && c.getCity().equals(city) && o.getWasteType().equals(wasteType)){
+                            Object[] row = new Object[5];
+                            row[0] = o;
+                            row[1] = o.getWasteType();
+                            row[2] = o.getQuantity();
+                            row[3] = "N/A";
+                            row[4] = o.getIsReportedByVolunteer() ? "Yes" : "No";
+                            if (c != null) row[3] = c.getName();
 
-                        model.addRow(row); 
+                            model.addRow(row); 
+                        } 
+                    } else {
+                        WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                        if (c != null && c.getCity().equals(city) && o.getWasteType().equals(wasteType)){
+                            Object[] row = new Object[5];
+                            row[0] = o;
+                            row[1] = o.getWasteType();
+                            row[2] = o.getQuantity();
+                            row[3] = "N/A";
+                            row[4] = o.getIsReportedByVolunteer() ? "Yes" : "No";
+                            if (c != null) row[3] = c.getName();
+
+                            model.addRow(row); 
+                        } 
                     }
                 }
                 

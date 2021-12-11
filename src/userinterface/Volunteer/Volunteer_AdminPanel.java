@@ -9,6 +9,7 @@ import Business.UserAccount.UserAccount;
 import Business.VU.VU_Company;
 import java.awt.CardLayout;
 import javax.swing.JPanel;
+import userinterface.VolunteerOrganization.AdminAuctionPanel;
 import userinterface.VolunteerOrganization.ManageVolunteersJpanel;
 
 /**
@@ -63,6 +64,11 @@ public class Volunteer_AdminPanel extends javax.swing.JPanel {
         });
 
         btnTasks.setText("MANAGE TASKS");
+        btnTasks.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTasksActionPerformed(evt);
+            }
+        });
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("ORGANIZATION : ");
@@ -126,6 +132,13 @@ public class Volunteer_AdminPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnVolunteersActionPerformed
+
+    private void btnTasksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTasksActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.add("myTaskList", new AdminAuctionPanel(userProcessContainer,ecosystem,account,company));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnTasksActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -8,6 +8,7 @@ import Business.EcoSystem;
 import Business.LU.LU_Company;
 import Business.Order.Order;
 import Business.UserAccount.UserAccount;
+import Business.VU.VU_Company;
 import Business.WRU.WRU_Company;
 import Business.WSU.WSU_Company;
 import java.awt.CardLayout;
@@ -267,26 +268,29 @@ public class Wru_OrderDetails extends javax.swing.JPanel {
                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblCost, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblBuyer, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblBuyer, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel17, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblCost, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblLogisticsCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblLogisticsCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDriver, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDeliveredTime, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblLogisticsCost, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblLogisticsCost, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel21, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDeliveredTime, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRequestDelivery)
@@ -377,18 +381,24 @@ public class Wru_OrderDetails extends javax.swing.JPanel {
         String logisticsCompanyName = "N/A";
         String logisticsCost = "N/A";
         
-        int sellingCompanyId = order.getReportingCompanyId(); // wsu
+        int sellingCompanyId = order.getReportingCompanyId(); // wsu or vu
         int buyingCompanyId = order.getBuyingCompanyId(); // wru
         int logisticsCompanyId = order.getDeliveringCompanyId(); //lu
-        WSU_Company sellingCompany = ecosystem.getWSUCompanyDirectory().findCompanyById(sellingCompanyId);
         WRU_Company buyingCompany = ecosystem.getWRUCompanyDirectory().findCompanyById(buyingCompanyId);
         LU_Company logisticsCompany = ecosystem.getLUCompanyDirectory().findCompanyById(logisticsCompanyId);
-        if (sellingCompany != null) sellingCompanyName = sellingCompany.getName();
         if (buyingCompany != null) buyingCompanyName = buyingCompany.getName();
         if (order.getDriverUsername() != null) driver = order.getDriverUsername();
         if (order.getDeliveredTimeStamp() != null) deliveryTimeStamp = order.getDeliveredTimeStamp().toString();
         if (order.getDeliveryCost() != 0) logisticsCost = String.valueOf(order.getDeliveryCost());
         if (logisticsCompany != null) logisticsCompanyName = logisticsCompany.getName();
+        
+        if (order.getIsReportedByVolunteer()) {
+            VU_Company voluntaryCompany = ecosystem.getVUCompanyDirectory().findCompanyById(sellingCompanyId);
+            if (voluntaryCompany != null) sellingCompanyName = voluntaryCompany.getName();
+        } else {
+            WSU_Company sellingCompany = ecosystem.getWSUCompanyDirectory().findCompanyById(sellingCompanyId);
+            if (sellingCompany != null) sellingCompanyName = sellingCompany.getName();
+        }
         
         lblStatus.setText(status);
         lblId.setText(id);
