@@ -73,8 +73,8 @@ public class AdminWasteJpanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Admin Work Area");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 630, 33));
+        jLabel1.setText("ADMIN WORK AREA");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 460, 33));
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +82,7 @@ public class AdminWasteJpanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 99, -1));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 99, -1));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,7 +105,7 @@ public class AdminWasteJpanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(table);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 632, 213));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 90, 632, 213));
 
         cmbTypeofWaste.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         add(cmbTypeofWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(316, 358, 163, -1));
@@ -130,7 +130,9 @@ public class AdminWasteJpanel extends javax.swing.JPanel {
             }
         });
         add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 320, -1, -1));
-        add(lblimg, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 750, 554));
+
+        lblimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Images/WSU_800x600.png"))); // NOI18N
+        add(lblimg, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 790, 590));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed

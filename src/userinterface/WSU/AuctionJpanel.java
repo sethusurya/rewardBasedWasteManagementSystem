@@ -182,7 +182,7 @@ public class AuctionJpanel extends javax.swing.JPanel {
                 .addComponent(btnBack)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblAuctionArea)
-                .addGap(38, 38, 38)
+                .addGap(51, 51, 51)
                 .addComponent(lblSegregardWaste)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
