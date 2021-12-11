@@ -83,6 +83,8 @@ public class FinanceJpanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTableAccptedbids);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(39, 109, 576, 182));
+
         btnRedeem.setText("Redeem");
         btnRedeem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,12 +114,15 @@ public class FinanceJpanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTableSelectVoucher);
 
         lblSelectVoucher.setText("Select Voucher");
+        add(lblSelectVoucher, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 334, 93, -1));
 
         lblReedemableValue.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
         lblReedemableValue.setText("Reedemable Value:");
+        add(lblReedemableValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 25, -1, -1));
 
         lblValue.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
         lblValue.setText("jLabel3");
+        add(lblValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 25, 95, -1));
 
         lblSelectVoucher1.setText("Successful Bids");
 
