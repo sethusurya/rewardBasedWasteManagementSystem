@@ -67,7 +67,7 @@ public class AuctionJpanel extends javax.swing.JPanel {
         lblAuctionArea.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
         lblAuctionArea.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAuctionArea.setText("AUCTION WORK AREA");
-        add(lblAuctionArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 41, 679, -1));
+        add(lblAuctionArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 370, -1));
 
         jTableSegregated.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,7 +82,7 @@ public class AuctionJpanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTableSegregated);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, 564, 155));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 564, 155));
 
         btnConductAuction.setText("ConductAuction");
         btnConductAuction.addActionListener(new java.awt.event.ActionListener() {
@@ -90,7 +90,7 @@ public class AuctionJpanel extends javax.swing.JPanel {
                 btnConductAuctionActionPerformed(evt);
             }
         });
-        add(btnConductAuction, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, -1, -1));
+        add(btnConductAuction, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 120, -1, -1));
 
         jTableAuctioned.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,13 +105,13 @@ public class AuctionJpanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTableAuctioned);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 393, 564, 155));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 390, 564, 155));
 
         lblSegregardWaste.setText("Segregated Waste");
-        add(lblSegregardWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 100, -1, -1));
+        add(lblSegregardWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 100, -1, -1));
 
         lblAuctionedWaste.setText("Auctioned Waste");
-        add(lblAuctionedWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 371, -1, -1));
+        add(lblAuctionedWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 370, -1, -1));
 
         btnMyEarnings.setText("View Earnings");
         btnMyEarnings.addActionListener(new java.awt.event.ActionListener() {
@@ -133,7 +133,7 @@ public class AuctionJpanel extends javax.swing.JPanel {
                 btnReportActionPerformed(evt);
             }
         });
-        add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(45, 567, 129, -1));
+        add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 560, 129, -1));
 
         btnViewBids.setText("View Bids");
         btnViewBids.addActionListener(new java.awt.event.ActionListener() {
@@ -141,7 +141,7 @@ public class AuctionJpanel extends javax.swing.JPanel {
                 btnViewBidsActionPerformed(evt);
             }
         });
-        add(btnViewBids, new org.netbeans.lib.awtextra.AbsoluteConstraints(623, 393, 140, -1));
+        add(btnViewBids, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 400, 140, -1));
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -149,7 +149,7 @@ public class AuctionJpanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
-        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 100, -1));
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, 100, -1));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
