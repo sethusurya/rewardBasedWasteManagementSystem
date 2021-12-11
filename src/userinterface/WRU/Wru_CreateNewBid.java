@@ -333,6 +333,14 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
             }
             if (!cityAdded) cityList.add(currentCity);
         }
+        for(VU_Company c: ecosystem.getVUCompanyDirectory().getCompanies()){
+            String currentCity = c.getCity();
+            Boolean cityAdded = false;
+            for(String s: cityList) {
+                if (s.equals(currentCity)) cityAdded = true;
+            }
+            if (!cityAdded) cityList.add(currentCity);
+        }
         String[] myCityList = cityList.toArray(new String[0]);
         selCity.setModel(new javax.swing.DefaultComboBoxModel<>(myCityList));
         // populating waste menu
@@ -373,13 +381,13 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
                         row[2] = o.getQuantity();
                         row[3] = "N/A";
                         row[4] = o.getIsReportedByVolunteer() ? "Yes" : "No";
-                    if (o.getIsReportedByVolunteer()) {
-                        VU_Company c = ecosystem.getVUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
-                        if (c!=null) row[3] = c.getName();
-                    } else {
-                        WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
-                        if (c != null) row[3] = c.getName();
-                    }
+                        if (o.getIsReportedByVolunteer()) {
+                            VU_Company c = ecosystem.getVUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                            if (c!=null) row[3] = c.getName();
+                        } else {
+                            WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                            if (c != null) row[3] = c.getName();
+                        }
                         model.addRow(row);  
                     }
                 } else if(city != null && wasteType == null) {
