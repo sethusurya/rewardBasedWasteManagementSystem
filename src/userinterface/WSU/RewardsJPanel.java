@@ -37,6 +37,10 @@ public class RewardsJPanel extends javax.swing.JPanel {
         lblTotalValue = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        lblimg = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTableVoucher.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -59,80 +63,49 @@ public class RewardsJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTableVoucher);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(27, 114, 740, 182));
+
+        jLabel2.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         jLabel2.setText("Voucher History");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 115, -1));
 
+        lblVoucher.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblVoucher.setText("Voucher Value:");
+        add(lblVoucher, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 480, -1, -1));
 
+        lblCash.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblCash.setText("Cash:");
+        add(lblCash, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 510, -1, -1));
 
+        lblTotal.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblTotal.setText("Total Earnings:");
+        add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 550, -1, -1));
 
+        lblVoucherValue.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblVoucherValue.setText("jLabel6");
+        add(lblVoucherValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, -1, -1));
 
+        lblCashValue.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblCashValue.setText("jLabel6");
+        add(lblCashValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 510, -1, -1));
 
+        lblTotalValue.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblTotalValue.setText("jLabel6");
+        add(lblTotalValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 543, 50, 30));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Helvetica", 1, 24)); // NOI18N
         jLabel1.setText("EARNINGS");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 40, -1, 60));
 
         btnBack.setText("Back");
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 111, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblTotal)
-                    .addComponent(lblVoucher)
-                    .addComponent(lblCash))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblVoucherValue)
-                    .addComponent(lblCashValue)
-                    .addComponent(lblTotalValue))
-                .addGap(98, 98, 98))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1)
-                        .addGap(305, 305, 305))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(44, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnBack, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblVoucher)
-                    .addComponent(lblVoucherValue))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCash)
-                    .addComponent(lblCashValue))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTotal)
-                    .addComponent(lblTotalValue))
-                .addGap(116, 116, 116))
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Images/Screen Shot 2021-12-11 at 6.21.45 PM.png"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 520, 220, 30));
+
+        lblimg.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
+        lblimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Images/WSU_earnings.png"))); // NOI18N
+        add(lblimg, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 790, 590));
     }// </editor-fold>//GEN-END:initComponents
 
 
@@ -140,6 +113,7 @@ public class RewardsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableVoucher;
     private javax.swing.JLabel lblCash;
@@ -148,5 +122,6 @@ public class RewardsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTotalValue;
     private javax.swing.JLabel lblVoucher;
     private javax.swing.JLabel lblVoucherValue;
+    private javax.swing.JLabel lblimg;
     // End of variables declaration//GEN-END:variables
 }

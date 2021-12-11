@@ -86,18 +86,22 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(table);
 
-        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 86, 520, 153));
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 580, 153));
 
         jLabel1.setText("Role:");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 281, -1, -1));
-        add(txtRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 276, 160, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 276, -1, 30));
+
+        txtRole.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        add(txtRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 280, 160, -1));
 
         lblUserName.setText("UserName:");
-        add(lblUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 325, -1, -1));
-        add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 320, 160, -1));
+        add(lblUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 316, -1, 30));
+
+        txtUserName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        add(txtUserName, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 320, 160, -1));
 
         lblPassword.setText("Password:");
-        add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(165, 363, -1, -1));
+        add(lblPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 360, -1, 20));
 
         btnSave.setText("Save");
         btnSave.addActionListener(new java.awt.event.ActionListener() {
@@ -113,7 +117,7 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
                 btnViewActionPerformed(evt);
             }
         });
-        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 86, 94, -1));
+        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 90, 94, -1));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -121,7 +125,7 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(569, 210, 94, -1));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 200, 94, 30));
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -131,11 +135,13 @@ public class manageEmployeesJpanel extends javax.swing.JPanel {
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
 
-        title.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        title.setFont(new java.awt.Font("Helvetica", 1, 24)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("MANAGE EMPLOYEES");
-        add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 47, 663, 27));
-        add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 358, 160, -1));
+        add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 50, 290, 27));
+
+        txtPassword.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        add(txtPassword, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 360, 160, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Images/WSU_800x600.png"))); // NOI18N
         add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, 790, 600));
