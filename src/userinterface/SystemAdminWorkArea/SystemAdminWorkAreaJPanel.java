@@ -105,6 +105,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         btnVu.setText("Volunteer Unit");
+        btnVu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVuActionPerformed(evt);
+            }
+        });
 
         btnWsu.setText("Waste Seggregating Units");
         btnWsu.addActionListener(new java.awt.event.ActionListener() {
@@ -196,6 +201,13 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnLuActionPerformed
+
+    private void btnVuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVuActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.add("myVolunteers", new SA_VolunteerPanel(userProcessContainer,ecosystem));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnVuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

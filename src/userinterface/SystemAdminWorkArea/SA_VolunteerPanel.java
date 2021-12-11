@@ -4,6 +4,18 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.EcoSystem;
+import Business.Role.Role;
+import Business.Role.VU_Admin;
+import Business.UserAccount.UserAccount;
+import Business.VU.VU_Company;
+import Business.VU.VU_CompanyDirectory;
+import java.awt.CardLayout;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author sethu
@@ -13,8 +25,13 @@ public class SA_VolunteerPanel extends javax.swing.JPanel {
     /**
      * Creates new form SA_VolunteerPanel
      */
-    public SA_VolunteerPanel() {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    public SA_VolunteerPanel(JPanel userProcessContainer,EcoSystem ecosystem) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        populateTable(ecosystem.getVUCompanyDirectory());
     }
 
     /**
@@ -42,15 +59,20 @@ public class SA_VolunteerPanel extends javax.swing.JPanel {
         txtCity = new javax.swing.JTextField();
         txtName = new javax.swing.JTextField();
         txtUsername = new javax.swing.JTextField();
-        txtPassword = new javax.swing.JTextField();
         btnEdit = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        txtPassword = new javax.swing.JPasswordField();
 
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("VOLUNTEER PANEL");
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         lblCity.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCity.setText("City : ");
@@ -62,6 +84,11 @@ public class SA_VolunteerPanel extends javax.swing.JPanel {
         lblZip.setText("Zip : ");
 
         btnSave.setText("Save");
+        btnSave.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSaveActionPerformed(evt);
+            }
+        });
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -86,24 +113,26 @@ public class SA_VolunteerPanel extends javax.swing.JPanel {
         lblPassword.setText("Admin Password : ");
 
         btnEdit.setText("Edit");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
 
         btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBack)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnDelete)
-                            .addComponent(btnEdit)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(123, 123, 123)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -124,18 +153,31 @@ public class SA_VolunteerPanel extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(txtName, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(53, 53, 53)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnSave, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnSave)))
+                    .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBack)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDelete)
+                            .addComponent(btnEdit))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnEdit});
+
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtPassword, txtUsername});
+
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -161,13 +203,14 @@ public class SA_VolunteerPanel extends javax.swing.JPanel {
                             .addComponent(lblStreetAddress, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -176,11 +219,121 @@ public class SA_VolunteerPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblZip, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtZip, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSave)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnEdit});
+
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtPassword, txtUsername});
+
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        goBack();
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
+        // TODO add your handling code here:
+        Boolean EditFlag = !txtUsername.isEnabled();
+        
+        String companyName = txtName.getText();
+        String street = txtStreet.getText();
+        String city = txtCity.getText();
+        Long zip = Long.parseLong(txtZip.getText());
+        String username = txtUsername.getText();
+        char[] passwordArr = txtPassword.getPassword();
+        String password = new String(passwordArr);
+        
+        Role role = new VU_Admin();
+        VU_Company newCompany = new VU_Company();
+        newCompany.setName(companyName);
+        newCompany.setStreet(street);
+        newCompany.setCity(city);
+        newCompany.setZip(zip);
+        newCompany.setAdminUserName(username);
+        newCompany.setEmployeesList(new ArrayList<String>());
+        if (EditFlag) {
+            // update the account password
+            UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(username);
+            if(ua != null) ua.setPassword(password); // update userAccountPassword
+            
+            //update the company
+            VU_Company c = ecosystem.getVUCompanyDirectory().findCompanyByAdminUserName(username);
+            if (c != null) {
+                c.setName(companyName);
+                c.setCity(city);
+                c.setStreet(street);
+                c.setZip(zip);
+            }
+            
+            clearInputs();
+            refreshData();
+        } else {
+          // Create userAccount in userDirectory
+          if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+              ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
+              // Create WRU_Company in WRU_CompanyDirectory
+              ecosystem.getVUCompanyDirectory().addCompany(newCompany); // company created
+              clearInputs();
+              refreshData();
+              JOptionPane.showMessageDialog(this, "Created Successfully");
+          } else {
+              JOptionPane.showMessageDialog(this, "Username already exists");
+              return;
+          }  
+        }
+    }//GEN-LAST:event_btnSaveActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = table.getSelectedRow();
+        if (selectedIndex >= 0) {
+            DefaultTableModel model = (DefaultTableModel)table.getModel();
+            VU_Company selectedRowData = (VU_Company) model.getValueAt(selectedIndex, 0);
+            String AdminUsername = selectedRowData.getAdminUserName();
+            UserAccount adminAccount = ecosystem.getUserAccountDirectory().getUserAccountByUserName(AdminUsername);
+            if (adminAccount != null) { // admin account exists
+                txtName.setText(selectedRowData.getName());
+                txtStreet.setText(selectedRowData.getStreet());
+                txtCity.setText(selectedRowData.getCity());
+                txtZip.setText(String.valueOf(selectedRowData.getZip()));
+                txtUsername.setText(adminAccount.getUsername());
+                txtPassword.setText(adminAccount.getPassword());
+                
+                txtUsername.setEnabled(false); // if username is not enabled then proceed with edit action else go with save
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Select a row to modify!!");
+        }
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = table.getSelectedRow();
+        if (selectedIndex >= 0) {
+            int input = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation Dialog", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (input == 0) {
+                DefaultTableModel model = (DefaultTableModel)table.getModel();
+                VU_Company selectedRowData = (VU_Company) model.getValueAt(selectedIndex, 0);
+                String AdminUsername = selectedRowData.getAdminUserName();
+                UserAccount adminAccount = ecosystem.getUserAccountDirectory().getUserAccountByUserName(AdminUsername);
+                if (adminAccount != null) ecosystem.getUserAccountDirectory().getUserAccountList().remove(adminAccount); // deleting admin account
+                for (String s: selectedRowData.getEmployeesList()) {
+                    UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(s);
+                    if (ua != null) ecosystem.getUserAccountDirectory().getUserAccountList().remove(ua); // deleting employee account
+                }
+                ecosystem.getVUCompanyDirectory().getCompanies().remove(selectedRowData); // deleting company
+                JOptionPane.showMessageDialog(this, "Delete Success");
+                clearInputs();
+                refreshData(); 
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Select a row to delete!");
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -199,9 +352,45 @@ public class SA_VolunteerPanel extends javax.swing.JPanel {
     private javax.swing.JLabel title;
     private javax.swing.JTextField txtCity;
     private javax.swing.JTextField txtName;
-    private javax.swing.JTextField txtPassword;
+    private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtStreet;
     private javax.swing.JTextField txtUsername;
     private javax.swing.JTextField txtZip;
     // End of variables declaration//GEN-END:variables
+
+    private void goBack() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer);
+    }
+
+    private void populateTable(VU_CompanyDirectory selectedCompanyDirectory) {
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel)table.getModel();
+        model.setRowCount(0);
+        
+        for(VU_Company p:selectedCompanyDirectory.getCompanies()) {
+           Object[] row = new Object[5];
+           row[0] = p;
+           row[1] = p.getStreet();
+           row[2] = p.getCity();
+           row[3] = p.getZip();
+           row[4] = p.getAdminUserName();
+           
+           model.addRow(row);
+        }
+    }
+    
+    private void clearInputs() {
+        txtName.setText("");
+        txtStreet.setText("");
+        txtCity.setText("");
+        txtZip.setText("");
+        txtUsername.setText("");
+        txtPassword.setText("");
+        txtUsername.setEnabled(true);
+    }
+
+    private void refreshData() {
+        populateTable(ecosystem.getVUCompanyDirectory());
+    }
 }
