@@ -7,7 +7,9 @@ package userinterface.Volunteer;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import Business.VU.VU_Company;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
+import userinterface.VolunteerOrganization.ManageVolunteersJpanel;
 
 /**
  *
@@ -42,8 +44,8 @@ public class Volunteer_AdminPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         wsu_adminJpanel = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        btnVolunteers = new javax.swing.JButton();
+        btnTasks = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         lblCompanyname = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -53,14 +55,14 @@ public class Volunteer_AdminPanel extends javax.swing.JPanel {
         wsu_adminJpanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         wsu_adminJpanel.setText("VOLUNTEER ADMIN PANEL");
 
-        jButton2.setText("MANAGE VOLUNTEERS");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnVolunteers.setText("MANAGE VOLUNTEERS");
+        btnVolunteers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnVolunteersActionPerformed(evt);
             }
         });
 
-        jButton5.setText("MANAGE TASKS");
+        btnTasks.setText("MANAGE TASKS");
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("ORGANIZATION : ");
@@ -90,8 +92,8 @@ public class Volunteer_AdminPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnVolunteers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnTasks, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(wsu_adminJpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 464, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -111,21 +113,24 @@ public class Volunteer_AdminPanel extends javax.swing.JPanel {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnVolunteers, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(35, 35, 35)
-                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnTasks, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnVolunteersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolunteersActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        userProcessContainer.add("myVolunteerList", new ManageVolunteersJpanel(userProcessContainer,ecosystem,company));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnVolunteersActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton btnTasks;
+    private javax.swing.JButton btnVolunteers;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel lblCompanyname;
