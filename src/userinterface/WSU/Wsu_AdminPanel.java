@@ -47,6 +47,9 @@ public class Wsu_AdminPanel extends javax.swing.JPanel {
         btnExpenditureAnalysis = new javax.swing.JButton();
         lblWSUOrg = new javax.swing.JLabel();
         lblWSUName = new javax.swing.JLabel();
+        lblimg = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnManagers.setText("MANAGERS");
         btnManagers.addActionListener(new java.awt.event.ActionListener() {
@@ -54,6 +57,7 @@ public class Wsu_AdminPanel extends javax.swing.JPanel {
                 btnManagersActionPerformed(evt);
             }
         });
+        add(btnManagers, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 218, 35));
 
         btnBids.setText("BIDS");
         btnBids.addActionListener(new java.awt.event.ActionListener() {
@@ -61,50 +65,21 @@ public class Wsu_AdminPanel extends javax.swing.JPanel {
                 btnBidsActionPerformed(evt);
             }
         });
+        add(btnBids, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 270, 218, 34));
 
         btnExpenditureAnalysis.setText("EXPENDITURE ANALYSIS");
+        add(btnExpenditureAnalysis, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 370, 218, 35));
 
         lblWSUOrg.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
         lblWSUOrg.setText("WSU Org:");
+        add(lblWSUOrg, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 20, -1, 39));
 
         lblWSUName.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
         lblWSUName.setText("jLabel2");
+        add(lblWSUName, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 221, 40));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(160, 160, 160)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(btnExpenditureAnalysis, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBids, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnManagers, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addComponent(lblWSUOrg)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblWSUName, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(90, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblWSUName)
-                    .addComponent(lblWSUOrg, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(61, 61, 61)
-                .addComponent(btnManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(btnBids, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
-                .addComponent(btnExpenditureAnalysis, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        lblimg.setIcon(new javax.swing.ImageIcon("/Users/varunvuppala/Desktop/Manager_WSU.png")); // NOI18N
+        add(lblimg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManagersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagersActionPerformed
@@ -128,6 +103,7 @@ public class Wsu_AdminPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnManagers;
     private javax.swing.JLabel lblWSUName;
     private javax.swing.JLabel lblWSUOrg;
+    private javax.swing.JLabel lblimg;
     // End of variables declaration//GEN-END:variables
 
     private void populateData() {

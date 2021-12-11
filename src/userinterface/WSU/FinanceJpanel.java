@@ -114,7 +114,7 @@ public class FinanceJpanel extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTableSelectVoucher);
 
         lblSelectVoucher.setText("Select Voucher");
-        add(lblSelectVoucher, new org.netbeans.lib.awtextra.AbsoluteConstraints(63, 334, 93, -1));
+        add(lblSelectVoucher, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 330, 93, -1));
 
         lblReedemableValue.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
         lblReedemableValue.setText("Reedemable Value:");
