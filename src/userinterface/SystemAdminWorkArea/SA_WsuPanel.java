@@ -243,56 +243,54 @@ public class SA_WsuPanel extends javax.swing.JPanel {
         // TODO add your handling code here:
         Boolean EditFlag = !txtUsername.isEnabled();
         
-        String companyName = txtName.getText();
-        String street = txtStreet.getText();
-        String city = txtCity.getText();
-        Boolean isZipValid = Functions.isValidNumber(txtZip.getText());
-        if (!isZipValid || txtZip.getText().length() <= 0) {
-            JOptionPane.showMessageDialog(this, "zip code is INVALID, please check!!");
-            return;
-        }
-        Long zip = Long.parseLong(txtZip.getText());
-        String username = txtUsername.getText();
-        char[] passwordArr = txtPassword.getPassword();
-        String password = new String(passwordArr);
-        
-        Role role = new WSU_Admin();
-        WSU_Company newCompany = new WSU_Company();
-        newCompany.setName(companyName);
-        newCompany.setStreet(street);
-        newCompany.setCity(city);
-        newCompany.setZip(zip);
-        newCompany.setAdminUserName(username);
-        newCompany.setEmployeesList(new ArrayList<String>());
-        if (EditFlag) {
-            // update the account password
-            UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(username);
-            if(ua != null) ua.setPassword(password); // update userAccountPassword
-            
-            //update the company
-            WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyByAdminUserName(username);
-            if (c != null) {
-                c.setName(companyName);
-                c.setCity(city);
-                c.setStreet(street);
-                c.setZip(zip);
-            }
-            
-            clearInputs();
-            refreshData();
-        } else {
-           // Create userAccount in userDirectory
-           if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
-               ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
+        Boolean isCorrectData = validateData();
+        if (isCorrectData) {
+            String companyName = txtName.getText();
+            String street = txtStreet.getText();
+            String city = txtCity.getText();
+            Long zip = Long.parseLong(txtZip.getText());
+            String username = txtUsername.getText();
+            char[] passwordArr = txtPassword.getPassword();
+            String password = new String(passwordArr);
 
-               // Create WRU_Company in WRU_CompanyDirectory
-               ecosystem.getWSUCompanyDirectory().addCompany(newCompany); // company created
-               clearInputs();
-               refreshData(); 
-           } else {
-               JOptionPane.showMessageDialog(this, "Username already exists");
-               return;
-           }   
+            Role role = new WSU_Admin();
+            WSU_Company newCompany = new WSU_Company();
+            newCompany.setName(companyName);
+            newCompany.setStreet(street);
+            newCompany.setCity(city);
+            newCompany.setZip(zip);
+            newCompany.setAdminUserName(username);
+            newCompany.setEmployeesList(new ArrayList<String>());
+            if (EditFlag) {
+                // update the account password
+                UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(username);
+                if(ua != null) ua.setPassword(password); // update userAccountPassword
+
+                //update the company
+                WSU_Company c = ecosystem.getWSUCompanyDirectory().findCompanyByAdminUserName(username);
+                if (c != null) {
+                    c.setName(companyName);
+                    c.setCity(city);
+                    c.setStreet(street);
+                    c.setZip(zip);
+                }
+
+                clearInputs();
+                refreshData();
+            } else {
+               // Create userAccount in userDirectory
+               if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+                   ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
+
+                   // Create WRU_Company in WRU_CompanyDirectory
+                   ecosystem.getWSUCompanyDirectory().addCompany(newCompany); // company created
+                   clearInputs();
+                   refreshData(); 
+               } else {
+                   JOptionPane.showMessageDialog(this, "Username already exists");
+                   return;
+               }   
+            }
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -401,5 +399,34 @@ public class SA_WsuPanel extends javax.swing.JPanel {
 
     private void refreshData() {
         populateTable(ecosystem.getWSUCompanyDirectory());
+    }
+
+    private Boolean validateData() {
+        if(txtName.getText().length() <= 2) {
+            JOptionPane.showMessageDialog(this, "Name should be atleast 2 characters!!", null,JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(txtStreet.getText().length() <= 0) {
+            JOptionPane.showMessageDialog(this, "Street cannot be empty!!", null,JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(txtCity.getText().length() <= 2) {
+            JOptionPane.showMessageDialog(this, "Please provide name of the city!!", null,JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        Boolean isZipValid = Functions.isValidNumber(txtZip.getText());
+        if (!isZipValid || txtZip.getText().length() <= 0) {
+            JOptionPane.showMessageDialog(this, "zip code is INVALID, please check!!", null, JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(txtUsername.getText().length() <= 2) {
+            JOptionPane.showMessageDialog(this, "Admin Username should not be empty for a company!!", null,JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(txtPassword.getPassword().length <= 2) {
+            JOptionPane.showMessageDialog(this, "Admin password should be atleast 2 characters", null,JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
     }
 }
