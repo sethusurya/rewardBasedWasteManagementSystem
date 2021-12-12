@@ -15,6 +15,7 @@ public class Redemption {
     private int voucher_id;
     private Date redemption_date;
     private String voucher_type;
+    private Double voucher_value;
 
     public String getVoucher_type() {
         return voucher_type;
@@ -56,6 +57,15 @@ public class Redemption {
     public void setWsu_id(int wsu_id) {
         this.wsu_id = wsu_id;
     }
+
+    public Double getVoucher_value() {
+        return voucher_value;
+    }
+
+    public void setVoucher_value(Double voucher_value) {
+        this.voucher_value = voucher_value;
+    }
+    
     
     @Override
     public String toString(){

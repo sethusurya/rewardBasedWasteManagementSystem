@@ -10,6 +10,7 @@ import Business.Redemption.RedemptionDirectory;
 import Business.UserAccount.UserAccount;
 import Business.Voucher.Voucher;
 import Business.WSU.WSU_Company;
+import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 
@@ -41,7 +42,9 @@ public class RewardsJPanel extends javax.swing.JPanel {
         
         DefaultTableModel model1 = (DefaultTableModel) tblRedemptionHistory.getModel();
         model1.setRowCount(0);
-        
+        Double voucherTotal = 0.0;
+        Double cashTotal = 0.0;
+        Double Total = 0.0;
         for (Redemption r: redemptionDirectory.getRedemptionList()){
             if (r.getWsu_id() == company.getId()) {
                 if (r.getVoucher_type() == "Voucher"){
@@ -50,11 +53,12 @@ public class RewardsJPanel extends javax.swing.JPanel {
                     Voucher v = ecosystem.getVoucherDirectory().getVoucherById(r.getVoucher_id());
 
                     row1[0] = r;
-                    row1[1] = ecosystem.getRUCompanyDirectory().findCompanyById(v.getVoucherCompanyId());
-                    row1[2] = v.getVoucherDescription();
+                    row1[1] = v != null ? (ecosystem.getRUCompanyDirectory().findCompanyById(v.getVoucherCompanyId())!= null ?ecosystem.getRUCompanyDirectory().findCompanyById(v.getVoucherCompanyId()) : "N/A") : "N/A";
+                    row1[2] = v != null ? v.getVoucherDescription() : "N/A";
                     row1[3] = r.getRedemption_date();
-                    row1[4] = v.getVoucherWorth();
+                    row1[4] = r.getVoucher_value();
 
+                    voucherTotal = voucherTotal + r.getVoucher_value();
                     model1.addRow(row1);
                 }
                 else{
@@ -63,15 +67,19 @@ public class RewardsJPanel extends javax.swing.JPanel {
                     Voucher v = ecosystem.getVoucherDirectory().getVoucherById(r.getVoucher_id());
 
                     row1[0] = r;
-                    row1[1] = "Cash";
+                    row1[1] = "-";
                     row1[2] = "Cash";
                     row1[3] = r.getRedemption_date();
-                    row1[4] = v.getVoucherWorth();
-
+                    row1[4] = r.getVoucher_value();
+                    
+                    cashTotal = cashTotal + r.getVoucher_value();
                     model1.addRow(row1);
                 }
             }
         }
+        lblCashValue.setText(String.valueOf(cashTotal));
+        lblVoucherValue.setText(String.valueOf(voucherTotal));
+        lblTotalValue.setText(String.valueOf(voucherTotal + cashTotal));
     }
     
     /**
@@ -134,13 +142,18 @@ public class RewardsJPanel extends javax.swing.JPanel {
         jLabel1.setText("EARNINGS");
 
         btnBack.setText("Back");
+        btnBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(525, 525, 525)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblTotal)
                     .addComponent(lblVoucher)
@@ -156,19 +169,19 @@ public class RewardsJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(163, 163, 163)
                         .addComponent(jLabel1)
                         .addGap(305, 305, 305))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 650, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(44, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(29, Short.MAX_VALUE)
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnBack, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -192,6 +205,11 @@ public class RewardsJPanel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        goBack();
+    }//GEN-LAST:event_btnBackActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -206,4 +224,10 @@ public class RewardsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblVoucherValue;
     private javax.swing.JTable tblRedemptionHistory;
     // End of variables declaration//GEN-END:variables
+
+    private void goBack() {
+        userProcessContainer.remove(this);
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.previous(userProcessContainer); 
+    }
 }

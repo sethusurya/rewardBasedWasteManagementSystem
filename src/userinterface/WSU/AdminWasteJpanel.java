@@ -60,6 +60,12 @@ public class AdminWasteJpanel extends javax.swing.JPanel {
         txtQuantity = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
 
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+
         btnReport.setText("Report");
         btnReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -228,6 +234,11 @@ public class AdminWasteJpanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDeleteActionPerformed
 
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        refreshData();
+    }//GEN-LAST:event_formComponentShown
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
@@ -279,6 +290,7 @@ public class AdminWasteJpanel extends javax.swing.JPanel {
     }
 
     private void refreshData() {
+        populateMenu();
         populateTable(ecosystem.getOrderDirectory());
     }
 
