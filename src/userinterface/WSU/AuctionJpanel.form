@@ -37,7 +37,7 @@
                               <Group type="102" attributes="0">
                                   <Component id="btnReport" min="-2" pref="129" max="-2" attributes="0"/>
                                   <EmptySpace max="32767" attributes="0"/>
-                                  <Component id="btnMyEarnings1" min="-2" pref="129" max="-2" attributes="0"/>
+                                  <Component id="btnRedeem" min="-2" pref="129" max="-2" attributes="0"/>
                               </Group>
                               <Component id="jScrollPane2" min="-2" pref="564" max="-2" attributes="0"/>
                           </Group>
@@ -82,7 +82,7 @@
                       <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="btnMyEarnings" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnMyEarnings1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnRedeem" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="btnReport" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -233,11 +233,17 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="View Earnings"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMyEarningsActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="btnMyEarnings1">
+    <Component class="javax.swing.JButton" name="btnRedeem">
       <Properties>
         <Property name="text" type="java.lang.String" value="Redeem"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRedeemActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="btnReport">
       <Properties>

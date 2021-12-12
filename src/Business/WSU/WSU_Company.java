@@ -19,11 +19,21 @@ public class WSU_Company {
     private String adminUserName;
     private ArrayList<String> employeesList; // list of userNames
     private static int count = 1;
+    private double myrewards = 0;
+
+    public double getMyrewards() {
+        return myrewards;
+    }
+
+    public void setMyrewards(double myrewards) {
+        this.myrewards = myrewards;
+    }
 
     public WSU_Company() {
         id = count;
         count++;
         employeesList = new ArrayList<String>();
+        
     }
 
     public String getName() {
