@@ -62,8 +62,8 @@ public class Wru_Managers extends javax.swing.JPanel {
         lblPassword = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
 
-        title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title.setText("LIST OF MANAGERS");
 
         btnBack.setText("Back");
@@ -161,8 +161,8 @@ public class Wru_Managers extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(title)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()

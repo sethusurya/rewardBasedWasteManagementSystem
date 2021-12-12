@@ -58,8 +58,8 @@ public class Wru_AdminBids extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
-        title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title.setText("CURRENT BIDS");
 
         tblOngoingBids.setModel(new javax.swing.table.DefaultTableModel(
@@ -102,8 +102,8 @@ public class Wru_AdminBids extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblCompletedBids);
 
-        title1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        title1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title1.setText("COMPLETED BIDS");
 
         btnDelete.setText("Delete");
@@ -148,8 +148,8 @@ public class Wru_AdminBids extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31)
+                .addComponent(title)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -157,12 +157,11 @@ public class Wru_AdminBids extends javax.swing.JPanel {
                         .addComponent(btnCreate)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDelete)))
-                .addGap(59, 59, 59)
+                .addGap(84, 84, 84)
+                .addComponent(title1)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnView))
                 .addContainerGap(41, Short.MAX_VALUE))
         );

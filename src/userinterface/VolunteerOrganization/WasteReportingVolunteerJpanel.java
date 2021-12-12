@@ -128,7 +128,7 @@ public class WasteReportingVolunteerJpanel extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("VOLUNTEER WASTE SORTING PANEL");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 76, 662, 20));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 76, 640, 20));
 
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("VOLUNTEER ORG : ");
