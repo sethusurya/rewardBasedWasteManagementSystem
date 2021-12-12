@@ -15,6 +15,7 @@ import Business.LU.LU_CompanyDirectory;
 import Business.VU.VU_CompanyDirectory;
 import Business.RU.RU_CompanyDirectory;
 import Business.Voucher.VoucherDirectory;
+import Business.Redemption.RedemptionDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
@@ -35,6 +36,7 @@ public abstract class Organization {
     private RU_CompanyDirectory ruCompanyDirectory;
     private OrderDirectory orderDirectory;
     private VoucherDirectory voucherDirectory;
+    private RedemptionDirectory redemptionDirectory;
     private BidDirectory bidDirectory;
     private int organizationID;
     private static int counter=0;
@@ -63,6 +65,7 @@ public abstract class Organization {
         vuCompanyDirectory = new VU_CompanyDirectory();
         orderDirectory = new OrderDirectory();
         voucherDirectory = new VoucherDirectory();
+        redemptionDirectory = new RedemptionDirectory();
         bidDirectory = new BidDirectory();
         organizationID = counter;
         ++counter;
@@ -110,6 +113,10 @@ public abstract class Organization {
     
     public VoucherDirectory getVoucherDirectory() {
         return voucherDirectory;
+    }
+    
+    public RedemptionDirectory getRedemptionDirectory() {
+        return redemptionDirectory;
     }
     
     public BidDirectory getBidDirectory() {
