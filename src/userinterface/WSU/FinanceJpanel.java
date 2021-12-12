@@ -12,6 +12,7 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.Order.OrderDirectory;
+import java.awt.Color;
 import java.awt.event.ItemEvent;
 /**
  *
@@ -52,7 +53,6 @@ public class FinanceJpanel extends javax.swing.JPanel {
         btnRedeem = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableSelectVoucher = new javax.swing.JTable();
-        btnSelectEarnings = new javax.swing.JButton();
         lblSelectVoucher = new javax.swing.JLabel();
         lblReedemableValue = new javax.swing.JLabel();
         lblValue = new javax.swing.JLabel();
@@ -92,7 +92,7 @@ public class FinanceJpanel extends javax.swing.JPanel {
 
         jTableSelectVoucher.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
+                {"Sample", "Sample", "100"},
                 {null, null, null},
                 {null, null, null},
                 {null, null, null}
@@ -110,8 +110,6 @@ public class FinanceJpanel extends javax.swing.JPanel {
             }
         });
         jScrollPane2.setViewportView(jTableSelectVoucher);
-
-        btnSelectEarnings.setText("Select");
 
         lblSelectVoucher.setText("Select Voucher");
 
@@ -138,6 +136,11 @@ public class FinanceJpanel extends javax.swing.JPanel {
 
         redeemBtnGroup.add(radioRedeemCash);
         radioRedeemCash.setText("Redeem Cash");
+        radioRedeemCash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                radioRedeemCashActionPerformed(evt);
+            }
+        });
 
         redeemBtnGroup.add(radioRedeemVoucher);
         radioRedeemVoucher.setText("Redeem Voucher");
@@ -151,74 +154,68 @@ public class FinanceJpanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnRedeem, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
-                                .addComponent(lblReedemableValue)
-                                .addGap(18, 18, 18)
-                                .addComponent(lblValue, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(70, 70, 70))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(radioRedeemVoucher)
-                                    .addGap(142, 142, 142)
-                                    .addComponent(radioRedeemCash)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(txtCashValue, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnSelectEarnings, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
+                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblReedemableValue)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblValue, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(197, 197, 197))
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblSelectVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblSelectVoucher1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(19, 19, 19))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(radioRedeemVoucher)
+                                .addGap(142, 142, 142)
+                                .addComponent(radioRedeemCash)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtCashValue, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(212, 212, 212))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btnRedeem, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addComponent(lblSelectVoucher1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 617, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(25, 25, 25)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(lblReedemableValue)
-                                    .addComponent(lblValue, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(btnBack)))
-                        .addGap(26, 26, 26)
-                        .addComponent(lblSelectVoucher1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblReedemableValue)
+                            .addComponent(lblValue, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(223, 223, 223)
-                        .addComponent(btnSelectEarnings)))
+                        .addGap(14, 14, 14)
+                        .addComponent(btnBack)))
+                .addGap(26, 26, 26)
+                .addComponent(lblSelectVoucher1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtCashValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(radioRedeemCash))
                     .addComponent(radioRedeemVoucher))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
                 .addComponent(lblSelectVoucher)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btnRedeem)
-                .addGap(79, 79, 79))
+                .addGap(22, 22, 22))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -233,11 +230,24 @@ public class FinanceJpanel extends javax.swing.JPanel {
 
     private void btnRedeemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedeemActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_btnRedeemActionPerformed
 
     private void radioRedeemVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRedeemVoucherActionPerformed
         // TODO add your handling code here:
+        jTableSelectVoucher.setEnabled(true);
+        txtCashValue.setEnabled(false);
+        txtCashValue.setBackground(Color.GRAY);
+        jTableSelectVoucher.setBackground(null);
     }//GEN-LAST:event_radioRedeemVoucherActionPerformed
+
+    private void radioRedeemCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRedeemCashActionPerformed
+        // TODO add your handling code here:
+        txtCashValue.setEnabled(true);
+        jTableSelectVoucher.setEnabled(false);
+        jTableSelectVoucher.setBackground(Color.GRAY);
+        txtCashValue.setBackground(null);
+    }//GEN-LAST:event_radioRedeemCashActionPerformed
 
 //    public void itemStateChanged(ItemEvent e)
 //    {
@@ -253,7 +263,6 @@ public class FinanceJpanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRedeem;
-    private javax.swing.JButton btnSelectEarnings;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableAccptedbids;
@@ -282,13 +291,13 @@ public class FinanceJpanel extends javax.swing.JPanel {
         DefaultTableModel model1 = (DefaultTableModel) jTableAccptedbids.getModel();
         DefaultTableModel model2 = (DefaultTableModel) jTableSelectVoucher.getModel();
         model1.setRowCount(0);
-        model2.setRowCount(0);
+//        model2.setRowCount(0);
         
         for (Order o: orderDirectory.getOrderList()){
             if (o.getReportingCompanyId() == company.getId()) {
                 if(!((o.getStatus().equals("reported")) | (o.getStatus().equals("out for auction")))) {
                     Object[] row1 = new Object[5];
-                    row1[0] = o.getId();
+                    row1[0] = o;
                     row1[1] = o.getWasteType();
                     row1[2] = o.getQuantity();
                     row1[3] = o.getBuyingCost();

@@ -20,48 +20,47 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <Component id="btnBack" min="-2" pref="111" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="btnRedeem" min="-2" pref="120" max="-2" attributes="0"/>
+                      <Component id="lblReedemableValue" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="lblValue" min="-2" pref="95" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="197" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jScrollPane2" min="-2" pref="576" max="-2" attributes="0"/>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="btnBack" min="-2" pref="111" max="-2" attributes="0"/>
-                              <EmptySpace pref="102" max="32767" attributes="0"/>
-                              <Component id="lblReedemableValue" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="lblValue" min="-2" pref="95" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <Component id="radioRedeemVoucher" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
-                                  <Component id="radioRedeemCash" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="txtCashValue" min="-2" pref="129" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="jScrollPane1" min="-2" pref="576" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="btnSelectEarnings" pref="163" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="lblSelectVoucher" min="-2" pref="93" max="-2" attributes="0"/>
-                          <Component id="lblSelectVoucher1" alignment="0" min="-2" pref="93" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="radioRedeemVoucher" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+                              <Component id="radioRedeemCash" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Component id="txtCashValue" min="-2" pref="129" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="212" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="1" attributes="0">
+              <EmptySpace max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jScrollPane1" alignment="0" min="-2" pref="576" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="btnRedeem" min="-2" pref="120" max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="576" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="63" max="-2" attributes="0"/>
+              <Component id="lblSelectVoucher1" min="-2" pref="93" max="-2" attributes="0"/>
+              <EmptySpace min="0" pref="617" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -70,29 +69,21 @@
           <Group type="102" alignment="0" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="lblReedemableValue" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="lblValue" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                              <Component id="btnBack" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblReedemableValue" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblValue" alignment="3" min="-2" pref="27" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
-                      <Component id="lblSelectVoucher1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="182" max="-2" attributes="0"/>
                   </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="223" max="-2" attributes="0"/>
-                      <Component id="btnSelectEarnings" min="-2" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
+                      <Component id="btnBack" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Component id="lblSelectVoucher1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="182" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -101,13 +92,13 @@
                   </Group>
                   <Component id="radioRedeemVoucher" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="11" max="32767" attributes="0"/>
+              <EmptySpace pref="44" max="32767" attributes="0"/>
               <Component id="lblSelectVoucher" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="182" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnRedeem" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -186,9 +177,24 @@
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="3" rowCount="4">
-                <Column editable="false" title="Company" type="java.lang.Object"/>
-                <Column editable="false" title="Worth" type="java.lang.Object"/>
-                <Column editable="true" title="Quantity" type="java.lang.Object"/>
+                <Column editable="false" title="Company" type="java.lang.Object">
+                  <Data value="Sample"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="false" title="Worth" type="java.lang.Object">
+                  <Data value="Sample"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
+                <Column editable="true" title="Quantity" type="java.lang.Object">
+                  <Data value="100"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                  <Data value="null"/>
+                </Column>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -217,11 +223,6 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="btnSelectEarnings">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Select"/>
-      </Properties>
-    </Component>
     <Component class="javax.swing.JLabel" name="lblSelectVoucher">
       <Properties>
         <Property name="text" type="java.lang.String" value="Select Voucher"/>
@@ -268,6 +269,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="Redeem Cash"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioRedeemCashActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JRadioButton" name="radioRedeemVoucher">
       <Properties>
