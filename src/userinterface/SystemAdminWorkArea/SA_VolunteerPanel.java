@@ -10,6 +10,7 @@ import Business.Role.VU_Admin;
 import Business.UserAccount.UserAccount;
 import Business.VU.VU_Company;
 import Business.VU.VU_CompanyDirectory;
+import Validations.Functions;
 import java.awt.CardLayout;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -238,52 +239,54 @@ public class SA_VolunteerPanel extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         Boolean EditFlag = !txtUsername.isEnabled();
-        
-        String companyName = txtName.getText();
-        String street = txtStreet.getText();
-        String city = txtCity.getText();
-        Long zip = Long.parseLong(txtZip.getText());
-        String username = txtUsername.getText();
-        char[] passwordArr = txtPassword.getPassword();
-        String password = new String(passwordArr);
-        
-        Role role = new VU_Admin();
-        VU_Company newCompany = new VU_Company();
-        newCompany.setName(companyName);
-        newCompany.setStreet(street);
-        newCompany.setCity(city);
-        newCompany.setZip(zip);
-        newCompany.setAdminUserName(username);
-        newCompany.setEmployeesList(new ArrayList<String>());
-        if (EditFlag) {
-            // update the account password
-            UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(username);
-            if(ua != null) ua.setPassword(password); // update userAccountPassword
-            
-            //update the company
-            VU_Company c = ecosystem.getVUCompanyDirectory().findCompanyByAdminUserName(username);
-            if (c != null) {
-                c.setName(companyName);
-                c.setCity(city);
-                c.setStreet(street);
-                c.setZip(zip);
-            }
-            
-            clearInputs();
-            refreshData();
-        } else {
-          // Create userAccount in userDirectory
-          if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
-              ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
-              // Create WRU_Company in WRU_CompanyDirectory
-              ecosystem.getVUCompanyDirectory().addCompany(newCompany); // company created
-              clearInputs();
-              refreshData();
-              JOptionPane.showMessageDialog(this, "Created Successfully");
-          } else {
-              JOptionPane.showMessageDialog(this, "Username already exists");
-              return;
-          }  
+        Boolean isCorrectData = validateData();
+        if (isCorrectData) {
+            String companyName = txtName.getText();
+            String street = txtStreet.getText();
+            String city = txtCity.getText();
+            Long zip = Long.parseLong(txtZip.getText());
+            String username = txtUsername.getText();
+            char[] passwordArr = txtPassword.getPassword();
+            String password = new String(passwordArr);
+
+            Role role = new VU_Admin();
+            VU_Company newCompany = new VU_Company();
+            newCompany.setName(companyName);
+            newCompany.setStreet(street);
+            newCompany.setCity(city);
+            newCompany.setZip(zip);
+            newCompany.setAdminUserName(username);
+            newCompany.setEmployeesList(new ArrayList<String>());
+            if (EditFlag) {
+                // update the account password
+                UserAccount ua = ecosystem.getUserAccountDirectory().getUserAccountByUserName(username);
+                if(ua != null) ua.setPassword(password); // update userAccountPassword
+
+                //update the company
+                VU_Company c = ecosystem.getVUCompanyDirectory().findCompanyByAdminUserName(username);
+                if (c != null) {
+                    c.setName(companyName);
+                    c.setCity(city);
+                    c.setStreet(street);
+                    c.setZip(zip);
+                }
+
+                clearInputs();
+                refreshData();
+            } else {
+              // Create userAccount in userDirectory
+              if (ecosystem.getUserAccountDirectory().checkIfUsernameIsUnique(username)) {
+                  ecosystem.getUserAccountDirectory().createUserAccount(username, password, null, role); // useraccount created
+                  // Create WRU_Company in WRU_CompanyDirectory
+                  ecosystem.getVUCompanyDirectory().addCompany(newCompany); // company created
+                  clearInputs();
+                  refreshData();
+                  JOptionPane.showMessageDialog(this, "Created Successfully");
+              } else {
+                  JOptionPane.showMessageDialog(this, "Username already exists");
+                  return;
+              }  
+            }        
         }
     }//GEN-LAST:event_btnSaveActionPerformed
 
@@ -392,5 +395,34 @@ public class SA_VolunteerPanel extends javax.swing.JPanel {
 
     private void refreshData() {
         populateTable(ecosystem.getVUCompanyDirectory());
+    }
+    
+    private Boolean validateData() {
+        if(txtName.getText().length() <= 2) {
+            JOptionPane.showMessageDialog(this, "Name should be atleast 2 characters!!", null,JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(txtStreet.getText().length() <= 0) {
+            JOptionPane.showMessageDialog(this, "Street cannot be empty!!", null,JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(txtCity.getText().length() <= 2) {
+            JOptionPane.showMessageDialog(this, "Please provide name of the city!!", null,JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        Boolean isZipValid = Functions.isValidNumber(txtZip.getText());
+        if (!isZipValid || txtZip.getText().length() <= 0) {
+            JOptionPane.showMessageDialog(this, "zip code is INVALID, please check!!", null, JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(txtUsername.getText().length() <= 2) {
+            JOptionPane.showMessageDialog(this, "Admin Username should not be empty for a company!!", null,JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if(txtPassword.getPassword().length <= 2) {
+            JOptionPane.showMessageDialog(this, "Admin password should be atleast 2 characters", null,JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
     }
 }

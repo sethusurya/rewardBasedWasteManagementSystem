@@ -62,8 +62,8 @@ public class Wru_Managers extends javax.swing.JPanel {
         lblPassword = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
 
-        title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title.setText("LIST OF MANAGERS");
 
         btnBack.setText("Back");
@@ -161,8 +161,8 @@ public class Wru_Managers extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
+                .addComponent(title)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
@@ -199,6 +199,14 @@ public class Wru_Managers extends javax.swing.JPanel {
     private void btnSaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveActionPerformed
         // TODO add your handling code here:
         Boolean editFlag = !txtUsername.isEnabled();
+        if(txtUsername.getText().length() <= 2) {
+            JOptionPane.showMessageDialog(this, "Username should be atleast 2 characters!!", null,JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(txtPassword.getPassword().length <= 2) {
+            JOptionPane.showMessageDialog(this, "Password should be atleast 2 characters!!", null,JOptionPane.ERROR_MESSAGE);
+            return;
+        }
         String username = txtUsername.getText();
         char[] passwordArr = txtPassword.getPassword();
         String password = new String(passwordArr);

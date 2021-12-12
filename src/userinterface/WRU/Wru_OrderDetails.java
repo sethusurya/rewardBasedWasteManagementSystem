@@ -76,8 +76,8 @@ public class Wru_OrderDetails extends javax.swing.JPanel {
         jLabel14 = new javax.swing.JLabel();
         lblLogisticsCost = new javax.swing.JLabel();
 
-        title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title.setText("VIEW ORDER DETAILS");
 
         btnBack.setText("Back");
@@ -249,8 +249,8 @@ public class Wru_OrderDetails extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack)
-                .addGap(12, 12, 12)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
+                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)

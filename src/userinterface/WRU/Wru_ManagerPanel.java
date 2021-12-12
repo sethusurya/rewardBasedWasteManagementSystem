@@ -57,8 +57,8 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
         tblCompletedBids = new javax.swing.JTable();
         title1 = new javax.swing.JLabel();
         lblCompany = new javax.swing.JLabel();
-        txtCompany = new javax.swing.JTextField();
         btnDelete = new javax.swing.JButton();
+        txtCompany = new javax.swing.JLabel();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
@@ -73,8 +73,8 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
             }
         });
 
-        title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title.setText("CURRENT BIDS");
 
         tblOngoingBids.setModel(new javax.swing.table.DefaultTableModel(
@@ -103,14 +103,12 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblCompletedBids);
 
-        title1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        title1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title1.setText("BID HISTORY");
 
         lblCompany.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCompany.setText("Company Name : ");
-
-        txtCompany.setEditable(false);
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +116,9 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
+
+        txtCompany.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        txtCompany.setText("MyCompany");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -129,7 +130,7 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
                         .addGap(153, 153, 153)
                         .addComponent(lblCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,9 +153,9 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31)
+                .addComponent(title)
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -162,8 +163,8 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
                         .addComponent(btnCreateBid)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnDelete)))
-                .addGap(65, 65, 65)
-                .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82)
+                .addComponent(title1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(11, 11, 11)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40))
@@ -216,7 +217,7 @@ public class Wru_ManagerPanel extends javax.swing.JPanel {
     private javax.swing.JTable tblOngoingBids;
     private javax.swing.JLabel title;
     private javax.swing.JLabel title1;
-    private javax.swing.JTextField txtCompany;
+    private javax.swing.JLabel txtCompany;
     // End of variables declaration//GEN-END:variables
 
     private void populateData() {

@@ -68,6 +68,11 @@ public class Wru_AdminPanel extends javax.swing.JPanel {
         });
 
         btnExpenditureAnalysis.setText("EXPENDITURE ANALYSIS");
+        btnExpenditureAnalysis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExpenditureAnalysisActionPerformed(evt);
+            }
+        });
 
         lblCompanyName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCompanyName.setText("Company Name : ");
@@ -133,6 +138,13 @@ public class Wru_AdminPanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.next(userProcessContainer);
     }//GEN-LAST:event_btnManagersActionPerformed
+
+    private void btnExpenditureAnalysisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExpenditureAnalysisActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.add("mySuccessOrders", new Wru_SuccessfulOrders(userProcessContainer,ecosystem,account,company));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnExpenditureAnalysisActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
