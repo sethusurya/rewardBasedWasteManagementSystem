@@ -9,6 +9,7 @@ import Business.LU.LU_Company;
 import Business.Order.Order;
 import Business.Order.OrderDirectory;
 import Business.UserAccount.UserAccount;
+import Business.VU.VU_Company;
 import Business.WRU.WRU_Company;
 import Business.WSU.WSU_Company;
 import java.awt.CardLayout;
@@ -215,10 +216,15 @@ public class Lu_CreateTrip extends javax.swing.JPanel {
                 row[2] = o.getQuantity();
                 row[3] = "N/A";
                 row[4] = "N/A";
-                WSU_Company fromCompany = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
-                if (fromCompany != null) row[3] = fromCompany.getName();
+                if (o.getIsReportedByVolunteer()) {
+                    VU_Company fromCompany = ecosystem.getVUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                    if (fromCompany != null) row[3] = fromCompany.getName();
+                } else {
+                    WSU_Company fromCompany = ecosystem.getWSUCompanyDirectory().findCompanyById(o.getReportingCompanyId());
+                    if (fromCompany != null) row[3] = fromCompany.getName();  
+                }
                 WRU_Company toCompany = ecosystem.getWRUCompanyDirectory().findCompanyById(o.getBuyingCompanyId());
-                if (toCompany != null) row[4] = fromCompany.getName();
+                if (toCompany != null) row[4] = toCompany.getName();
                 
                 model.addRow(row);
             }

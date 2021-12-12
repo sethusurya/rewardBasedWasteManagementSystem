@@ -20,6 +20,8 @@ public abstract class Role {
 //        RestaurantAdmin("RestaurantAdmin"),
 //        Customer("Customer"),
 //        DeliveryMan("Delivery"),
+        VU_Admin("VU_Admin"),
+        VU_Volunteer("VU_Volunteer"),
         WRU_Admin("WRU_Admin"),
         WRU_Employee("WRU_Employee"),
         LU_Admin("LU_Admin"),

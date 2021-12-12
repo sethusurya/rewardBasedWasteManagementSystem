@@ -4,17 +4,42 @@
  */
 package userinterface.VolunteerOrganization;
 
+import Business.EcoSystem;
+import Business.Order.Order;
+import Business.Order.OrderDirectory;
+import Business.UserAccount.UserAccount;
+import Business.VU.VU_Company;
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+import userinterface.WSU.employeeJpanel.WasteType;
+
 /**
  *
- * @author varunvuppala
+ * @author sethu
  */
 public class WasteReportingVolunteerJpanel extends javax.swing.JPanel {
 
     /**
      * Creates new form WasteReportingVolunteerJpanel
      */
-    public WasteReportingVolunteerJpanel() {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    UserAccount account;
+    VU_Company company;
+    public WasteReportingVolunteerJpanel(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account, VU_Company company) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.account = account;
+        this.company = company;
+        
+        lblUsername.setText(account.getUsername());
+        lblOrgname.setText(company.getName());
+        populateMenu();
+        populateTable(ecosystem.getOrderDirectory());
     }
 
     /**
@@ -27,16 +52,22 @@ public class WasteReportingVolunteerJpanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTableWasteReportingVolunteer = new javax.swing.JTable();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        table = new javax.swing.JTable();
+        cmbWasteType = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
         btnReport = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        txtQuantity = new javax.swing.JTextField();
+        btnDelete = new javax.swing.JButton();
+        lblUsername = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblOrgname = new javax.swing.JLabel();
 
-        jTableWasteReportingVolunteer.setModel(new javax.swing.table.DefaultTableModel(
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -44,7 +75,7 @@ public class WasteReportingVolunteerJpanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Reportid", "Type of Dump", "Area", "Time Stamp", "Status"
+                "Id", "Waste Type", "Quantity ($)", "Time Stamp", "Status"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -55,87 +86,164 @@ public class WasteReportingVolunteerJpanel extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTableWasteReportingVolunteer);
+        jScrollPane2.setViewportView(table);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 102, 555, 179));
 
-        jLabel1.setText("Type of Dump:");
+        cmbWasteType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(cmbWasteType, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 299, 118, 32));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel1.setText("Type of Waste : ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 308, -1, -1));
 
         btnReport.setText("Report");
+        btnReport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReportActionPerformed(evt);
+            }
+        });
+        add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, 70, -1));
 
-        jLabel2.setText("Area:");
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel2.setText("Quantity(lbs) : ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 351, 82, -1));
+        add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 342, 118, 32));
 
-        jButton1.setText("Delete");
+        btnDelete.setText("Delete");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 102, 80, -1));
 
-        jButton2.setText("View");
+        lblUsername.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblUsername.setText("Username");
+        add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 21, 173, 25));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(73, 73, 73)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 555, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(199, 199, 199)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel1))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(36, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(jButton1)
-                        .addGap(60, 60, 60)
-                        .addComponent(jButton2)))
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1))
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnReport)
-                .addContainerGap(123, Short.MAX_VALUE))
-        );
+        jLabel4.setText("Welcome,");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 21, -1, 25));
+
+        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel5.setText("VOLUNTEER WASTE SORTING PANEL");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 76, 662, 20));
+
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jLabel3.setText("VOLUNTEER ORG : ");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 120, 20));
+
+        lblOrgname.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        lblOrgname.setText("ORG NAME");
+        add(lblOrgname, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 140, 20));
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = table.getSelectedRow();
+        if (selectedRowIndex >= 0) {
+            DefaultTableModel model = (DefaultTableModel) table.getModel();
+            Order selectedRow = (Order) model.getValueAt(selectedRowIndex, 0);
+            if (!selectedRow.getStatus().equals("reported")) {
+                JOptionPane.showMessageDialog(this, "Order has been already placed for donation!!");
+                return;
+            } else {
+                int input = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation Dialog", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (input == 0) {
+                    ecosystem.getOrderDirectory().removeOrderById(selectedRow.getId()); // remove the order from echosystem
+                    refreshData();
+                    clearInputs();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Select an order row to delete it");
+            return;
+        }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnReportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReportActionPerformed
+        // TODO add your handling code here:
+        if (txtQuantity.getText().length() == 0) { // empty value Check
+            JOptionPane.showMessageDialog(this, "Please Give the Quantity of waste");
+            return;
+        }
+        
+        Date currentTime = new Date();
+        String wasteType = cmbWasteType.getSelectedItem().toString();
+        Double wasteQuantity = Double.parseDouble(txtQuantity.getText());
+        String status = "reported"; // only limited status are given
+        
+        // creating new order
+        Order newOrder = new Order();
+        newOrder.setStatus(status);
+        newOrder.setWasteType(wasteType);
+        newOrder.setQuantity(wasteQuantity);
+        newOrder.setReportingTimeStamp(currentTime);
+        newOrder.setReportingUsername(account.getUsername());
+        newOrder.setReportingCompanyId(company.getId()); //wsu_company
+        newOrder.setIsReportedByVolunteer(true); // cause this is voluntary
+        ecosystem.getOrderDirectory().createOrder(newOrder);
+        refreshData();
+        clearInputs();
+        JOptionPane.showMessageDialog(this, "Order Created");
+    }//GEN-LAST:event_btnReportActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnReport;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> cmbWasteType;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTableWasteReportingVolunteer;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblOrgname;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JTable table;
+    private javax.swing.JTextField txtQuantity;
     // End of variables declaration//GEN-END:variables
+    
+    private void populateMenu() {
+        ArrayList<String> wasteList = new ArrayList<String>();
+        for(WasteType c : WasteType.values()) {
+            wasteList.add(c.toString());
+        }
+        // convert arraylist to array
+        String[] myWasteTypes = wasteList.toArray(new String[0]);
+        // populating the menus
+        cmbWasteType.setModel(new javax.swing.DefaultComboBoxModel<>(myWasteTypes));
+    }
+    
+    private void populateTable(OrderDirectory orderDirectory) {
+        DefaultTableModel model = (DefaultTableModel) table.getModel();
+        model.setRowCount(0);
+        
+        // loopthrough orders
+        
+        for (Order o: orderDirectory.getOrderList()){
+            if (o.getReportingCompanyId() == company.getId() && o.getReportingUsername().equals(account.getUsername())&& o.getIsReportedByVolunteer()) {
+                Object[] row = new Object[5];
+                row[0] = o;
+                row[1] = o.getWasteType();
+                row[2] = o.getQuantity();
+                row[3] = o.getReportingTimeStamp();
+                row[4] = o.getStatus();
+
+                model.addRow(row);   
+            }
+        }
+    }
+    
+    private void clearInputs() {
+        txtQuantity.setText("");
+        cmbWasteType.setSelectedIndex(0);
+    }
+
+    private void refreshData() {
+        populateTable(ecosystem.getOrderDirectory());
+    }
+
 }

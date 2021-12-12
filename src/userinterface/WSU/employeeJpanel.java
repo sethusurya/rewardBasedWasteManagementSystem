@@ -249,7 +249,7 @@ public class employeeJpanel extends javax.swing.JPanel {
         // loopthrough orders
         
         for (Order o: orderDirectory.getOrderList()){
-            if (o.getReportingCompanyId() == company.getId() && o.getReportingUsername().equals(account.getUsername())) {
+            if (o.getReportingCompanyId() == company.getId() && o.getReportingUsername().equals(account.getUsername()) && !o.getIsReportedByVolunteer()) {
                 Object[] row = new Object[5];
                 row[0] = o;
                 row[1] = o.getWasteType();
