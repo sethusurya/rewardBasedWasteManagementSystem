@@ -55,7 +55,7 @@ public class AuctionJpanel extends javax.swing.JPanel {
         lblSegregardWaste = new javax.swing.JLabel();
         lblAuctionedWaste = new javax.swing.JLabel();
         btnMyEarnings = new javax.swing.JButton();
-        btnMyEarnings1 = new javax.swing.JButton();
+        btnRedeem = new javax.swing.JButton();
         btnReport = new javax.swing.JButton();
         btnViewBids = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
@@ -103,8 +103,18 @@ public class AuctionJpanel extends javax.swing.JPanel {
         lblAuctionedWaste.setText("Auctioned Waste");
 
         btnMyEarnings.setText("View Earnings");
+        btnMyEarnings.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMyEarningsActionPerformed(evt);
+            }
+        });
 
-        btnMyEarnings1.setText("Redeem");
+        btnRedeem.setText("Redeem");
+        btnRedeem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRedeemActionPerformed(evt);
+            }
+        });
 
         btnReport.setText("Report Waste");
         btnReport.addActionListener(new java.awt.event.ActionListener() {
@@ -157,7 +167,7 @@ public class AuctionJpanel extends javax.swing.JPanel {
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(btnReport, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnMyEarnings1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(btnRedeem, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +201,7 @@ public class AuctionJpanel extends javax.swing.JPanel {
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnMyEarnings)
-                            .addComponent(btnMyEarnings1)
+                            .addComponent(btnRedeem)
                             .addComponent(btnReport)))
                     .addComponent(btnViewBids))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -261,13 +271,24 @@ public class AuctionJpanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnViewBidsActionPerformed
 
+    private void btnRedeemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedeemActionPerformed
+        // TODO add your handling code here:
+        userProcessContainer.add("myRedemptionPage", new FinanceJpanel(userProcessContainer, ecosystem, account, company));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnRedeemActionPerformed
+
+    private void btnMyEarningsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyEarningsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnMyEarningsActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnConductAuction;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnMyEarnings;
-    private javax.swing.JButton btnMyEarnings1;
+    private javax.swing.JButton btnRedeem;
     private javax.swing.JButton btnReport;
     private javax.swing.JButton btnViewBids;
     private javax.swing.JScrollPane jScrollPane1;
