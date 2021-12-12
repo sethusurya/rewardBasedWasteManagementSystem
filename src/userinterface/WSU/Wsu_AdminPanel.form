@@ -16,25 +16,29 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                          <Component id="btnExpenditureAnalysis" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnBids" alignment="0" max="32767" attributes="0"/>
-                          <Component id="btnManagers" alignment="0" min="-2" pref="218" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace max="32767" attributes="0"/>
-                  </Group>
+          <Group type="102" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="12" pref="12" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnBids" linkSize="1" pref="218" max="32767" attributes="0"/>
+                          <Component id="jButton2" linkSize="1" max="32767" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="btnExpenditureAnalysis" linkSize="1" min="-2" pref="218" max="-2" attributes="0"/>
+                          <Component id="jButton1" linkSize="1" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                  </Group>
+                  <Component id="btnManagers" linkSize="1" min="-2" pref="218" max="-2" attributes="0"/>
+                  <Component id="jLabel1" alignment="0" min="-2" pref="464" max="-2" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
                       <Component id="lblWSUOrg" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="lblWSUName" min="-2" pref="221" max="-2" attributes="0"/>
-                      <EmptySpace pref="90" max="32767" attributes="0"/>
                   </Group>
               </Group>
+              <EmptySpace pref="61" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -42,17 +46,25 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
+              <Component id="jLabel1" min="-2" pref="31" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="lblWSUName" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="lblWSUName" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
                   <Component id="lblWSUOrg" alignment="3" min="-2" pref="39" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-              <Component id="btnManagers" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-              <Component id="btnBids" min="-2" pref="34" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-              <Component id="btnExpenditureAnalysis" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnExpenditureAnalysis" linkSize="2" min="-2" pref="35" max="-2" attributes="0"/>
+                  <Component id="jButton2" linkSize="2" min="-2" pref="39" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="btnBids" linkSize="2" min="-2" pref="34" max="-2" attributes="0"/>
+                  <Component id="jButton1" linkSize="2" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <Component id="btnManagers" linkSize="2" min="-2" pref="35" max="-2" attributes="0"/>
+              <EmptySpace pref="110" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,7 +80,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnBids">
       <Properties>
-        <Property name="text" type="java.lang.String" value="BIDS"/>
+        <Property name="text" type="java.lang.String" value="AUCTION WORK AREA"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnBidsActionPerformed"/>
@@ -78,21 +90,49 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="EXPENDITURE ANALYSIS"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExpenditureAnalysisActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblWSUOrg">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="22" style="0"/>
+          <Font name="Tahoma" size="12" style="1"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="WSU Org:"/>
+        <Property name="text" type="java.lang.String" value="Company :"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="lblWSUName">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Lucida Grande" size="22" style="0"/>
+          <Font name="Tahoma" size="12" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="jLabel2"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="REDEEM AMOUNT"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="jButton2">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="REPORT WASTE"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JLabel" name="jLabel1">
+      <Properties>
+        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+          <Font name="Tahoma" size="12" style="1"/>
+        </Property>
+        <Property name="horizontalAlignment" type="int" value="0"/>
+        <Property name="text" type="java.lang.String" value="WASTE RECYCLING UNIT ADMIN DASHBOARD"/>
       </Properties>
     </Component>
   </SubComponents>

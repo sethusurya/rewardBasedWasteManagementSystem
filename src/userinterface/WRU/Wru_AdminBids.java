@@ -58,6 +58,12 @@ public class Wru_AdminBids extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+
         title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title.setText("CURRENT BIDS");
@@ -223,6 +229,11 @@ public class Wru_AdminBids extends javax.swing.JPanel {
             return;
         }
     }//GEN-LAST:event_btnViewActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        populateBids(ecosystem.getBidDirectory());
+    }//GEN-LAST:event_formComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
