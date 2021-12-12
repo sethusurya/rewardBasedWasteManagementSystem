@@ -56,4 +56,14 @@ public class RU_CompanyDirectory {
         return newCompany;
     }
     
+    public RU_Company findCompanyByName(String name) {
+        RU_Company newCompany = null;
+        for (RU_Company c: ruCompanyList){
+            if (c.getName().equals(name)) {
+                newCompany = c;
+            }
+        }
+        return newCompany;
+    }
+    
 }

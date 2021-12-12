@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -91,15 +91,15 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTableVoucher">
+        <Component class="javax.swing.JTable" name="tblRedemptionHistory">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="5" rowCount="4">
-                <Column editable="false" title="Orderid" type="java.lang.Object"/>
-                <Column editable="false" title="Company" type="java.lang.Object"/>
-                <Column editable="false" title="Worth" type="java.lang.Object"/>
-                <Column editable="false" title="Quantity" type="java.lang.Object"/>
-                <Column editable="false" title="Total Value" type="java.lang.Object"/>
+                <Column editable="false" title="Redemption ID" type="java.lang.Object"/>
+                <Column editable="true" title="Rewards Company" type="java.lang.Object"/>
+                <Column editable="false" title="Voucher Description" type="java.lang.Object"/>
+                <Column editable="false" title="Redemption Date" type="java.lang.Object"/>
+                <Column editable="false" title="Cost" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

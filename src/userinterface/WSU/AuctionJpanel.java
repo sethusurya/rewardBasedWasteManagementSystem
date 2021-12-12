@@ -61,6 +61,12 @@ public class AuctionJpanel extends javax.swing.JPanel {
         btnBack = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
 
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
+
         lblAuctionArea.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
         lblAuctionArea.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAuctionArea.setText("AUCTION WORK AREA");
@@ -280,7 +286,15 @@ public class AuctionJpanel extends javax.swing.JPanel {
 
     private void btnMyEarningsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMyEarningsActionPerformed
         // TODO add your handling code here:
+        userProcessContainer.add("myEarningsPage", new RewardsJPanel(userProcessContainer, ecosystem, account, company));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
     }//GEN-LAST:event_btnMyEarningsActionPerformed
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        // TODO add your handling code here:
+        populateTables(ecosystem.getOrderDirectory());
+    }//GEN-LAST:event_formComponentShown
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -340,5 +354,4 @@ public class AuctionJpanel extends javax.swing.JPanel {
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
         layout.previous(userProcessContainer); 
     }
-
 }

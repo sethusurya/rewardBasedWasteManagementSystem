@@ -88,6 +88,11 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
         lblWaste.setText("Waste Type : ");
 
         selWaste.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        selWaste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selWasteActionPerformed(evt);
+            }
+        });
 
         btnApply.setText("Apply Filter");
         btnApply.addActionListener(new java.awt.event.ActionListener() {
@@ -296,6 +301,10 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this,"Select an order from table to place bid");
         }
     }//GEN-LAST:event_btnPlaceBidActionPerformed
+
+    private void selWasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selWasteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_selWasteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -12,9 +12,16 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.Order.OrderDirectory;
+import Business.RU.RU_Company;
+import Business.RU.RU_CompanyDirectory;
 import Business.Redemption.Redemption;
+import Business.Voucher.Voucher;
+import Business.Voucher.VoucherDirectory;
+import Validations.Functions;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
+import java.util.ArrayList;
+import java.util.Date;
 import javax.swing.JOptionPane;
 /**
  *
@@ -63,6 +70,7 @@ public class FinanceJpanel extends javax.swing.JPanel {
         txtCashValue = new javax.swing.JTextField();
         radioRedeemCash = new javax.swing.JRadioButton();
         radioRedeemVoucher = new javax.swing.JRadioButton();
+        cmbVoucherCompany = new javax.swing.JComboBox<>();
 
         jTableAccptedbids.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,17 +102,17 @@ public class FinanceJpanel extends javax.swing.JPanel {
 
         jTableSelectVoucher.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Sample", "Sample", "100"},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {"Sample", "Sample", "100", null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Company", "Worth", "Quantity"
+                "Voucher Id", "Company Name", "Description", "Cost"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true
+                false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -152,6 +160,13 @@ public class FinanceJpanel extends javax.swing.JPanel {
             }
         });
 
+        cmbVoucherCompany.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbVoucherCompany.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbVoucherCompanyActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -168,7 +183,10 @@ public class FinanceJpanel extends javax.swing.JPanel {
                         .addGap(197, 197, 197))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblSelectVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblSelectVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(65, 65, 65)
+                                .addComponent(cmbVoucherCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(radioRedeemVoucher)
                                 .addGap(142, 142, 142)
@@ -211,8 +229,10 @@ public class FinanceJpanel extends javax.swing.JPanel {
                         .addComponent(txtCashValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(radioRedeemCash))
                     .addComponent(radioRedeemVoucher))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
-                .addComponent(lblSelectVoucher)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblSelectVoucher)
+                    .addComponent(cmbVoucherCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -232,17 +252,58 @@ public class FinanceJpanel extends javax.swing.JPanel {
 
     private void btnRedeemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedeemActionPerformed
         // TODO add your handling code here:
+        Redemption r = new Redemption();
+        Double myRewards = company.getMyrewards();
+        
         if (radioRedeemCash.isSelected()){
-//            Redemption r = new Redemption();
-//            r.setWsu_id(WIDTH);
-//            r.setId(WIDTH);
-//            txtCashValue.getText();
-//            createCashRedemption();
+//            !Functions.isValidNumber(txtCashValue.getText()) || !txtCashValue.getText().length() >= 1
+            if(!(txtCashValue.getText().length() >= 1) || !(Functions.isValidNumber(txtCashValue.getText()))){
+                JOptionPane.showMessageDialog(this, "Enter valid cash amount", null, JOptionPane.ERROR_MESSAGE);
+                return; 
+            }
+            Double cashAmount = Double.parseDouble(txtCashValue.getText());
+            r.setRedemption_date(new Date());
+            r.setVoucher_type("Cash");
+            r.setWsu_id(company.getId());
+            if(myRewards < cashAmount){
+                JOptionPane.showMessageDialog(this, "Selected Amount exceeds rewards available", null, JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+            ecosystem.getRedemptionDirectory().createRedemption(r); // create redemtion
+            myRewards = myRewards - cashAmount;
+            company.setMyrewards(myRewards); // subtract available cash
+            
         }else if(radioRedeemVoucher.isSelected()){
-//            createVoucherRedemption(o);
+            int selectedRowIndex = jTableSelectVoucher.getSelectedRow();
+            
+            if(selectedRowIndex >= 0){
+                DefaultTableModel model = (DefaultTableModel) jTableSelectVoucher.getModel();
+                Voucher selectedVoucher = (Voucher) model.getValueAt(selectedRowIndex, 0);
+                if (selectedVoucher == null) {
+                    JOptionPane.showMessageDialog(this, "Voucher not found, please select other vouche)", null, JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                if (myRewards < selectedVoucher.getVoucherWorth()) {
+                   JOptionPane.showMessageDialog(this, "Selected Voucher cost exceeds rewards available", null, JOptionPane.ERROR_MESSAGE);
+                   return; 
+                }
+                r.setRedemption_date(new Date());
+                r.setVoucher_type("Voucher");
+                r.setWsu_id(company.getId());
+                r.setVoucher_id(selectedVoucher.getId());
+                ecosystem.getRedemptionDirectory().createRedemption(r); // create redemtion
+                myRewards = myRewards - selectedVoucher.getVoucherWorth();
+                company.setMyrewards(myRewards); // subtract available cash
+                
+            }else{
+                JOptionPane.showMessageDialog(this, "Please select a voucher to redeem");
+                return;
+            }
         }else{
             JOptionPane.showMessageDialog(null,"Please choose a redeem option", "Title",1);
+            return;
         }
+        refreshData();
     }//GEN-LAST:event_btnRedeemActionPerformed
 
     private void radioRedeemVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRedeemVoucherActionPerformed
@@ -251,6 +312,7 @@ public class FinanceJpanel extends javax.swing.JPanel {
         txtCashValue.setEnabled(false);
         txtCashValue.setBackground(Color.GRAY);
         jTableSelectVoucher.setBackground(null);
+        populateVouchers(ecosystem.getVoucherDirectory(), null);
     }//GEN-LAST:event_radioRedeemVoucherActionPerformed
 
     private void radioRedeemCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRedeemCashActionPerformed
@@ -260,6 +322,11 @@ public class FinanceJpanel extends javax.swing.JPanel {
         jTableSelectVoucher.setBackground(Color.GRAY);
         txtCashValue.setBackground(null);
     }//GEN-LAST:event_radioRedeemCashActionPerformed
+
+    private void cmbVoucherCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbVoucherCompanyActionPerformed
+        // TODO add your handling code here:
+        populateVouchers(ecosystem.getVoucherDirectory(), cmbVoucherCompany.getSelectedItem().toString());
+    }//GEN-LAST:event_cmbVoucherCompanyActionPerformed
 
 //    public void itemStateChanged(ItemEvent e)
 //    {
@@ -275,6 +342,7 @@ public class FinanceJpanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRedeem;
+    private javax.swing.JComboBox<String> cmbVoucherCompany;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableAccptedbids;
@@ -297,13 +365,20 @@ public class FinanceJpanel extends javax.swing.JPanel {
 
     private void populateData() {
         lblValue.setText("$ " + String.valueOf(company.getMyrewards()));
+        
+        ArrayList<String> voucherCompanyList = new ArrayList<String>();
+        voucherCompanyList.add("");
+        for(RU_Company c: ecosystem.getRUCompanyDirectory().getCompanies()) {
+            voucherCompanyList.add(c.getName());
+        }
+        String[] myCompaniesList = voucherCompanyList.toArray(new String[0]);
+        cmbVoucherCompany.setModel(new javax.swing.DefaultComboBoxModel<>(myCompaniesList));
+ 
     }
     
     private void populateTables(OrderDirectory orderDirectory){
         DefaultTableModel model1 = (DefaultTableModel) jTableAccptedbids.getModel();
-        DefaultTableModel model2 = (DefaultTableModel) jTableSelectVoucher.getModel();
         model1.setRowCount(0);
-//        model2.setRowCount(0);
         
         for (Order o: orderDirectory.getOrderList()){
             if (o.getReportingCompanyId() == company.getId()) {
@@ -323,6 +398,39 @@ public class FinanceJpanel extends javax.swing.JPanel {
     
     private void refreshData() {
         populateData();
+        populateVouchers(ecosystem.getVoucherDirectory(), null);
         populateTables(ecosystem.getOrderDirectory());
+    }
+
+    private void populateVouchers(VoucherDirectory voucherDirectory, String VoucherCompanyName) {
+        DefaultTableModel model2 = (DefaultTableModel) jTableSelectVoucher.getModel();
+        model2.setRowCount(0);
+        RU_Company mySelectedCompany = ecosystem.getRUCompanyDirectory().findCompanyByName(VoucherCompanyName);
+            for(Voucher v: voucherDirectory.getVoucherDirectory()){
+                if(VoucherCompanyName != null && mySelectedCompany != null) {
+                        if (v.getVoucherCompanyId() == mySelectedCompany.getId()) {
+                            Object[] row = new Object[4];
+                            row[0] = v;
+                            row[1] = "N/A";
+                            row[2] = v.getVoucherDescription();
+                            row[3] = v.getVoucherWorth();
+
+                            RU_Company voucherCompany = ecosystem.getRUCompanyDirectory().findCompanyById(v.getVoucherCompanyId());
+                            if (voucherCompany != null) row[1] = voucherCompany.getName();
+                            model2.addRow(row);  
+                        }
+                } else {
+                    Object[] row = new Object[4];
+                    row[0] = v;
+                    row[1] = "N/A";
+                    row[2] = v.getVoucherDescription();
+                    row[3] = v.getVoucherWorth();
+                    
+                    RU_Company voucherCompany = ecosystem.getRUCompanyDirectory().findCompanyById(v.getVoucherCompanyId());
+                    if (voucherCompany != null) row[1] = voucherCompany.getName();
+                    model2.addRow(row);
+                }
+            }
+        
     }
 }
