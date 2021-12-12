@@ -57,6 +57,12 @@ public class Lu_Trips extends javax.swing.JPanel {
         tblCompleted = new javax.swing.JTable();
         btnNew = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        lblCost = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        lblCompletedTrips = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        lblCurrentTrips = new javax.swing.JLabel();
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -65,8 +71,8 @@ public class Lu_Trips extends javax.swing.JPanel {
             }
         });
 
-        title.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title.setText("CURRENT TRIPS");
 
         tblCurrent.setModel(new javax.swing.table.DefaultTableModel(
@@ -82,8 +88,8 @@ public class Lu_Trips extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblCurrent);
 
-        title2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        title2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        title2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        title2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title2.setText("PAST TRIPS");
 
         tblCompleted.setModel(new javax.swing.table.DefaultTableModel(
@@ -113,6 +119,18 @@ public class Lu_Trips extends javax.swing.JPanel {
             }
         });
 
+        jLabel1.setText("Total Money ($): ");
+
+        lblCost.setText("usd");
+
+        jLabel2.setText("Completed Trips : ");
+
+        lblCompletedTrips.setText("N/A");
+
+        jLabel3.setText("Current Trips : ");
+
+        lblCurrentTrips.setText("N/A");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -129,10 +147,23 @@ public class Lu_Trips extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnNew)
                             .addComponent(btnDelete)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(jScrollPane2)
-                        .addComponent(title2, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane2)
+                            .addComponent(title2, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblCompletedTrips)
+                                .addComponent(lblCurrentTrips, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(lblCost, javax.swing.GroupLayout.Alignment.TRAILING))))
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnNew});
@@ -153,8 +184,23 @@ public class Lu_Trips extends javax.swing.JPanel {
                         .addComponent(btnDelete)))
                 .addGap(18, 18, 18)
                 .addComponent(title2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(lblCurrentTrips))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(lblCompletedTrips))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(lblCost))))
                 .addContainerGap(91, Short.MAX_VALUE))
         );
 
@@ -202,8 +248,14 @@ public class Lu_Trips extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnNew;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblCompletedTrips;
+    private javax.swing.JLabel lblCost;
+    private javax.swing.JLabel lblCurrentTrips;
     private javax.swing.JTable tblCompleted;
     private javax.swing.JTable tblCurrent;
     private javax.swing.JLabel title;
@@ -221,6 +273,9 @@ public class Lu_Trips extends javax.swing.JPanel {
         model1.setRowCount(0);
         DefaultTableModel model2 = (DefaultTableModel) tblCompleted.getModel();
         model2.setRowCount(0);
+        double cost = 0;
+        int completedTrips = 0;
+        int currentTrips = 0;
         for(Order o: orderDirectory.getOrderList()){
             if (o.getDeliveringCompanyId() == company.getId()) { // only orders belonging to these companies
                if(o.getStatus().equals("driver assigned") || o.getStatus().equals("transit")) {
@@ -231,6 +286,7 @@ public class Lu_Trips extends javax.swing.JPanel {
                    row[3] = o.getDriverUsername();
                    row[4] = o.getStatus();
                    row[5] = o.getDeliveryCost();
+                   currentTrips = currentTrips + 1;
                    model1.addRow(row);
                }
                if(o.getStatus().equals("delivered")) {
@@ -241,9 +297,15 @@ public class Lu_Trips extends javax.swing.JPanel {
                    row[3] = o.getDriverUsername();
                    row[4] = o.getDeliveredTimeStamp();
                    row[5] = o.getDeliveryCost();
+                   completedTrips = completedTrips + 1;
+                   cost = cost + o.getDeliveryCost();
                    model2.addRow(row);
                }
             }
         }
+        
+        lblCost.setText(String.valueOf(cost));
+        lblCurrentTrips.setText(String.valueOf(currentTrips));
+        lblCompletedTrips.setText(String.valueOf(completedTrips));
     }
 }
