@@ -13,6 +13,8 @@ import Business.WSU.WSU_CompanyDirectory;
 import Business.WRU.WRU_CompanyDirectory;
 import Business.LU.LU_CompanyDirectory;
 import Business.VU.VU_CompanyDirectory;
+import Business.RU.RU_CompanyDirectory;
+import Business.Voucher.VoucherDirectory;
 import Business.WorkQueue.WorkQueue;
 import java.util.ArrayList;
 
@@ -30,15 +32,14 @@ public abstract class Organization {
     private WRU_CompanyDirectory wruCompanyDirectory;
     private LU_CompanyDirectory luCompanyDirectory;
     private VU_CompanyDirectory vuCompanyDirectory;
+    private RU_CompanyDirectory ruCompanyDirectory;
     private OrderDirectory orderDirectory;
+    private VoucherDirectory voucherDirectory;
     private BidDirectory bidDirectory;
     private int organizationID;
     private static int counter=0;
     
     public enum Type{
-        RestaurantAdmin("RestaurantAdmin"),
-        Customer("Customer"),
-        DeliveryMan("Delivery"),
         SysAdmin("Sysadmin");
         
         private String value;
@@ -57,9 +58,11 @@ public abstract class Organization {
         userAccountDirectory = new UserAccountDirectory();
         wsuCompanyDirectory = new WSU_CompanyDirectory(); // creating wsu_directory
         wruCompanyDirectory = new WRU_CompanyDirectory(); // creating wru_directory
+        ruCompanyDirectory = new RU_CompanyDirectory();
         luCompanyDirectory = new LU_CompanyDirectory(); // creating lu_directory
         vuCompanyDirectory = new VU_CompanyDirectory();
         orderDirectory = new OrderDirectory();
+        voucherDirectory = new VoucherDirectory();
         bidDirectory = new BidDirectory();
         organizationID = counter;
         ++counter;
@@ -85,6 +88,10 @@ public abstract class Organization {
         return wruCompanyDirectory;
     }
     
+    public RU_CompanyDirectory getRUCompanyDirectory() {
+        return ruCompanyDirectory;
+    }
+    
     public WSU_CompanyDirectory getWSUCompanyDirectory(){
         return wsuCompanyDirectory;
     }
@@ -99,6 +106,10 @@ public abstract class Organization {
     
     public OrderDirectory getOrderDirectory() {
         return orderDirectory;
+    }
+    
+    public VoucherDirectory getVoucherDirectory() {
+        return voucherDirectory;
     }
     
     public BidDirectory getBidDirectory() {

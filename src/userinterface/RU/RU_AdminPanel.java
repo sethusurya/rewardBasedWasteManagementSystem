@@ -4,6 +4,19 @@
  */
 package userinterface.RU;
 
+import Business.EcoSystem;
+import Business.RU.RU_Company;
+import Business.Role.Role;
+import Business.UserAccount.UserAccount;
+import Business.UserAccount.UserAccountDirectory;
+import Business.Voucher.Voucher;
+import Business.Voucher.VoucherDirectory;
+import Validations.Functions;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author saket
@@ -11,10 +24,21 @@ package userinterface.RU;
 public class RU_AdminPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form RU_AdminPanel
+     * Creates new form RU_CompanyRewardsManager
      */
-    public RU_AdminPanel() {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    RU_Company company;
+    UserAccount account;
+    
+    public RU_AdminPanel(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account, RU_Company company) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.company = company;
+        this.account = account;
+        
+        populateTable(ecosystem.getVoucherDirectory(),company);
     }
 
     /**
@@ -27,38 +51,36 @@ public class RU_AdminPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         wsu_adminJpanel = new javax.swing.JLabel();
-        btnBack = new javax.swing.JButton();
-        btnView = new javax.swing.JButton();
-        btnRemoveRewardsCompany = new javax.swing.JButton();
-        btnAddRewardsCompany = new javax.swing.JButton();
+        btnDeleteVoucher = new javax.swing.JButton();
+        btnCreateVoucher = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblRewardCompanies = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         lblCompanyAdminUsername = new javax.swing.JLabel();
-        lblCompanyName = new javax.swing.JLabel();
         lblCompanyAdminPassword = new javax.swing.JLabel();
-        txtParticipatingCompanyName = new javax.swing.JTextField();
-        txtParticipatingCompanyAdminName = new javax.swing.JTextField();
-        txtParticipatingCompanyAdminPassword = new javax.swing.JTextField();
-        btnEditAccount = new javax.swing.JButton();
+        txtRewardDescription = new javax.swing.JTextField();
+        txtRewardCost = new javax.swing.JTextField();
+        lblCompanyRewardsManagerName = new javax.swing.JLabel();
+        lblUsername = new javax.swing.JLabel();
 
         wsu_adminJpanel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         wsu_adminJpanel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        wsu_adminJpanel.setText("REWARDS UNIT ADMIN PANEL");
+        wsu_adminJpanel.setText("MANAGE VOUCHERS");
 
-        btnBack.setText("Back");
-
-        btnView.setText("View");
-
-        btnRemoveRewardsCompany.setText("Delete");
-
-        btnAddRewardsCompany.setText("Save");
-        btnAddRewardsCompany.addActionListener(new java.awt.event.ActionListener() {
+        btnDeleteVoucher.setText("Delete");
+        btnDeleteVoucher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddRewardsCompanyActionPerformed(evt);
+                btnDeleteVoucherActionPerformed(evt);
             }
         });
 
-        tblRewardCompanies.setModel(new javax.swing.table.DefaultTableModel(
+        btnCreateVoucher.setText("Create Voucher");
+        btnCreateVoucher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCreateVoucherActionPerformed(evt);
+            }
+        });
+
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null},
                 {null, null, null},
@@ -66,133 +88,168 @@ public class RU_AdminPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Participating Company Name", "Rewards Manager Username", "Rewards Manager Password"
+                "Id", "Reward Description", "Reward Cost ($)"
             }
-        ));
-        jScrollPane1.setViewportView(tblRewardCompanies);
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
 
-        lblCompanyAdminUsername.setText("Rewards Manager Username:");
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(table);
 
-        lblCompanyName.setText("Participating Company Name:");
+        lblCompanyAdminUsername.setText("Reward Description:");
 
-        lblCompanyAdminPassword.setText("Company Admin Password:");
+        lblCompanyAdminPassword.setText("Reward Cost ($):");
 
-        btnEditAccount.setText("Edit Admin Profile");
+        lblCompanyRewardsManagerName.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        lblCompanyRewardsManagerName.setText("Welcome:");
+
+        lblUsername.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblUsername.setText("jLabel4");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(121, 121, 121)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCreateVoucher, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblCompanyAdminUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(wsu_adminJpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnView, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(121, 121, 121)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblCompanyAdminPassword)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(btnAddRewardsCompany)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addGap(42, 42, 42)
-                                                        .addComponent(txtParticipatingCompanyAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGap(0, 0, Short.MAX_VALUE)
-                                                .addComponent(lblCompanyAdminUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(189, 189, 189)))
-                                        .addComponent(btnRemoveRewardsCompany))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(txtParticipatingCompanyAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(lblCompanyName)
-                                                .addGap(31, 31, 31)
-                                                .addComponent(txtParticipatingCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addGap(61, 61, 61))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addComponent(btnBack)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEditAccount)))
+                        .addComponent(lblCompanyAdminPassword)
+                        .addGap(28, 28, 28)))
+                .addGap(4, 4, 4)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtRewardDescription, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(txtRewardCost, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                    .addComponent(btnDeleteVoucher))
+                .addContainerGap(219, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(wsu_adminJpanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(58, 58, 58))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblCompanyRewardsManagerName)
+                        .addGap(18, 18, 18)
+                        .addComponent(lblUsername))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addComponent(btnBack))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(wsu_adminJpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnEditAccount)))
+                .addContainerGap()
+                .addComponent(wsu_adminJpanel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCompanyRewardsManagerName)
+                    .addComponent(lblUsername))
+                .addGap(24, 24, 24)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnView)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnRemoveRewardsCompany)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtParticipatingCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblCompanyName))
-                        .addGap(10, 10, 10)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCompanyAdminUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtParticipatingCompanyAdminName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCompanyAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtParticipatingCompanyAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(btnAddRewardsCompany)
-                        .addGap(49, 49, 49))))
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCompanyAdminUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRewardDescription, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCompanyAdminPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtRewardCost, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCreateVoucher)
+                    .addComponent(btnDeleteVoucher))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAddRewardsCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddRewardsCompanyActionPerformed
+    private void btnCreateVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateVoucherActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnAddRewardsCompanyActionPerformed
+        if(txtRewardDescription.getText().length() <= 2) {
+            JOptionPane.showMessageDialog(this, "Reward Description should be atleast 2 characters!!", null,JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if(!Functions.isValidNumber(txtRewardCost.getText())) {
+            JOptionPane.showMessageDialog(this, "Please enter a valid voucher cost!", null,JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        String desc = txtRewardDescription.getText();
+        double cost = Double.parseDouble(txtRewardCost.getText());
+        
+        Voucher newVoucher = new Voucher();
+        newVoucher.setVoucherCompanyId(company.getId());
+        newVoucher.setVoucherDescription(desc);
+        newVoucher.setVoucherWorth(cost);
+        
+        ecosystem.getVoucherDirectory().createVoucher(newVoucher);
+        
+        refreshData();
+        clearInputs();
+    }//GEN-LAST:event_btnCreateVoucherActionPerformed
+
+    private void btnDeleteVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteVoucherActionPerformed
+        // TODO add your handling code here:
+        int selectedRowIndex = table.getSelectedRow();
+        if (selectedRowIndex >= 0){
+            int input = JOptionPane.showConfirmDialog(null, "Are you sure?", "Confirmation Dialog", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (input == 0) {
+                DefaultTableModel model = (DefaultTableModel) table.getModel();
+                Voucher selectedRowData = (Voucher) model.getValueAt(selectedRowIndex, 0);
+                ecosystem.getVoucherDirectory().removeVoucherById(selectedRowData.getId());
+                clearInputs();
+                refreshData();
+                JOptionPane.showMessageDialog(this, "Delete Success");
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Select a user to delete");
+        }
+    }//GEN-LAST:event_btnDeleteVoucherActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAddRewardsCompany;
-    private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnEditAccount;
-    private javax.swing.JButton btnRemoveRewardsCompany;
-    private javax.swing.JButton btnView;
+    private javax.swing.JButton btnCreateVoucher;
+    private javax.swing.JButton btnDeleteVoucher;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblCompanyAdminPassword;
     private javax.swing.JLabel lblCompanyAdminUsername;
-    private javax.swing.JLabel lblCompanyName;
-    private javax.swing.JTable tblRewardCompanies;
-    private javax.swing.JTextField txtParticipatingCompanyAdminName;
-    private javax.swing.JTextField txtParticipatingCompanyAdminPassword;
-    private javax.swing.JTextField txtParticipatingCompanyName;
+    private javax.swing.JLabel lblCompanyRewardsManagerName;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JTable table;
+    private javax.swing.JTextField txtRewardCost;
+    private javax.swing.JTextField txtRewardDescription;
     private javax.swing.JLabel wsu_adminJpanel;
     // End of variables declaration//GEN-END:variables
+ private void populateTable(VoucherDirectory voucherDirectory, RU_Company myCompany) {
+        lblUsername.setText(account.getUsername());
+        javax.swing.table.DefaultTableModel model = (javax.swing.table.DefaultTableModel)table.getModel();
+        model.setRowCount(0);
+        
+        // loopthrough userName
+        for (Voucher s: voucherDirectory.getVoucherDirectory()){
+            if(s.getVoucherCompanyId() == myCompany.getId()) {
+                Object[] row = new Object[3];
+                row[0] = s;
+                row[1] = s.getVoucherDescription();
+                row[2] = s.getVoucherWorth();
+           
+           model.addRow(row);
+            }
+        }
+    }
+
+    private void clearInputs() {
+        txtRewardCost.setText("");
+        txtRewardDescription.setText("");
+    }
+
+    private void refreshData() {
+        populateTable(ecosystem.getVoucherDirectory(), company);
+    }
 }

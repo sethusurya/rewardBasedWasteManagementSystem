@@ -34,6 +34,7 @@ public class RU_EditCompanyRewardsManagerProfile extends javax.swing.JPanel {
         txtConfirmNewPassword = new javax.swing.JTextField();
         lblCompanyRewardsManagerName = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        btnBack = new javax.swing.JButton();
 
         ru_EditProfilePanelLabel.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         ru_EditProfilePanelLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -56,6 +57,8 @@ public class RU_EditCompanyRewardsManagerProfile extends javax.swing.JPanel {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("jLabel4");
+
+        btnBack.setText("Back");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -81,7 +84,9 @@ public class RU_EditCompanyRewardsManagerProfile extends javax.swing.JPanel {
                         .addGap(248, 248, 248)
                         .addComponent(jButton1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
+                        .addGap(21, 21, 21)
+                        .addComponent(btnBack)
+                        .addGap(118, 118, 118)
                         .addComponent(lblCompanyRewardsManagerName)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)))
@@ -92,11 +97,12 @@ public class RU_EditCompanyRewardsManagerProfile extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ru_EditProfilePanelLabel)
-                .addGap(51, 51, 51)
+                .addGap(50, 50, 50)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCompanyRewardsManagerName)
-                    .addComponent(jLabel4))
-                .addGap(47, 47, 47)
+                    .addComponent(jLabel4)
+                    .addComponent(btnBack))
+                .addGap(42, 42, 42)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -116,6 +122,7 @@ public class RU_EditCompanyRewardsManagerProfile extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBack;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

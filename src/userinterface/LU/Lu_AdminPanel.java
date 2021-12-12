@@ -18,7 +18,7 @@ import userinterface.RU.*;
 public class Lu_AdminPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form RU_AdminPanel
+     * Creates new form LU_AdminPanel
      */
     JPanel userProcessContainer;
     EcoSystem ecosystem;

@@ -12,8 +12,10 @@ import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import Business.Order.OrderDirectory;
+import Business.Redemption.Redemption;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
+import javax.swing.JOptionPane;
 /**
  *
  * @author varunvuppala
@@ -230,7 +232,17 @@ public class FinanceJpanel extends javax.swing.JPanel {
 
     private void btnRedeemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRedeemActionPerformed
         // TODO add your handling code here:
-        
+        if (radioRedeemCash.isSelected()){
+//            Redemption r = new Redemption();
+//            r.setWsu_id(WIDTH);
+//            r.setId(WIDTH);
+//            txtCashValue.getText();
+//            createCashRedemption();
+        }else if(radioRedeemVoucher.isSelected()){
+//            createVoucherRedemption(o);
+        }else{
+            JOptionPane.showMessageDialog(null,"Please choose a redeem option", "Title",1);
+        }
     }//GEN-LAST:event_btnRedeemActionPerformed
 
     private void radioRedeemVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioRedeemVoucherActionPerformed

@@ -160,6 +160,11 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         });
 
         btnRu.setText("Rewards Unit");
+        btnRu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRuActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("REWARDS BASED WASTE MANAGEMENT SYSTEM");
@@ -266,6 +271,14 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         System.out.println("focus is shown");
         populateTree();
     }//GEN-LAST:event_jPanel2FocusGained
+
+    private void btnRuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRuActionPerformed
+        // TODO add your handling code here:
+        // TODO add your handling code here:
+        userProcessContainer.add("myRewardCompanies", new SA_RuPanel(userProcessContainer,ecosystem));
+        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+        layout.next(userProcessContainer);
+    }//GEN-LAST:event_btnRuActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
