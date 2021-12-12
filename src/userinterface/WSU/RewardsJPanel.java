@@ -4,6 +4,15 @@
  */
 package userinterface.WSU;
 
+import Business.EcoSystem;
+import Business.Redemption.Redemption;
+import Business.Redemption.RedemptionDirectory;
+import Business.UserAccount.UserAccount;
+import Business.Voucher.Voucher;
+import Business.WSU.WSU_Company;
+import javax.swing.JPanel;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author varunvuppala
@@ -13,10 +22,58 @@ public class RewardsJPanel extends javax.swing.JPanel {
     /**
      * Creates new form RewardsJPanel
      */
-    public RewardsJPanel() {
+    JPanel userProcessContainer;
+    EcoSystem ecosystem;
+    UserAccount account;
+    WSU_Company company;
+    
+    public RewardsJPanel(JPanel userProcessContainer,EcoSystem ecosystem, UserAccount account, WSU_Company company) {
         initComponents();
+        this.userProcessContainer = userProcessContainer;
+        this.ecosystem = ecosystem;
+        this.account = account;
+        this.company = company;
+        
+        populateTable(ecosystem.getRedemptionDirectory());
     }
+    
+    private void populateTable(RedemptionDirectory redemptionDirectory){
+        
+        DefaultTableModel model1 = (DefaultTableModel) tblRedemptionHistory.getModel();
+        model1.setRowCount(0);
+        
+        for (Redemption r: redemptionDirectory.getRedemptionList()){
+            if (r.getWsu_id() == company.getId()) {
+                if (r.getVoucher_type() == "Voucher"){
+                    Object[] row1 = new Object[5];
 
+                    Voucher v = ecosystem.getVoucherDirectory().getVoucherById(r.getVoucher_id());
+
+                    row1[0] = r;
+                    row1[1] = ecosystem.getRUCompanyDirectory().findCompanyById(v.getVoucherCompanyId());
+                    row1[2] = v.getVoucherDescription();
+                    row1[3] = r.getRedemption_date();
+                    row1[4] = v.getVoucherWorth();
+
+                    model1.addRow(row1);
+                }
+                else{
+                    Object[] row1 = new Object[5];
+
+                    Voucher v = ecosystem.getVoucherDirectory().getVoucherById(r.getVoucher_id());
+
+                    row1[0] = r;
+                    row1[1] = "Cash";
+                    row1[2] = "Cash";
+                    row1[3] = r.getRedemption_date();
+                    row1[4] = v.getVoucherWorth();
+
+                    model1.addRow(row1);
+                }
+            }
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,7 +84,7 @@ public class RewardsJPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableVoucher = new javax.swing.JTable();
+        tblRedemptionHistory = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
         lblVoucher = new javax.swing.JLabel();
         lblCash = new javax.swing.JLabel();
@@ -38,7 +95,7 @@ public class RewardsJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
 
-        jTableVoucher.setModel(new javax.swing.table.DefaultTableModel(
+        tblRedemptionHistory.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -46,18 +103,18 @@ public class RewardsJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Orderid", "Company", "Worth", "Quantity", "Total Value"
+                "Redemption ID", "Rewards Company", "Voucher Description", "Redemption Date", "Cost"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                false, true, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableVoucher);
+        jScrollPane1.setViewportView(tblRedemptionHistory);
 
         jLabel2.setText("Voucher History");
 
@@ -141,12 +198,12 @@ public class RewardsJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableVoucher;
     private javax.swing.JLabel lblCash;
     private javax.swing.JLabel lblCashValue;
     private javax.swing.JLabel lblTotal;
     private javax.swing.JLabel lblTotalValue;
     private javax.swing.JLabel lblVoucher;
     private javax.swing.JLabel lblVoucherValue;
+    private javax.swing.JTable tblRedemptionHistory;
     // End of variables declaration//GEN-END:variables
 }

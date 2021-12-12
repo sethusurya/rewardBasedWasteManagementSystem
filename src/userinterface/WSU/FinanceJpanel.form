@@ -33,7 +33,11 @@
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblSelectVoucher" min="-2" pref="93" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="lblSelectVoucher" min="-2" pref="93" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="65" max="-2" attributes="0"/>
+                              <Component id="cmbVoucherCompany" min="-2" pref="127" max="-2" attributes="0"/>
+                          </Group>
                           <Group type="102" attributes="0">
                               <Component id="radioRedeemVoucher" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
@@ -92,8 +96,11 @@
                   </Group>
                   <Component id="radioRedeemVoucher" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="44" max="32767" attributes="0"/>
-              <Component id="lblSelectVoucher" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="38" max="32767" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="lblSelectVoucher" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="cmbVoucherCompany" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jScrollPane2" min="-2" pref="182" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -176,29 +183,35 @@
         <Component class="javax.swing.JTable" name="jTableSelectVoucher">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="4">
-                <Column editable="false" title="Company" type="java.lang.Object">
+              <Table columnCount="4" rowCount="4">
+                <Column editable="false" title="Voucher Id" type="java.lang.Object">
                   <Data value="Sample"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="false" title="Worth" type="java.lang.Object">
+                <Column editable="false" title="Company Name" type="java.lang.Object">
                   <Data value="Sample"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
-                <Column editable="true" title="Quantity" type="java.lang.Object">
+                <Column editable="true" title="Description" type="java.lang.Object">
                   <Data value="100"/>
                   <Data value="null"/>
                   <Data value="null"/>
                   <Data value="null"/>
                 </Column>
+                <Column editable="true" title="Cost" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
               <TableColumnModel selectionModel="0">
+                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                  <Title/>
+                  <Editor/>
+                  <Renderer/>
+                </Column>
                 <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                   <Title/>
                   <Editor/>
@@ -283,6 +296,24 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioRedeemVoucherActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="cmbVoucherCompany">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="4">
+            <StringItem index="0" value="Item 1"/>
+            <StringItem index="1" value="Item 2"/>
+            <StringItem index="2" value="Item 3"/>
+            <StringItem index="3" value="Item 4"/>
+          </StringArray>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbVoucherCompanyActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>
