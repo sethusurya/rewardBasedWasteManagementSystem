@@ -91,6 +91,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="EXPENDITURE ANALYSIS"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExpenditureAnalysisActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="lblCompanyName">
       <Properties>
