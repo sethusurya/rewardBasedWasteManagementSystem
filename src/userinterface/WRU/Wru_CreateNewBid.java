@@ -67,10 +67,14 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         lblBidCost = new javax.swing.JLabel();
         txtBidCost = new javax.swing.JTextField();
+        lblimg = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("CREATE NEW BID");
+        add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 48, 577, 40));
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -78,16 +82,21 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 110, -1));
 
         selCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(selCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 94, 103, 29));
 
         lblCity.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCity.setText("City : ");
+        add(lblCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 99, 87, -1));
 
         lblWaste.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblWaste.setText("Waste Type : ");
+        add(lblWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(218, 146, 87, -1));
 
         selWaste.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(selWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(323, 141, 103, 29));
 
         btnApply.setText("Apply Filter");
         btnApply.addActionListener(new java.awt.event.ActionListener() {
@@ -95,6 +104,7 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
                 btnApplyActionPerformed(evt);
             }
         });
+        add(btnApply, new org.netbeans.lib.awtextra.AbsoluteConstraints(434, 172, 103, -1));
 
         btnClear.setText("Clear Filter");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -102,6 +112,7 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
                 btnClearActionPerformed(evt);
             }
         });
+        add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 172, -1, -1));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -116,21 +127,27 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(table);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(69, 247, 628, 154));
+
         btnPlaceBid.setText("Place Bid");
         btnPlaceBid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlaceBidActionPerformed(evt);
             }
         });
+        add(btnPlaceBid, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 467, -1, -1));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 219, 628, 10));
 
         lblBidCost.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBidCost.setText("BID price ($): ");
+        add(lblBidCost, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 431, 87, -1));
 
         txtBidCost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBidCostActionPerformed(evt);
             }
         });
+        add(txtBidCost, new org.netbeans.lib.awtextra.AbsoluteConstraints(311, 424, 138, 31));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -308,6 +325,7 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
     private javax.swing.JLabel lblBidCost;
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblWaste;
+    private javax.swing.JLabel lblimg;
     private javax.swing.JComboBox<String> selCity;
     private javax.swing.JComboBox<String> selWaste;
     private javax.swing.JTable table;

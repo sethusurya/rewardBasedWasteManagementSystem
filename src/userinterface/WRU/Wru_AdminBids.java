@@ -57,13 +57,14 @@ public class Wru_AdminBids extends javax.swing.JPanel {
         title1 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        lblimg = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         title.setFont(new java.awt.Font("Helvetica", 1, 24)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("CURRENT BIDS");
-        add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 41, 566, 40));
+        add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 350, 40));
 
         tblOngoingBids.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -94,7 +95,7 @@ public class Wru_AdminBids extends javax.swing.JPanel {
                 btnViewActionPerformed(evt);
             }
         });
-        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(669, 360, 120, -1));
+        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, 120, -1));
 
         tblCompletedBids.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -114,7 +115,7 @@ public class Wru_AdminBids extends javax.swing.JPanel {
         title1.setFont(new java.awt.Font("Helvetica", 1, 24)); // NOI18N
         title1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title1.setText("COMPLETED BIDS");
-        add(title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 304, 566, 40));
+        add(title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 300, 280, 40));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -131,6 +132,9 @@ public class Wru_AdminBids extends javax.swing.JPanel {
             }
         });
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, 120, -1));
+
+        lblimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/Images/WRU_all.png"))); // NOI18N
+        add(lblimg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 590));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -198,6 +202,7 @@ public class Wru_AdminBids extends javax.swing.JPanel {
     private javax.swing.JButton btnView;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblimg;
     private javax.swing.JTable tblCompletedBids;
     private javax.swing.JTable tblOngoingBids;
     private javax.swing.JLabel title;

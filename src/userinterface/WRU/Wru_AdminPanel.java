@@ -49,9 +49,12 @@ public class Wru_AdminPanel extends javax.swing.JPanel {
         lblCompanyName = new javax.swing.JLabel();
         txtCompanyName = new javax.swing.JTextField();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         title.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("ADMIN PANEL");
+        add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 577, 40));
 
         btnManagers.setText("MANAGERS");
         btnManagers.addActionListener(new java.awt.event.ActionListener() {
@@ -59,6 +62,7 @@ public class Wru_AdminPanel extends javax.swing.JPanel {
                 btnManagersActionPerformed(evt);
             }
         });
+        add(btnManagers, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 143, 194, 35));
 
         btnBids.setText("BIDS");
         btnBids.addActionListener(new java.awt.event.ActionListener() {
@@ -66,58 +70,17 @@ public class Wru_AdminPanel extends javax.swing.JPanel {
                 btnBidsActionPerformed(evt);
             }
         });
+        add(btnBids, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 214, 194, 35));
 
         btnExpenditureAnalysis.setText("EXPENDITURE ANALYSIS");
+        add(btnExpenditureAnalysis, new org.netbeans.lib.awtextra.AbsoluteConstraints(214, 290, -1, 35));
 
         lblCompanyName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCompanyName.setText("Company Name : ");
+        add(lblCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(151, 60, 98, 22));
 
         txtCompanyName.setEditable(false);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 23, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
-                        .addComponent(lblCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(txtCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(214, 214, 214)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnExpenditureAnalysis, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnManagers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBids, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnBids, btnExpenditureAnalysis, btnManagers});
-
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
-                .addComponent(btnManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(btnBids, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(btnExpenditureAnalysis, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(151, 151, 151))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnBids, btnExpenditureAnalysis, btnManagers});
-
+        add(txtCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(275, 52, 163, 38));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBidsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBidsActionPerformed
