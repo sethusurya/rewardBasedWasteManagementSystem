@@ -56,28 +56,40 @@ public class AdminAuctionPanel extends javax.swing.JPanel {
         btnConductAuction = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTableAuctioned = new javax.swing.JTable();
+        lblimg = new javax.swing.JLabel();
 
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        lblSegregardWaste.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblSegregardWaste.setText("Segregated Waste");
+        add(lblSegregardWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 117, -1, -1));
 
+        lblAuctionedWaste.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblAuctionedWaste.setText("Donated Waste List");
+        add(lblAuctionedWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 352, -1, -1));
 
-        btnBack.setText("Back");
+        btnBack.setText("⏪ Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 25, 120, 30));
 
-        btnDelete.setText("Delete");
+        btnDelete.setBackground(new java.awt.Color(255, 255, 255));
+        btnDelete.setForeground(new java.awt.Color(229, 0, 0));
+        btnDelete.setText("❌ Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 230, 140, -1));
 
-        lblAuctionArea.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        lblAuctionArea.setFont(new java.awt.Font("Helvetica", 1, 18)); // NOI18N
         lblAuctionArea.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblAuctionArea.setText("ADMIN TASK QUEUE");
+        add(lblAuctionArea, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 67, 376, 34));
 
         jTableSegregated.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,12 +104,16 @@ public class AdminAuctionPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTableSegregated);
 
-        btnConductAuction.setText("Donate Waste");
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 136, 564, 155));
+
+        btnConductAuction.setForeground(new java.awt.Color(0, 153, 0));
+        btnConductAuction.setText("♻ Donate Waste");
         btnConductAuction.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnConductAuctionActionPerformed(evt);
             }
         });
+        add(btnConductAuction, new org.netbeans.lib.awtextra.AbsoluteConstraints(649, 136, -1, 30));
 
         jTableAuctioned.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -112,50 +128,10 @@ public class AdminAuctionPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(jTableAuctioned);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBack)
-                    .addComponent(lblAuctionArea, javax.swing.GroupLayout.PREFERRED_SIZE, 679, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblAuctionedWaste)
-                        .addComponent(lblSegregardWaste)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(btnConductAuction, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 564, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(25, 25, 25)
-                .addComponent(btnBack)
-                .addGap(18, 18, 18)
-                .addComponent(lblAuctionArea)
-                .addGap(26, 26, 26)
-                .addComponent(lblSegregardWaste)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(61, 61, 61)
-                        .addComponent(lblAuctionedWaste))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnConductAuction)
-                        .addGap(24, 24, 24)
-                        .addComponent(btnDelete)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(73, 371, 564, 155));
+
+        lblimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/volu.png"))); // NOI18N
+        add(lblimg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -211,6 +187,7 @@ public class AdminAuctionPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblAuctionArea;
     private javax.swing.JLabel lblAuctionedWaste;
     private javax.swing.JLabel lblSegregardWaste;
+    private javax.swing.JLabel lblimg;
     // End of variables declaration//GEN-END:variables
 
 private void populateTables(OrderDirectory orderDirectory) {

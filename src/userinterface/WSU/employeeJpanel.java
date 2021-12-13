@@ -65,6 +65,9 @@ public class employeeJpanel extends javax.swing.JPanel {
         btnReport = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -87,17 +90,27 @@ public class employeeJpanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(table);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, 632, 213));
+
         cmbTypeofWaste.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(cmbTypeofWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 312, 163, -1));
 
+        lblWaste.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblWaste.setText("Type of Waste:");
+        add(lblWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(182, 316, -1, -1));
 
+        lblQuantity.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblQuantity.setText("Quantity(lbs):");
+        add(lblQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 362, -1, -1));
 
+        txtQuantity.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
+        txtQuantity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         txtQuantity.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtQuantityActionPerformed(evt);
             }
         });
+        add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(286, 357, 163, -1));
 
         btnReport.setText("Report");
         btnReport.addActionListener(new java.awt.event.ActionListener() {
@@ -105,9 +118,11 @@ public class employeeJpanel extends javax.swing.JPanel {
                 btnReportActionPerformed(evt);
             }
         });
+        add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(352, 414, 97, -1));
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
-        jLabel1.setText("Employee Work Area");
+        jLabel1.setFont(new java.awt.Font("Helvetica", 1, 18)); // NOI18N
+        jLabel1.setText("EMPLOYEE WORK AREA");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 20, 230, 33));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -115,54 +130,10 @@ public class employeeJpanel extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 70, 97, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(29, 29, 29)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(182, 182, 182)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(lblQuantity)
-                                .addComponent(lblWaste))
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(cmbTypeofWaste, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtQuantity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(btnReport, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(246, 246, 246)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(11, 11, 11)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnDelete)
-                .addGap(8, 8, 8)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cmbTypeofWaste, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblWaste))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblQuantity)
-                    .addComponent(txtQuantity, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(btnReport)
-                .addContainerGap(93, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/WSU_800x600.png"))); // NOI18N
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed
@@ -224,6 +195,7 @@ public class employeeJpanel extends javax.swing.JPanel {
     private javax.swing.JButton btnReport;
     private javax.swing.JComboBox<String> cmbTypeofWaste;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblQuantity;
     private javax.swing.JLabel lblWaste;

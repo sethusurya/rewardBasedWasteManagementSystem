@@ -63,6 +63,9 @@ public class Lu_Trips extends javax.swing.JPanel {
         lblCompletedTrips = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblCurrentTrips = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -70,10 +73,12 @@ public class Lu_Trips extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 6, 100, -1));
 
-        title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        title.setFont(new java.awt.Font("Helvetica", 1, 12)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title.setText("CURRENT TRIPS");
+        add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 100, 23));
 
         tblCurrent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -88,9 +93,12 @@ public class Lu_Trips extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblCurrent);
 
-        title2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(117, 80, 520, 150));
+
+        title2.setFont(new java.awt.Font("Helvetica", 1, 12)); // NOI18N
         title2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title2.setText("PAST TRIPS");
+        add(title2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 270, 90, 23));
 
         tblCompleted.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -105,12 +113,15 @@ public class Lu_Trips extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblCompleted);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, 520, 150));
+
         btnNew.setText("New Trip");
         btnNew.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNewActionPerformed(evt);
             }
         });
+        add(btnNew, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 80, 122, -1));
 
         btnDelete.setText("Remove Trip");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -118,94 +129,34 @@ public class Lu_Trips extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 200, -1, -1));
 
+        jLabel1.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         jLabel1.setText("Total Money ($): ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 570, 116, -1));
 
+        lblCost.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblCost.setText("usd");
+        add(lblCost, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 570, -1, -1));
 
+        jLabel2.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         jLabel2.setText("Completed Trips : ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 550, -1, -1));
 
+        lblCompletedTrips.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblCompletedTrips.setText("N/A");
+        add(lblCompletedTrips, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 550, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         jLabel3.setText("Current Trips : ");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 530, 116, -1));
 
+        lblCurrentTrips.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblCurrentTrips.setText("N/A");
+        add(lblCurrentTrips, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 530, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBack, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 487, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnNew)
-                            .addComponent(btnDelete)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2)
-                            .addComponent(title2, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lblCompletedTrips)
-                                .addComponent(lblCurrentTrips, javax.swing.GroupLayout.Alignment.TRAILING))
-                            .addComponent(lblCost, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap(14, Short.MAX_VALUE))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnDelete, btnNew});
-
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnNew)
-                        .addGap(48, 48, 48)
-                        .addComponent(btnDelete)))
-                .addGap(18, 18, 18)
-                .addComponent(title2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
-                            .addComponent(lblCurrentTrips))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(lblCompletedTrips))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(lblCost))))
-                .addContainerGap(91, Short.MAX_VALUE))
-        );
-
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDelete, btnNew});
-
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/lu.png"))); // NOI18N
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 0, 790, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -251,6 +202,7 @@ public class Lu_Trips extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCompletedTrips;

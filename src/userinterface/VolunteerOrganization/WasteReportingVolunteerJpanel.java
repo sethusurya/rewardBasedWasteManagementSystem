@@ -64,6 +64,7 @@ public class WasteReportingVolunteerJpanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblOrgname = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -88,55 +89,68 @@ public class WasteReportingVolunteerJpanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(table);
 
-        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 102, 555, 179));
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 100, 590, 179));
 
         cmbWasteType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        add(cmbWasteType, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 299, 118, 32));
+        add(cmbWasteType, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 118, 32));
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("Type of Waste : ");
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 308, -1, -1));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 356, -1, 20));
 
-        btnReport.setText("Report");
+        btnReport.setForeground(new java.awt.Color(0, 153, 0));
+        btnReport.setText("♻ Report");
         btnReport.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnReportActionPerformed(evt);
             }
         });
-        add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 390, 70, -1));
+        add(btnReport, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 450, 100, -1));
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("Quantity(lbs) : ");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(184, 351, 82, -1));
-        add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 342, 118, 32));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 386, 100, 30));
 
-        btnDelete.setText("Delete");
+        txtQuantity.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        txtQuantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQuantityActionPerformed(evt);
+            }
+        });
+        add(txtQuantity, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 390, 118, 30));
+
+        btnDelete.setForeground(new java.awt.Color(229, 0, 0));
+        btnDelete.setText("❌ Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
-        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(617, 102, 80, -1));
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 100, 100, -1));
 
         lblUsername.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblUsername.setText("Username");
-        add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(112, 21, 173, 25));
+        add(lblUsername, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 10, 60, 20));
 
         jLabel4.setText("Welcome,");
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(57, 21, -1, 25));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 5, -1, 30));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Helvetica", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("VOLUNTEER WASTE SORTING PANEL");
-        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 76, 640, 20));
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 70, 370, 30));
 
+        jLabel3.setFont(new java.awt.Font("Helvetica", 0, 13)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("VOLUNTEER ORG : ");
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 50, 120, 20));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 130, 20));
 
         lblOrgname.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         lblOrgname.setText("ORG NAME");
-        add(lblOrgname, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, 140, 20));
+        add(lblOrgname, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, 70, 20));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/volu.png"))); // NOI18N
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 6, 790, 590));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -189,6 +203,10 @@ public class WasteReportingVolunteerJpanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Order Created");
     }//GEN-LAST:event_btnReportActionPerformed
 
+    private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQuantityActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
@@ -199,6 +217,7 @@ public class WasteReportingVolunteerJpanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblOrgname;
     private javax.swing.JLabel lblUsername;

@@ -67,10 +67,14 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         lblBidCost = new javax.swing.JLabel();
         txtBidCost = new javax.swing.JTextField();
+        lblimg = new javax.swing.JLabel();
 
-        title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        title.setFont(new java.awt.Font("Helvetica", 1, 18)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         title.setText("CREATE NEW BID");
+        add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 200, 50));
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -78,14 +82,18 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 13, -1, -1));
 
         selCity.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        add(selCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 100, 103, 29));
 
         lblCity.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCity.setText("City : ");
+        add(lblCity, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 100, 87, 30));
 
         lblWaste.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblWaste.setText("Waste Type : ");
+        add(lblWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 87, 30));
 
         selWaste.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         selWaste.addActionListener(new java.awt.event.ActionListener() {
@@ -93,6 +101,7 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
                 selWasteActionPerformed(evt);
             }
         });
+        add(selWaste, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 150, 103, 30));
 
         btnApply.setText("Apply Filter");
         btnApply.addActionListener(new java.awt.event.ActionListener() {
@@ -100,6 +109,7 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
                 btnApplyActionPerformed(evt);
             }
         });
+        add(btnApply, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 190, 103, -1));
 
         btnClear.setText("Clear Filter");
         btnClear.addActionListener(new java.awt.event.ActionListener() {
@@ -107,6 +117,7 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
                 btnClearActionPerformed(evt);
             }
         });
+        add(btnClear, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, -1, -1));
 
         table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -121,102 +132,31 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(table);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, 670, 154));
+
         btnPlaceBid.setText("Place Bid");
         btnPlaceBid.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPlaceBidActionPerformed(evt);
             }
         });
+        add(btnPlaceBid, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 490, -1, -1));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 219, 578, 10));
 
         lblBidCost.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblBidCost.setText("BID price ($): ");
+        add(lblBidCost, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 430, 87, 20));
 
+        txtBidCost.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         txtBidCost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtBidCostActionPerformed(evt);
             }
         });
+        add(txtBidCost, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 420, 138, 30));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(218, 218, 218)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCity, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(selCity, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblWaste, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(selWaste, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(137, 137, 137)
-                        .addComponent(btnClear)))
-                .addGap(8, 8, 8)
-                .addComponent(btnApply, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 578, Short.MAX_VALUE)
-                            .addComponent(title, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 21, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBack)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(200, 200, 200)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnPlaceBid)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(lblBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(btnBack)
-                .addGap(18, 18, 18)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(selCity, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnApply)
-                            .addComponent(btnClear))
-                        .addGap(18, 18, 18)
-                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblBidCost, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtBidCost, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(selWaste, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblWaste, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(290, 290, 290)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnPlaceBid)
-                .addContainerGap(91, Short.MAX_VALUE))
-        );
+        lblimg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/WRU_all.png"))); // NOI18N
+        add(lblimg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtBidCostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBidCostActionPerformed
@@ -317,6 +257,7 @@ public class Wru_CreateNewBid extends javax.swing.JPanel {
     private javax.swing.JLabel lblBidCost;
     private javax.swing.JLabel lblCity;
     private javax.swing.JLabel lblWaste;
+    private javax.swing.JLabel lblimg;
     private javax.swing.JComboBox<String> selCity;
     private javax.swing.JComboBox<String> selWaste;
     private javax.swing.JTable table;

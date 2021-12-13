@@ -57,16 +57,19 @@ public class Wru_AdminBids extends javax.swing.JPanel {
         title1 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 formComponentShown(evt);
             }
         });
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        title.setFont(new java.awt.Font("Helvetica", 1, 12)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title.setText("CURRENT BIDS");
+        add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, 100, -1));
 
         tblOngoingBids.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -81,12 +84,15 @@ public class Wru_AdminBids extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblOngoingBids);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 99, 583, 146));
+
         btnCreate.setText("Create New Bid");
         btnCreate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCreateActionPerformed(evt);
             }
         });
+        add(btnCreate, new org.netbeans.lib.awtextra.AbsoluteConstraints(619, 99, -1, -1));
 
         btnView.setText("View Order");
         btnView.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +100,7 @@ public class Wru_AdminBids extends javax.swing.JPanel {
                 btnViewActionPerformed(evt);
             }
         });
+        add(btnView, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 360, 130, -1));
 
         tblCompletedBids.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -108,9 +115,12 @@ public class Wru_AdminBids extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblCompletedBids);
 
-        title1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(23, 350, 590, 214));
+
+        title1.setFont(new java.awt.Font("Helvetica", 1, 12)); // NOI18N
         title1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title1.setText("COMPLETED BIDS");
+        add(title1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 110, 20));
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -118,6 +128,7 @@ public class Wru_AdminBids extends javax.swing.JPanel {
                 btnDeleteActionPerformed(evt);
             }
         });
+        add(btnDelete, new org.netbeans.lib.awtextra.AbsoluteConstraints(627, 216, 130, -1));
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -125,52 +136,10 @@ public class Wru_AdminBids extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 6, 100, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(title1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 566, Short.MAX_VALUE)
-                            .addComponent(title, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnDelete, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnView, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnCreate, javax.swing.GroupLayout.Alignment.TRAILING))
-                        .addGap(43, 43, 43))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnBack)
-                .addGap(31, 31, 31)
-                .addComponent(title)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCreate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnDelete)))
-                .addGap(84, 84, 84)
-                .addComponent(title1)
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnView))
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/WRU_all.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -241,6 +210,7 @@ public class Wru_AdminBids extends javax.swing.JPanel {
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnView;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable tblCompletedBids;

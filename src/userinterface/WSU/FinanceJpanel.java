@@ -71,6 +71,9 @@ public class FinanceJpanel extends javax.swing.JPanel {
         radioRedeemCash = new javax.swing.JRadioButton();
         radioRedeemVoucher = new javax.swing.JRadioButton();
         cmbVoucherCompany = new javax.swing.JComboBox<>();
+        jLabel1 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jTableAccptedbids.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,16 +96,18 @@ public class FinanceJpanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTableAccptedbids);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 576, 170));
+
         btnRedeem.setText("Redeem");
         btnRedeem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRedeemActionPerformed(evt);
             }
         });
+        add(btnRedeem, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 400, 120, -1));
 
         jTableSelectVoucher.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Sample", "Sample", "100", null},
                 {null, null, null, null},
                 {null, null, null, null},
                 {null, null, null, null}
@@ -121,15 +126,23 @@ public class FinanceJpanel extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTableSelectVoucher);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 400, 576, 150));
+
+        lblSelectVoucher.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblSelectVoucher.setText("Select Voucher");
+        add(lblSelectVoucher, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, 100, 30));
 
-        lblReedemableValue.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
+        lblReedemableValue.setFont(new java.awt.Font("Helvetica", 1, 22)); // NOI18N
         lblReedemableValue.setText("Reedemable Value:");
+        add(lblReedemableValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, -1, -1));
 
-        lblValue.setFont(new java.awt.Font("Lucida Grande", 0, 22)); // NOI18N
+        lblValue.setFont(new java.awt.Font("Helvetica", 1, 22)); // NOI18N
         lblValue.setText("jLabel3");
+        add(lblValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 20, 95, -1));
 
+        lblSelectVoucher1.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblSelectVoucher1.setText("Successful Bids");
+        add(lblSelectVoucher1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 70, 120, -1));
 
         btnBack.setText("Back");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -137,28 +150,35 @@ public class FinanceJpanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 14, 111, -1));
 
+        txtCashValue.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         txtCashValue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCashValueActionPerformed(evt);
             }
         });
+        add(txtCashValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 280, 129, -1));
 
         redeemBtnGroup.add(radioRedeemCash);
+        radioRedeemCash.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         radioRedeemCash.setText("Redeem Cash");
         radioRedeemCash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioRedeemCashActionPerformed(evt);
             }
         });
+        add(radioRedeemCash, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
 
         redeemBtnGroup.add(radioRedeemVoucher);
+        radioRedeemVoucher.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         radioRedeemVoucher.setText("Redeem Voucher");
         radioRedeemVoucher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioRedeemVoucherActionPerformed(evt);
             }
         });
+        add(radioRedeemVoucher, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 280, -1, -1));
 
         cmbVoucherCompany.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cmbVoucherCompany.addActionListener(new java.awt.event.ActionListener() {
@@ -166,77 +186,10 @@ public class FinanceJpanel extends javax.swing.JPanel {
                 cmbVoucherCompanyActionPerformed(evt);
             }
         });
+        add(cmbVoucherCompany, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 320, 127, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(647, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addGap(55, 55, 55)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblSelectVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(65, 65, 65)
-                                .addComponent(cmbVoucherCompany, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(radioRedeemVoucher)
-                                .addGap(142, 142, 142)
-                                .addComponent(radioRedeemCash)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtCashValue, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(212, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(63, 63, 63)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnRedeem, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblSelectVoucher1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(182, 182, 182)
-                        .addComponent(lblReedemableValue)
-                        .addGap(18, 18, 18)
-                        .addComponent(lblValue, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(btnBack)
-                .addGap(3, 3, 3)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblReedemableValue)
-                    .addComponent(lblValue, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblSelectVoucher1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtCashValue, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(radioRedeemCash))
-                    .addComponent(radioRedeemVoucher))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblSelectVoucher)
-                    .addComponent(cmbVoucherCompany, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnRedeem)
-                .addGap(22, 22, 22))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/WSU_800x600.png"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 810, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
@@ -343,6 +296,7 @@ public class FinanceJpanel extends javax.swing.JPanel {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRedeem;
     private javax.swing.JComboBox<String> cmbVoucherCompany;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTableAccptedbids;
