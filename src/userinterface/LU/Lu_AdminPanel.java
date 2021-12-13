@@ -48,66 +48,46 @@ public class Lu_AdminPanel extends javax.swing.JPanel {
         btnBids = new javax.swing.JButton();
         lblCompanyName = new javax.swing.JLabel();
         txtCompanyName = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
-        title.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        title.setFont(new java.awt.Font("Helvetica", 1, 18)); // NOI18N
         title.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         title.setText("LOGISTICS ADMIN PANEL");
+        add(title, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 20, 280, 25));
 
+        btnManagers.setBackground(new java.awt.Color(16, 50, 163));
+        btnManagers.setForeground(new java.awt.Color(255, 255, 255));
         btnManagers.setText("DRIVERS");
         btnManagers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnManagersActionPerformed(evt);
             }
         });
+        add(btnManagers, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 160, 35));
 
+        btnBids.setBackground(new java.awt.Color(16, 50, 163));
+        btnBids.setForeground(new java.awt.Color(255, 255, 255));
         btnBids.setText("TRIPS");
         btnBids.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBidsActionPerformed(evt);
             }
         });
+        add(btnBids, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 160, 34));
 
+        lblCompanyName.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblCompanyName.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         lblCompanyName.setText("Company Name : ");
+        add(lblCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 62, 120, 30));
 
+        txtCompanyName.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         txtCompanyName.setText("My Company Name");
+        add(txtCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 60, 200, 32));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnBids, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(13, 13, 13)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 577, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(title, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
-                .addComponent(btnManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(btnBids, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/Lu__800x600.jpeg"))); // NOI18N
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 6, 800, 590));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnManagersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnManagersActionPerformed
@@ -128,6 +108,7 @@ public class Lu_AdminPanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBids;
     private javax.swing.JButton btnManagers;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblCompanyName;
     private javax.swing.JLabel title;
     private javax.swing.JLabel txtCompanyName;

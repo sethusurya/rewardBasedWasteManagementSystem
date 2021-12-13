@@ -51,7 +51,6 @@ public class Lu_DriversPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         lblCompanyName = new javax.swing.JLabel();
-        txtCompanyName = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblCurrent = new javax.swing.JTable();
         btnPickup = new javax.swing.JButton();
@@ -65,11 +64,14 @@ public class Lu_DriversPanel extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         lblTrips = new javax.swing.JLabel();
+        txtCompanyName = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lblCompanyName.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         lblCompanyName.setText("Company Name : ");
-
-        txtCompanyName.setEditable(false);
+        add(lblCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 130, 30));
 
         tblCurrent.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -84,12 +86,15 @@ public class Lu_DriversPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblCurrent);
 
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 560, 175));
+
         btnPickup.setText("Pickup");
         btnPickup.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPickupActionPerformed(evt);
             }
         });
+        add(btnPickup, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 100, 103, -1));
 
         btnDelivered.setText("Delivered");
         btnDelivered.addActionListener(new java.awt.event.ActionListener() {
@@ -97,6 +102,7 @@ public class Lu_DriversPanel extends javax.swing.JPanel {
                 btnDeliveredActionPerformed(evt);
             }
         });
+        add(btnDelivered, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 250, -1, -1));
 
         tblCompleted.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -111,99 +117,45 @@ public class Lu_DriversPanel extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tblCompleted);
 
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 340, 560, 175));
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel1.setText("Total Money ($): ");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 480, -1, -1));
 
+        lblCost.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         lblCost.setText("usd");
+        add(lblCost, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 480, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Helvetica", 1, 14)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("COMPLETED TRIPS");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 180, -1));
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Helvetica", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("CURRENT TRIPS");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, 150, -1));
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Helvetica", 1, 18)); // NOI18N
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("DRIVER DASHBOARD");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 40, 250, 40));
 
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         jLabel2.setText("Completed Trips : ");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 500, -1, -1));
 
+        lblTrips.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         lblTrips.setText("N/A");
+        add(lblTrips, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 500, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(85, 85, 85)
-                        .addComponent(lblCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26)
-                        .addComponent(txtCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblCost))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(btnPickup, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnDelivered, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(lblTrips))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 513, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(25, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCompanyName, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(1, 1, 1)
-                        .addComponent(jLabel4)
-                        .addGap(3, 3, 3)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(69, 69, 69)
-                        .addComponent(btnPickup)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnDelivered)))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(lblCost))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(lblTrips))))
-                .addGap(12, 12, 12))
-        );
+        txtCompanyName.setText("jLabel6");
+        add(txtCompanyName, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, 120, 30));
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/lu.png"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPickupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPickupActionPerformed
@@ -254,6 +206,7 @@ public class Lu_DriversPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblCompanyName;
@@ -261,7 +214,7 @@ public class Lu_DriversPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblTrips;
     private javax.swing.JTable tblCompleted;
     private javax.swing.JTable tblCurrent;
-    private javax.swing.JTextField txtCompanyName;
+    private javax.swing.JLabel txtCompanyName;
     // End of variables declaration//GEN-END:variables
 
     private void populateTables(OrderDirectory orderDirectory) {
