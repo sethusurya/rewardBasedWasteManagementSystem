@@ -184,7 +184,7 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         jLabel1.setText("SYSTEM ADMIN PANEL");
         jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, -1, 23));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/jpasdf.png"))); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/mjipo.png"))); // NOI18N
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 660, 590));
 
         jSplitPane.setRightComponent(jPanel2);

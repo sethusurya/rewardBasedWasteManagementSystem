@@ -136,27 +136,27 @@ public class RewardsJPanel extends javax.swing.JPanel {
 
         lblVoucher.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblVoucher.setText("Voucher Value:");
-        add(lblVoucher, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 440, -1, -1));
+        add(lblVoucher, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 410, -1, -1));
 
         lblCash.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblCash.setText("Cash:");
-        add(lblCash, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 480, 40, -1));
+        add(lblCash, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 450, 40, -1));
 
         lblTotal.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblTotal.setText("Total Earnings:");
-        add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 550, -1, -1));
+        add(lblTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 520, -1, -1));
 
         lblVoucherValue.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblVoucherValue.setText("jLabel6");
-        add(lblVoucherValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 440, -1, -1));
+        add(lblVoucherValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 410, -1, -1));
 
         lblCashValue.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblCashValue.setText("jLabel6");
-        add(lblCashValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 480, -1, -1));
+        add(lblCashValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 450, -1, -1));
 
         lblTotalValue.setFont(new java.awt.Font("Helvetica", 1, 13)); // NOI18N
         lblTotalValue.setText("jLabel6");
-        add(lblTotalValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 550, -1, -1));
+        add(lblTotalValue, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 520, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Helvetica", 1, 18)); // NOI18N
         jLabel1.setText("EARNINGS");
@@ -171,10 +171,10 @@ public class RewardsJPanel extends javax.swing.JPanel {
         add(btnBack, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 111, -1));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/Screen Shot 2021-12-11 at 6.21.45 PM.png"))); // NOI18N
-        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(534, 520, 230, 20));
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 490, 230, 20));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/WSU_earnings.png"))); // NOI18N
-        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 790, 610));
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 780, 610));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

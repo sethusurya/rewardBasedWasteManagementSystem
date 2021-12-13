@@ -143,7 +143,7 @@ public class Lu_Drivers extends javax.swing.JPanel {
         add(lblRole, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 430, 98, 22));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/userinterface/images/lu.png"))); // NOI18N
-        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(5, 6, 790, 590));
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-5, -4, 810, 600));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
